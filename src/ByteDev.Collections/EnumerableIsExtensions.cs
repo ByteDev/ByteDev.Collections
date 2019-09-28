@@ -6,10 +6,12 @@ namespace ByteDev.Collections
 {
     public static class EnumerableIsExtensions
     {
-        /// <summary>
-        /// Determines if the collection has zero elements.
-        /// </summary>
-        public static bool IsEmpty<T>(this IEnumerable<T> source)
+        /// <summary>Determines if the enumerable has zero elements.</summary>
+        /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+        /// <param name="source">The enumerable to check if is empty.</param>
+        /// <returns>True if empty; otherwise returns false.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        public static bool IsEmpty<TSource>(this IEnumerable<TSource> source)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
@@ -17,18 +19,21 @@ namespace ByteDev.Collections
             return !source.Any();
         }
 
-        /// <summary>
-        /// Determines if the collection is null or has zero elements.
-        /// </summary>
-        public static bool IsNullOrEmpty<T>(this IEnumerable<T> source)
+        /// <summary>Determines if the enumerable is null or is empty.</summary>
+        /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+        /// <param name="source">The enumerable to check if is null or empty.</param>
+        /// <returns>True if null or empty; otherwise returns false.</returns>
+        public static bool IsNullOrEmpty<TSource>(this IEnumerable<TSource> source)
         {
             return source == null || source.IsEmpty();
         }
 
-        /// <summary>
-        /// Determines if the collection has exactly one element.
-        /// </summary>
-        public static bool IsSingle<T>(this IEnumerable<T> source)
+        /// <summary>Determines if the enumerable has exactly one element.</summary>
+        /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+        /// <param name="source">The enumerable to check if contains exactly one element.</param>
+        /// <returns>True if contains one element; otherwise returns false.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        public static bool IsSingle<TSource>(this IEnumerable<TSource> source)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
@@ -36,11 +41,13 @@ namespace ByteDev.Collections
             return source.Count() == 1;
         }
 
-        /// <summary>
-        /// Checks that two enumerables are equivalent
-        /// (order of items does not matter).
-        /// </summary>
-        public static bool IsEquivalentTo<T>(this IEnumerable<T> source, IEnumerable<T> other)
+        /// <summary>Determines if two enumerables are equivalent. The order of items does not matter.</summary>
+        /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+        /// <param name="source">The original enumerable to check against.</param>
+        /// <param name="other">The other enumerable to check against.</param>
+        /// <returns>True if both enumerables are equivalent; otherwise returns false.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        public static bool IsEquivalentTo<TSource>(this IEnumerable<TSource> source, IEnumerable<TSource> other)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));

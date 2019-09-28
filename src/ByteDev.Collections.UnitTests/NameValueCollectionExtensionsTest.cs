@@ -1,4 +1,5 @@
-﻿using System.Collections.Specialized;
+﻿using System;
+using System.Collections.Specialized;
 using NUnit.Framework;
 
 namespace ByteDev.Collections.UnitTests
@@ -10,28 +11,36 @@ namespace ByteDev.Collections.UnitTests
         public class AddOrUpdate
         {
             [Test]
-            public void WhenCollectionDoesNotContainName_ThenAddPair()
+            public void WhenSourceIsNull_ThenThrowException()
             {
-                var sut = new NameValueCollection();
+                NameValueCollection sut = null;
 
-                sut.AddOrUpdate("name1", "value1");
-
-                Assert.That(sut["name1"], Is.EqualTo("value1"));
+                Assert.Throws<ArgumentNullException>(() => sut.AddOrUpdate("key1", "value1"));
             }
 
             [Test]
-            public void WhenCollectionContainsName_ThenUpdatePair()
+            public void WhenSourceDoesNotContainName_ThenAddPair()
+            {
+                var sut = new NameValueCollection();
+
+                sut.AddOrUpdate("key1", "value1");
+
+                Assert.That(sut["key1"], Is.EqualTo("value1"));
+            }
+
+            [Test]
+            public void WhenSourceContainsName_ThenUpdatePair()
             {
                 const string expected = "newvalue";
 
                 var sut = new NameValueCollection
                 {
-                    {"name1", "value1"}
+                    {"key1", "value1"}
                 };
 
-                sut.AddOrUpdate("name1", expected);
+                sut.AddOrUpdate("key1", expected);
 
-                Assert.That(sut["name1"], Is.EqualTo(expected));
+                Assert.That(sut["key1"], Is.EqualTo(expected));
             }
         }
 
@@ -39,11 +48,19 @@ namespace ByteDev.Collections.UnitTests
         public class ContainsKey
         {
             [Test]
-            public void WhenCollectionIsEmpty_ThenReturnFalse()
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                NameValueCollection sut = null;
+
+                Assert.Throws<ArgumentNullException>(() => sut.ContainsKey("key1"));
+            }
+
+            [Test]
+            public void WhenSourceIsEmpty_ThenReturnFalse()
             {
                 var sut = new NameValueCollection();
 
-                var result = sut.ContainsKey("name1");
+                var result = sut.ContainsKey("key1");
 
                 Assert.That(result, Is.False);
             }
@@ -53,7 +70,7 @@ namespace ByteDev.Collections.UnitTests
             {
                 var sut = new NameValueCollection
                 {
-                    {"name1", "value1"}
+                    {"key1", "value1"}
                 };
 
                 var result = sut.ContainsKey(null);
@@ -66,10 +83,10 @@ namespace ByteDev.Collections.UnitTests
             {
                 var sut = new NameValueCollection
                 {
-                    {"name1", "value1"}
+                    {"key1", "value1"}
                 };
 
-                var result = sut.ContainsKey("name2");
+                var result = sut.ContainsKey("key2");
 
                 Assert.That(result, Is.False);
             }
@@ -79,10 +96,10 @@ namespace ByteDev.Collections.UnitTests
             {
                 var sut = new NameValueCollection
                 {
-                    {"name1", "value1"}
+                    {"key1", "value1"}
                 };
 
-                var result = sut.ContainsKey("name1");
+                var result = sut.ContainsKey("key1");
 
                 Assert.That(result, Is.True);
             }

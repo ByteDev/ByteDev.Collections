@@ -1,21 +1,43 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
+using System.Text;
 
 namespace ByteDev.Collections
 {
     public static class EnumerableToExtensions
     {
-        public static string ToDelimitedString(this IEnumerable<object> source, string delimiter)
+        /// <summary>Returns the enumerable as a delimited string.</summary>
+        /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+        /// <param name="source">The enumerable to return as a delimited string.</param>
+        /// <param name="delimiter">Delimiter to use between elements.</param>
+        /// <returns>The enumerable as a delimited string.</returns>
+        public static string ToDelimitedString<TSource>(this IEnumerable<TSource> source, string delimiter)
         {
-            if (source == null || !source.Any())
-            {
+            if (source == null)
                 return string.Empty;
+
+            var sb = new StringBuilder();
+
+            foreach (var element in source)
+            {
+                if (sb.Length == 0)
+                {
+                    sb.Append(element);
+                }
+                else
+                {
+                    sb.Append(delimiter);
+                    sb.Append(element);
+                }
             }
-            return source.Aggregate((a, b) => string.Format(CultureInfo.InvariantCulture, "{0}{1}{2}", a, delimiter, b)).ToString();
+
+            return sb.ToString();
         }
 
-        public static string ToCsv(this IEnumerable<object> source)
+        /// <summary>Returns the enumerable as a comma separated value string.</summary>
+        /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+        /// <param name="source">The enumerable to return as a delimited string.</param>
+        /// <returns>The enumerable as a comma separated string.</returns>
+        public static string ToCsv<TSource>(this IEnumerable<TSource> source)
         {
             return ToDelimitedString(source, ",");
         }         

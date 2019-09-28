@@ -1,29 +1,43 @@
-﻿using System.Collections.Specialized;
+﻿using System;
+using System.Collections.Specialized;
 using System.Linq;
 
 namespace ByteDev.Collections
 {
     public static class NameValueCollectionExtensions
     {
-        public static void AddOrUpdate(this NameValueCollection nameValues, string name, string value)
+        /// <summary>Add or update the key value pair.</summary>
+        /// <param name="source">The name value collection to add or update the key value pair on.</param>
+        /// <param name="key">The key to use when adding or updating the name value collection.</param>
+        /// <param name="value">The value to use when adding or updating the name value collection.</param>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        public static void AddOrUpdate(this NameValueCollection source, string key, string value)
         {
-            if (nameValues[name] == null)
-            {
-                nameValues.Add(name, value);
-            }
+            if(source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            if (source.ContainsKey(key))
+                source[key] = value;
             else
-            {
-                nameValues[name] = value;
-            }
+                source.Add(key, value);
         }
 
-        public static bool ContainsKey(this NameValueCollection collection, string key)
+        /// <summary>Check if the name value collection contains a key.</summary>
+        /// <param name="source">The name value collection to check if key exists.</param>
+        /// <param name="key">The key to check if is being used or not.</param>
+        /// <returns>True if the name value collection contains the key; otherwise false.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        public static bool ContainsKey(this NameValueCollection source, string key)
         {
-            if (collection.AllKeys.Contains(key))
-                return true;
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
 
-            var keysWithoutValues = collection.GetValues(null);
-            return keysWithoutValues != null && keysWithoutValues.Contains(key);
+            if (source.Get(key) == null)
+            {
+                return source.AllKeys.Contains(key);
+            }
+
+            return true;
         }
     }
 }

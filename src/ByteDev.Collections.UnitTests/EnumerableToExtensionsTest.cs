@@ -11,18 +11,18 @@ namespace ByteDev.Collections.UnitTests
         {
             private const string Delimiter = " ";
 
-            private List<object> _sut;
+            private List<string> _sut;
 
             [SetUp]
             public void SetUp()
             {
-                _sut = new List<object>();
+                _sut = new List<string>();
             }
 
             [Test]
             public void WhenIsNull_ThenReturnEmpty()
             {
-                var result = (null as List<object>).ToDelimitedString(Delimiter);
+                var result = (null as List<string>).ToDelimitedString(Delimiter);
 
                 Assert.That(result, Is.Empty);
             }
@@ -68,7 +68,8 @@ namespace ByteDev.Collections.UnitTests
             {
                 const string term1 = "John";
                 const string term2 = "Peter";
-                var expected = term1 + term2;
+
+                const string expected = term1 + term2;
 
                 _sut.Add(term1);
                 _sut.Add(term2);
