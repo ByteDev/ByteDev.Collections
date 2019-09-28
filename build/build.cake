@@ -64,7 +64,7 @@ Task("UnitTests")
 	});
 	
 Task("CreateNuGetPackages")
-    .IsDependentOn("IntegrationTests")
+    .IsDependentOn("UnitTests")
     .Does(() =>
     {
 		var nugetVersion = GetNuGetVersion();

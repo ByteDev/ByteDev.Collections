@@ -19,6 +19,14 @@ namespace ByteDev.Collections.UnitTests
         public class AddRange : DictionaryExtensionsTest
         {
             [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                Dictionary<string, string> sut = null;
+
+                Assert.Throws<ArgumentNullException>(() => sut.AddRange(new KeyValuePair<string, string>[0]));
+            }
+
+            [Test]
             public void WhenItemsToAddIsNull_ThenThrowException()
             {
                 Assert.Throws<ArgumentNullException>(() => _sut.AddRange(null));
@@ -56,13 +64,22 @@ namespace ByteDev.Collections.UnitTests
                     new KeyValuePair<string, string>("key1", "value2")
                 };
 
-                Assert.Throws<ArgumentException>(() => _sut.AddRange(keyValuePairs));
+                var ex = Assert.Throws<ArgumentException>(() => _sut.AddRange(keyValuePairs));
+                Assert.That(ex.Message, Is.EqualTo("An item with the same key has already been added. Key: key1"));
             }
         }
 
         [TestFixture]
         public class AddOrUpdateRange : DictionaryExtensionsTest
         {
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                Dictionary<string, string> sut = null;
+
+                Assert.Throws<ArgumentNullException>(() => sut.AddOrUpdateRange(new KeyValuePair<string, string>[0]));
+            }
+
             [Test]
             public void WhenItemsToAddIsNull_ThenThrowException()
             {
@@ -112,6 +129,14 @@ namespace ByteDev.Collections.UnitTests
         [TestFixture]
         public class GetValueIgnoreKeyCase : DictionaryExtensionsTest
         {
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                Dictionary<string, string> sut = null;
+
+                Assert.Throws<ArgumentNullException>(() => sut.GetValueIgnoreKeyCase("SomeKey"));
+            }
+
             [Test]
             public void WhenKeyIsNull_ThenThrowException()
             {

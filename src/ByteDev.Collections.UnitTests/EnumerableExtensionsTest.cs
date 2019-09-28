@@ -33,45 +33,6 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class Find
-        {
-            private IEnumerable<string> _sut;
-
-            [SetUp]
-            public void SetUp()
-            {
-                _sut = new[] { "Hello", "John", "Smith" };
-            }
-
-            [Test]
-            public void WhenPredicateIsNull_ThenThrowException()
-            {
-                Assert.Throws<ArgumentNullException>(() => _sut.Find(null));
-            }
-
-            [Test]
-            public void WhenItemFound_ThenReturnItem()
-            {
-                var result = _sut.Find(x => x == "John");
-
-                Assert.That(result, Is.SameAs(_sut.Second()));
-            }
-
-            [Test]
-            public void WhenItemNotFound_ThenReturnItemDefault()
-            {
-                var result = Act(x => x == "Peter");
-
-                Assert.That(result, Is.EqualTo(default(string)));
-            }
-
-            private string Act(Predicate<string> predicate)
-            {
-                return _sut.Find(predicate);
-            }
-        }
-
-        [TestFixture]
         public class ForEach
         {
             [Test]
@@ -113,7 +74,54 @@ namespace ByteDev.Collections.UnitTests
                 Assert.That(counter, Is.EqualTo(6));
             }
         }
-        
+
+        [TestFixture]
+        public class Find
+        {
+            private IEnumerable<string> _sut;
+
+            [SetUp]
+            public void SetUp()
+            {
+                _sut = new[] { "Hello", "John", "Smith" };
+            }
+
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                IEnumerable<string> sut = null;
+
+                Assert.Throws<ArgumentNullException>(() => sut.Find(x => x == "Hello"));
+            }
+
+            [Test]
+            public void WhenPredicateIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => Act(null));
+            }
+
+            [Test]
+            public void WhenItemFound_ThenReturnItem()
+            {
+                var result = Act(x => x == "John");
+
+                Assert.That(result, Is.SameAs(_sut.Second()));
+            }
+
+            [Test]
+            public void WhenItemNotFound_ThenReturnItemDefault()
+            {
+                var result = Act(x => x == "Peter");
+
+                Assert.That(result, Is.EqualTo(default(string)));
+            }
+
+            private string Act(Predicate<string> predicate)
+            {
+                return _sut.Find(predicate);
+            }
+        }
+
         internal class Dummy
         {
             private readonly string _name;
