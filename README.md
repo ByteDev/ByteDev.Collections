@@ -20,3 +20,13 @@ Further details can be found on the [nuget page](https://www.nuget.org/packages/
 The repo can be cloned from git bash:
 
 `git clone https://github.com/ByteDev/ByteDev.Collections`
+
+## Usage
+
+Assembly contains extension methods:
+- Dictionary: AddRange, AddOrUpdateRange.
+- Enumerable: Second, Third... Tenth, NullToEmpty, ForEach, Find, IsEmpty, IsNullOrEmpty, IsSingle, IsEquivalentTo, ToDelimitedString, ToCsv.
+- List: NullToEmpty, Fill, MoveToFirst.
+- NameValueCollection: AddOrUpdate, ContainsKey.
+
+To use the extension methods simply reference the ByteDev.Collections namespace.
