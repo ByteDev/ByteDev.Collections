@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace ByteDev.Collections
 {
+    /// <summary>
+    /// Extension methods for IList.
+    /// </summary>
     public static class ListExtensions
     {
         /// <summary>Returns empty List when null.</summary>

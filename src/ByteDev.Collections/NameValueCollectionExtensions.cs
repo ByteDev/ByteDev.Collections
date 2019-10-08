@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace ByteDev.Collections
 {
+    /// <summary>
+    /// Extension methods for NameValueCollection.
+    /// </summary>
     public static class NameValueCollectionExtensions
     {
         /// <summary>Add or update the key value pair.</summary>

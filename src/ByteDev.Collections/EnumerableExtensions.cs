@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace ByteDev.Collections
 {
+    /// <summary>
+    /// Extension methods for IEnumerable.
+    /// </summary>
     public static class EnumerableExtensions
     {
         /// <summary>Returns empty enumerable when null.</summary>

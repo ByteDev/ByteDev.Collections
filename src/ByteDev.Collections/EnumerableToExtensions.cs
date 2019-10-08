@@ -3,6 +3,9 @@ using System.Text;
 
 namespace ByteDev.Collections
 {
+    /// <summary>
+    /// Extension To methods for IEnumerable.
+    /// </summary>
     public static class EnumerableToExtensions
     {
         /// <summary>Returns the enumerable as a delimited string.</summary>

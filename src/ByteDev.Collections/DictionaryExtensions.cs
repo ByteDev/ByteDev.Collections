@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace ByteDev.Collections
 {
+    /// <summary>
+    /// Extension methods for IDictionary.
+    /// </summary>
     public static class DictionaryExtensions
     {
         /// <summary>Add a range of items to the source dictionary.</summary>

@@ -57,6 +57,41 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
+        public class SecondOrDefault : EnumerableElementSelectionExtensionsTest
+        {
+            [Test]
+            public void WhenIsEmpty_ThenReturnDefault()
+            {
+                var result = _sut.SecondOrDefault();
+
+                Assert.That(result, Is.Null);
+            }
+
+            [Test]
+            public void WhenHasOneElement_ThenReturnDefault()
+            {
+                _sut.Add("John");
+
+                var result =_sut.SecondOrDefault();
+
+                Assert.That(result, Is.Null);
+            }
+
+            [Test]
+            public void WhenHasTwoElements_ThenReturnSecondElement()
+            {
+                const string expected = "Peter";
+
+                _sut.Add("John");
+                _sut.Add(expected);
+
+                var result = _sut.SecondOrDefault();
+
+                Assert.That(result, Is.EqualTo(expected));
+            }
+        }
+
+        [TestFixture]
         public class Third : EnumerableElementSelectionExtensionsTest
         {
             [Test]
@@ -83,6 +118,33 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
+        public class ThirdOrDefault : EnumerableElementSelectionExtensionsTest
+        {
+            [Test]
+            public void WhenHasTwoElements_ThenReturnDefault()
+            {
+                _sut.Fill(2, "John");
+
+                var result = _sut.ThirdOrDefault();
+
+                Assert.That(result, Is.Null);
+            }
+
+            [Test]
+            public void WhenHasThreeElements_ThenReturnThirdElement()
+            {
+                const string expected = "Peter";
+
+                _sut.Fill(2, "John");
+                _sut.Add(expected);
+
+                var result = _sut.ThirdOrDefault();
+
+                Assert.That(result, Is.EqualTo(expected));
+            }
+        }
+        
+        [TestFixture]
         public class Fourth : EnumerableElementSelectionExtensionsTest
         {
             [Test]
@@ -103,6 +165,33 @@ namespace ByteDev.Collections.UnitTests
                 _sut.Add(expected);
 
                 var result = _sut.Fourth();
+
+                Assert.That(result, Is.EqualTo(expected));
+            }
+        }
+
+        [TestFixture]
+        public class FourthOrDefault : EnumerableElementSelectionExtensionsTest
+        {
+            [Test]
+            public void WhenHasThreeElements_ThenReturnDefault()
+            {
+                _sut.Fill(3, "John");
+
+                var result = _sut.FourthOrDefault();
+
+                Assert.That(result, Is.Null);
+            }
+
+            [Test]
+            public void WhenHasFourElements_ThenReturnFourthElement()
+            {
+                const string expected = "Peter";
+
+                _sut.Fill(3, "John");
+                _sut.Add(expected);
+
+                var result = _sut.FourthOrDefault();
 
                 Assert.That(result, Is.EqualTo(expected));
             }
@@ -135,6 +224,33 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
+        public class FifthOrDefault : EnumerableElementSelectionExtensionsTest
+        {
+            [Test]
+            public void WhenHasFourElements_ThenReturnDefault()
+            {
+                _sut.Fill(4, "John");
+
+                var result = _sut.FifthOrDefault();
+
+                Assert.That(result, Is.Null);
+            }
+
+            [Test]
+            public void WhenHasFiveElements_ThenReturnFifthElement()
+            {
+                const string expected = "Peter";
+
+                _sut.Fill(4, "John");
+                _sut.Add(expected);
+
+                var result = _sut.FifthOrDefault();
+
+                Assert.That(result, Is.EqualTo(expected));
+            }
+        }
+
+        [TestFixture]
         public class Sixth : EnumerableElementSelectionExtensionsTest
         {
             [Test]
@@ -155,6 +271,33 @@ namespace ByteDev.Collections.UnitTests
                 _sut.Add(expected);
                 
                 var result = _sut.Sixth();
+
+                Assert.That(result, Is.EqualTo(expected));
+            }
+        }
+
+        [TestFixture]
+        public class SixthOrDefault : EnumerableElementSelectionExtensionsTest
+        {
+            [Test]
+            public void WhenHasFiveElements_ThenReturnDefault()
+            {
+                _sut.Fill(5, "John");
+
+                var result = _sut.SixthOrDefault();
+
+                Assert.That(result, Is.Null);
+            }
+
+            [Test]
+            public void WhenHasSixElements_ThenReturnSixthElement()
+            {
+                const string expected = "Peter";
+
+                _sut.Fill(5, "John");
+                _sut.Add(expected);
+
+                var result = _sut.SixthOrDefault();
 
                 Assert.That(result, Is.EqualTo(expected));
             }
@@ -187,6 +330,33 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
+        public class SeventhOrDefault : EnumerableElementSelectionExtensionsTest
+        {
+            [Test]
+            public void WhenHasSixElements_ThenReturnDefault()
+            {
+                _sut.Fill(6, "John");
+
+                var result = _sut.SeventhOrDefault();
+
+                Assert.That(result, Is.Null);
+            }
+
+            [Test]
+            public void WhenHasSevenElements_ThenReturnSeventhElement()
+            {
+                const string expected = "Peter";
+
+                _sut.Fill(6, "John");
+                _sut.Add(expected);
+
+                var result = _sut.SeventhOrDefault();
+
+                Assert.That(result, Is.EqualTo(expected));
+            }
+        }
+
+        [TestFixture]
         public class Eighth : EnumerableElementSelectionExtensionsTest
         {
             [Test]
@@ -207,6 +377,33 @@ namespace ByteDev.Collections.UnitTests
                 _sut.Add(expected);
 
                 var result = _sut.Eighth();
+
+                Assert.That(result, Is.EqualTo(expected));
+            }
+        }
+
+        [TestFixture]
+        public class EighthOrDefault : EnumerableElementSelectionExtensionsTest
+        {
+            [Test]
+            public void WhenHasSevenElements_ThenReturnDefault()
+            {
+                _sut.Fill(7, "John");
+
+                var result = _sut.EighthOrDefault();
+
+                Assert.That(result, Is.Null);
+            }
+
+            [Test]
+            public void WhenHasEightElements_ThenReturnEighthElement()
+            {
+                const string expected = "Peter";
+
+                _sut.Fill(7, "John");
+                _sut.Add(expected);
+
+                var result = _sut.EighthOrDefault();
 
                 Assert.That(result, Is.EqualTo(expected));
             }
@@ -239,6 +436,33 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
+        public class NinethOrDefault : EnumerableElementSelectionExtensionsTest
+        {
+            [Test]
+            public void WhenHasEightElements_ThenReturnDefault()
+            {
+                _sut.Fill(8, "John");
+
+                var result = _sut.NinthOrDefault();
+
+                Assert.That(result, Is.Null);
+            }
+
+            [Test]
+            public void WhenHasNineElements_ThenReturnNinthElement()
+            {
+                const string expected = "Peter";
+
+                _sut.Fill(8, "John");
+                _sut.Add(expected);
+
+                var result = _sut.NinthOrDefault();
+
+                Assert.That(result, Is.EqualTo(expected));
+            }
+        }
+
+        [TestFixture]
         public class Tenth : EnumerableElementSelectionExtensionsTest
         {
             [Test]
@@ -259,6 +483,33 @@ namespace ByteDev.Collections.UnitTests
                 _sut.Add(expected);
 
                 var result = _sut.Tenth();
+
+                Assert.That(result, Is.EqualTo(expected));
+            }
+        }
+
+        [TestFixture]
+        public class TenthOrDefault : EnumerableElementSelectionExtensionsTest
+        {
+            [Test]
+            public void WhenHasNineElements_ThenReturnDefault()
+            {
+                _sut.Fill(9, "John");
+
+                var result = _sut.TenthOrDefault();
+
+                Assert.That(result, Is.Null);
+            }
+
+            [Test]
+            public void WhenHasTenElements_ThenReturnTenthElement()
+            {
+                const string expected = "Peter";
+
+                _sut.Fill(9, "John");
+                _sut.Add(expected);
+
+                var result = _sut.TenthOrDefault();
 
                 Assert.That(result, Is.EqualTo(expected));
             }

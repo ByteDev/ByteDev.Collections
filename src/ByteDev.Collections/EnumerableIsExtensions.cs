@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace ByteDev.Collections
 {
+    /// <summary>
+    /// Extension Is methods for IEnumerable.
+    /// </summary>
     public static class EnumerableIsExtensions
     {
         /// <summary>Determines if the enumerable has zero elements.</summary>

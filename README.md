@@ -25,7 +25,7 @@ The repo can be cloned from git bash:
 
 Assembly contains extension methods:
 - Dictionary: AddRange, AddOrUpdateRange.
-- Enumerable: Second, Third... Tenth, NullToEmpty, ForEach, Find, IsEmpty, IsNullOrEmpty, IsSingle, IsEquivalentTo, ToDelimitedString, ToCsv.
+- Enumerable: Second, Third... Tenth, SecondOrDefault, ThirdOrDefault... TenthOrDefault, NullToEmpty, ForEach, Find, IsEmpty, IsNullOrEmpty, IsSingle, IsEquivalentTo, ToDelimitedString, ToCsv.
 - List: NullToEmpty, Fill, MoveToFirst.
 - NameValueCollection: AddOrUpdate, ContainsKey.
 
