@@ -1,5 +1,16 @@
 # Release Notes
 
+## 1.2.0 - 02 Nov 2019
+
+Breaking changes:
+- (None)
+
+New features:
+- Added Populate methods for one and two dimension arrays.
+
+Bug fixes:
+- (None)
+
 ## 1.1.0 - 08 Oct 2019
 
 Breaking changes:

@@ -36,10 +36,8 @@ namespace ByteDev.Collections
                 throw new ArgumentNullException(nameof(source));
 
             if (source.Get(key) == null)
-            {
                 return source.AllKeys.Contains(key);
-            }
-
+            
             return true;
         }
     }

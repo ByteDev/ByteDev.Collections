@@ -23,10 +23,52 @@ The repo can be cloned from git bash:
 
 ## Usage
 
-Assembly contains extension methods:
-- Dictionary: AddRange, AddOrUpdateRange.
-- Enumerable: Second, Third... Tenth, SecondOrDefault, ThirdOrDefault... TenthOrDefault, NullToEmpty, ForEach, Find, IsEmpty, IsNullOrEmpty, IsSingle, IsEquivalentTo, ToDelimitedString, ToCsv.
-- List: NullToEmpty, Fill, MoveToFirst.
-- NameValueCollection: AddOrUpdate, ContainsKey.
+To use any extension methods simply reference the `ByteDev.Collections` namespace.
 
-To use the extension methods simply reference the ByteDev.Collections namespace.
+Assembly contains extension methods:
+- Array (Single Dimension):
+  - Populate
+- Array (Two Dimensions):
+  - Populate
+- IDictionary<TKey, TValue>:
+  - AddRange
+  - AddOrUpdateRange
+  - GetValueIgnoreKeyCase
+- IEnumerable<T>:
+  - Second
+  - SecondOrDefault
+  - Third
+  - ThirdOrDefault
+  - Fourth
+  - FourthOrDefault
+  - Fifth
+  - FifthOrDefault
+  - Sixth
+  - SixthOrDefault
+  - Seventh
+  - SeventhOrDefault
+  - Eigth
+  - EigthOrDefault
+  - Ninth
+  - NinthOrDefault
+  - Tenth
+  - TenthOrDefault
+  - NullToEmpty
+  - ForEach
+  - Find
+  - IsEmpty
+  - IsNullOrEmpty
+  - IsSingle
+  - IsEquivalentTo
+  - ToDelimitedString
+  - ToCsv
+- IList<T>: 
+  - NullToEmpty
+  - Fill
+  - MoveToFirst
+  - RemoveWhere
+- NameValueCollection: 
+  - AddOrUpdate
+  - ContainsKey
+
+

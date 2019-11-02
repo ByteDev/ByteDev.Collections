@@ -24,7 +24,7 @@ namespace ByteDev.Collections
         /// <param name="numberToFill">Number of elements to fill.</param>
         /// <param name="value">The value to fill with.</param>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
-        /// <exception cref="T:System.InvalidOperationException">The list is not empty.</exception>
+        /// <exception cref="T:System.InvalidOperationException"><paramref name="source" /> is not empty.</exception>
         public static void Fill<TSource>(this IList<TSource> source, int numberToFill, TSource value)
         {
             if (source == null)
