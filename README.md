@@ -26,9 +26,9 @@ The repo can be cloned from git bash:
 To use any extension methods simply reference the `ByteDev.Collections` namespace.
 
 Assembly contains extension methods:
-- Array (Single Dimension):
+- Array []:
   - Populate
-- Array (Two Dimensions):
+- Array [,]:
   - Populate
 - IDictionary<TKey, TValue>:
   - AddRange
