@@ -1,5 +1,17 @@
 # Release Notes
 
+## 1.3.0 - 02 Nov 2019
+
+Breaking changes:
+- (None)
+
+New features:
+- Added IEnumerable<string> extension methods GetLongest and GetShortest.
+
+Bug fixes:
+- (None)
+
+
 ## 1.2.0 - 02 Nov 2019
 
 Breaking changes:

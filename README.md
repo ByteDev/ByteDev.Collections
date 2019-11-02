@@ -62,6 +62,9 @@ Assembly contains extension methods:
   - IsEquivalentTo
   - ToDelimitedString
   - ToCsv
+- IEnumerable<string>:
+  - GetLongest
+  - GetShortest 
 - IList<T>: 
   - NullToEmpty
   - Fill
