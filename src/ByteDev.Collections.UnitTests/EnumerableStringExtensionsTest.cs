@@ -47,13 +47,33 @@ namespace ByteDev.Collections.UnitTests
             }
 
             [Test]
-            public void WhenHasJoinLongestElements_ThenReturnFirstLongest()
+            public void WhenHasJointLongestElements_ThenReturnFirstLongest()
             {
                 var sut = new[] { "A", "BB", "CC" };
 
                 var result = sut.GetLongest();
 
                 Assert.That(result, Is.SameAs(sut[1]));
+            }
+
+            [Test]
+            public void WhenHasNullElement_ThenReturnLongest()
+            {
+                var sut = new[] { "A", null, "CC" };
+
+                var result = sut.GetLongest();
+
+                Assert.That(result, Is.SameAs(sut[2]));
+            }
+
+            [Test]
+            public void WhenOnlyNullElements_ThenReturnNull()
+            {
+                string[] sut = { null, null };
+                
+                var result = sut.GetLongest();
+
+                Assert.That(result, Is.Null);
             }
         }
 
@@ -97,13 +117,33 @@ namespace ByteDev.Collections.UnitTests
             }
 
             [Test]
-            public void WhenHasJoinShortestElements_ThenReturnFirstShortest()
+            public void WhenHasJointShortestElements_ThenReturnFirstShortest()
             {
                 var sut = new[] { "AA", "B", "C" };
 
                 var result = sut.GetShortest();
 
                 Assert.That(result, Is.SameAs(sut[1]));
+            }
+
+            [Test]
+            public void WhenHasNullElement_ThenReturnShortest()
+            {
+                var sut = new[] { "A", null, "CC" };
+
+                var result = sut.GetShortest();
+
+                Assert.That(result, Is.SameAs(sut[0]));
+            }
+
+            [Test]
+            public void WhenOnlyNullElements_ThenReturnNull()
+            {
+                string[] sut = { null, null };
+
+                var result = sut.GetShortest();
+
+                Assert.That(result, Is.Null);
             }
         }
     }

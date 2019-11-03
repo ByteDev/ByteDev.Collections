@@ -1,5 +1,16 @@
 # Release Notes
 
+## 1.3.1 - 03 Nov 2019
+
+Breaking changes:
+- (None)
+
+New features:
+- (None)
+
+Bug fixes:
+- EnumerableStringExtensions GetLongest and GetShortest bug fix to now handle null elements.
+
 ## 1.3.0 - 02 Nov 2019
 
 Breaking changes:
@@ -10,7 +21,6 @@ New features:
 
 Bug fixes:
 - (None)
-
 
 ## 1.2.0 - 02 Nov 2019
 

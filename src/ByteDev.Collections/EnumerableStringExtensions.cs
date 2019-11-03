@@ -23,6 +23,9 @@ namespace ByteDev.Collections
 
             foreach (var element in source)
             {
+                if (element == null)
+                    continue;
+
                 if (longest == null || element.Length > longest.Length)
                     longest = element;
             }
@@ -44,6 +47,9 @@ namespace ByteDev.Collections
 
             foreach (var element in source)
             {
+                if (element == null)
+                    continue;
+
                 if (shortest == null || element.Length < shortest.Length)
                     shortest = element;
             }
