@@ -29,6 +29,10 @@ Assembly contains extension methods:
 - Array []:
   - Populate
 - Array [,]:
+  - GetColumn
+  - GetColumnCount
+  - GetRow
+  - GetRowCount
   - Populate
 - IDictionary<TKey, TValue>:
   - AddRange
