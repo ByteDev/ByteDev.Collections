@@ -1,6 +1,20 @@
 # Release Notes
 
-## 1.3.1 - 03 Nov 2019
+## 1.4.0 - 05 November 2019
+
+Breaking changes:
+- (None)
+
+New features:
+- Added two dimension array extension method GetRow
+- Added two dimension array extension method GetColumn
+- Added two dimension array extension method GetRowCount
+- Added two dimension array extension method GetColumnCount
+
+Bug fixes:
+- (None)
+
+## 1.3.1 - 03 November 2019
 
 Breaking changes:
 - (None)
@@ -11,7 +25,7 @@ New features:
 Bug fixes:
 - EnumerableStringExtensions GetLongest and GetShortest bug fix to now handle null elements.
 
-## 1.3.0 - 02 Nov 2019
+## 1.3.0 - 02 November 2019
 
 Breaking changes:
 - (None)
@@ -22,7 +36,7 @@ New features:
 Bug fixes:
 - (None)
 
-## 1.2.0 - 02 Nov 2019
+## 1.2.0 - 02 November 2019
 
 Breaking changes:
 - (None)
@@ -33,7 +47,7 @@ New features:
 Bug fixes:
 - (None)
 
-## 1.1.0 - 08 Oct 2019
+## 1.1.0 - 08 October 2019
 
 Breaking changes:
 - (None)
@@ -44,7 +58,7 @@ New features:
 Bug fixes:
 - (None)
 
-## 1.0.1 - 30 Sep 2019
+## 1.0.1 - 30 September 2019
 
 Breaking changes:
 - (None)
@@ -55,6 +69,6 @@ New features:
 Bug fixes:
 - XML documentation now output on build and included in nuget package.
 
-## 1.0.0 - 28 Sep 2019
+## 1.0.0 - 28 September 2019
 
 Initial version.
