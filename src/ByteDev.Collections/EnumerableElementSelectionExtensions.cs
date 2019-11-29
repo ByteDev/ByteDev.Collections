@@ -8,7 +8,9 @@ namespace ByteDev.Collections
     /// </summary>
     public static class EnumerableElementSelectionExtensions
     {
-        /// <summary>Returns the second element of a sequence.</summary>
+        /// <summary>
+        /// Returns the second element of a sequence.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The <see cref="T:System.Collections.Generic.IEnumerable`1" /> to return the second element of.</param>
         /// <returns>The second element in the specified sequence.</returns>
@@ -19,7 +21,9 @@ namespace ByteDev.Collections
             return GetElement(source, 1);
         }
 
-        /// <summary>Returns the second element of a sequence, or a default value if the sequence does not contain a second element.</summary>
+        /// <summary>
+        /// Returns the second element of a sequence, or a default value if the sequence does not contain a second element.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The <see cref="T:System.Collections.Generic.IEnumerable`1" /> to return the second element of.</param>
         /// <returns>default if <paramref name="source" /> does not contain the second element; otherwise, the second element in <paramref name="source" />.</returns>
@@ -29,7 +33,9 @@ namespace ByteDev.Collections
             return GetElement(source, 1, false);
         }
         
-        /// <summary>Returns the third element of a sequence.</summary>
+        /// <summary>
+        /// Returns the third element of a sequence.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The <see cref="T:System.Collections.Generic.IEnumerable`1" /> to return the third element of.</param>
         /// <returns>The third element in the specified sequence.</returns>
@@ -40,7 +46,9 @@ namespace ByteDev.Collections
             return GetElement(source, 2);
         }
 
-        /// <summary>Returns the third element of a sequence, or a default value if the sequence does not contain a third element.</summary>
+        /// <summary>
+        /// Returns the third element of a sequence, or a default value if the sequence does not contain a third element.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The <see cref="T:System.Collections.Generic.IEnumerable`1" /> to return the third element of.</param>
         /// <returns>default if <paramref name="source" /> does not contain the third element; otherwise, the third element in <paramref name="source" />.</returns>
@@ -50,7 +58,9 @@ namespace ByteDev.Collections
             return GetElement(source, 2, false);
         }
 
-        /// <summary>Returns the fourth element of a sequence.</summary>
+        /// <summary>
+        /// Returns the fourth element of a sequence.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The <see cref="T:System.Collections.Generic.IEnumerable`1" /> to return the fourth element of.</param>
         /// <returns>The fourth element in the specified sequence.</returns>
@@ -61,7 +71,9 @@ namespace ByteDev.Collections
             return GetElement(source, 3);
         }
 
-        /// <summary>Returns the fourth element of a sequence, or a default value if the sequence does not contain a fourth element.</summary>
+        /// <summary>
+        /// Returns the fourth element of a sequence, or a default value if the sequence does not contain a fourth element.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The <see cref="T:System.Collections.Generic.IEnumerable`1" /> to return the fourth element of.</param>
         /// <returns>default if <paramref name="source" /> does not contain the fourth element; otherwise, the fourth element in <paramref name="source" />.</returns>
@@ -71,7 +83,9 @@ namespace ByteDev.Collections
             return GetElement(source, 3, false);
         }
 
-        /// <summary>Returns the fifth element of a sequence.</summary>
+        /// <summary>
+        /// Returns the fifth element of a sequence.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The <see cref="T:System.Collections.Generic.IEnumerable`1" /> to return the fifth element of.</param>
         /// <returns>The fifth element in the specified sequence.</returns>
@@ -82,7 +96,9 @@ namespace ByteDev.Collections
             return GetElement(source, 4);
         }
 
-        /// <summary>Returns the fifth element of a sequence, or a default value if the sequence does not contain a fifth element.</summary>
+        /// <summary>
+        /// Returns the fifth element of a sequence, or a default value if the sequence does not contain a fifth element.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The <see cref="T:System.Collections.Generic.IEnumerable`1" /> to return the fifth element of.</param>
         /// <returns>default if <paramref name="source" /> does not contain the fifth element; otherwise, the fifth element in <paramref name="source" />.</returns>
@@ -92,7 +108,9 @@ namespace ByteDev.Collections
             return GetElement(source, 4, false);
         }
 
-        /// <summary>Returns the sixth element of a sequence.</summary>
+        /// <summary>
+        /// Returns the sixth element of a sequence.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The <see cref="T:System.Collections.Generic.IEnumerable`1" /> to return the sixth element of.</param>
         /// <returns>The sixth element in the specified sequence.</returns>
@@ -103,7 +121,9 @@ namespace ByteDev.Collections
             return GetElement(source, 5);
         }
 
-        /// <summary>Returns the sixth element of a sequence, or a default value if the sequence does not contain a sixth element.</summary>
+        /// <summary>
+        /// Returns the sixth element of a sequence, or a default value if the sequence does not contain a sixth element.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The <see cref="T:System.Collections.Generic.IEnumerable`1" /> to return the sixth element of.</param>
         /// <returns>default if <paramref name="source" /> does not contain the sixth element; otherwise, the sixth element in <paramref name="source" />.</returns>
@@ -113,7 +133,9 @@ namespace ByteDev.Collections
             return GetElement(source, 5, false);
         }
 
-        /// <summary>Returns the seventh element of a sequence.</summary>
+        /// <summary>
+        /// Returns the seventh element of a sequence.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The <see cref="T:System.Collections.Generic.IEnumerable`1" /> to return the seventh element of.</param>
         /// <returns>The seventh element in the specified sequence.</returns>
@@ -124,7 +146,9 @@ namespace ByteDev.Collections
             return GetElement(source, 6);
         }
 
-        /// <summary>Returns the seventh element of a sequence, or a default value if the sequence does not contain a seventh element.</summary>
+        /// <summary>
+        /// Returns the seventh element of a sequence, or a default value if the sequence does not contain a seventh element.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The <see cref="T:System.Collections.Generic.IEnumerable`1" /> to return the seventh element of.</param>
         /// <returns>default if <paramref name="source" /> does not contain the seventh element; otherwise, the seventh element in <paramref name="source" />.</returns>
@@ -134,7 +158,9 @@ namespace ByteDev.Collections
             return GetElement(source, 6, false);
         }
 
-        /// <summary>Returns the eighth element of a sequence.</summary>
+        /// <summary>
+        /// Returns the eighth element of a sequence.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The <see cref="T:System.Collections.Generic.IEnumerable`1" /> to return the eighth element of.</param>
         /// <returns>The eighth element in the specified sequence.</returns>
@@ -145,7 +171,9 @@ namespace ByteDev.Collections
             return GetElement(source, 7);
         }
 
-        /// <summary>Returns the eighth element of a sequence, or a default value if the sequence does not contain a eighth element.</summary>
+        /// <summary>
+        /// Returns the eighth element of a sequence, or a default value if the sequence does not contain a eighth element.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The <see cref="T:System.Collections.Generic.IEnumerable`1" /> to return the eighth element of.</param>
         /// <returns>default if <paramref name="source" /> does not contain the eighth element; otherwise, the eighth element in <paramref name="source" />.</returns>
@@ -155,7 +183,9 @@ namespace ByteDev.Collections
             return GetElement(source, 7, false);
         }
 
-        /// <summary>Returns the ninth element of a sequence.</summary>
+        /// <summary>
+        /// Returns the ninth element of a sequence.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The <see cref="T:System.Collections.Generic.IEnumerable`1" /> to return the ninth element of.</param>
         /// <returns>The ninth element in the specified sequence.</returns>
@@ -166,7 +196,9 @@ namespace ByteDev.Collections
             return GetElement(source, 8);
         }
 
-        /// <summary>Returns the ninth element of a sequence, or a default value if the sequence does not contain a ninth element.</summary>
+        /// <summary>
+        /// Returns the ninth element of a sequence, or a default value if the sequence does not contain a ninth element.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The <see cref="T:System.Collections.Generic.IEnumerable`1" /> to return the ninth element of.</param>
         /// <returns>default if <paramref name="source" /> does not contain the ninth element; otherwise, the ninth element in <paramref name="source" />.</returns>
@@ -176,7 +208,9 @@ namespace ByteDev.Collections
             return GetElement(source, 8, false);
         }
 
-        /// <summary>Returns the tenth element of a sequence.</summary>
+        /// <summary>
+        /// Returns the tenth element of a sequence.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The <see cref="T:System.Collections.Generic.IEnumerable`1" /> to return the tenth element of.</param>
         /// <returns>The tenth element in the specified sequence.</returns>
@@ -187,7 +221,9 @@ namespace ByteDev.Collections
             return GetElement(source, 9);
         }
 
-        /// <summary>Returns the tenth element of a sequence, or a default value if the sequence does not contain a tenth element.</summary>
+        /// <summary>
+        /// Returns the tenth element of a sequence, or a default value if the sequence does not contain a tenth element.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The <see cref="T:System.Collections.Generic.IEnumerable`1" /> to return the tenth element of.</param>
         /// <returns>default if <paramref name="source" /> does not contain the tenth element; otherwise, the tenth element in <paramref name="source" />.</returns>

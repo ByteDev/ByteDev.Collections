@@ -14,6 +14,7 @@ namespace ByteDev.Collections
         /// </summary>
         /// <param name="source"><see cref="T:System.Collections.Generic.IEnumerable`1" /> to search for the longest string in.</param>
         /// <returns>Longest string in <paramref name="source" />.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
         public static string GetLongest(this IEnumerable<string> source)
         {
             if (source == null)
@@ -38,6 +39,7 @@ namespace ByteDev.Collections
         /// </summary>
         /// <param name="source"><see cref="T:System.Collections.Generic.IEnumerable`1" /> to search for the shortest string in.</param>
         /// <returns>Shortest string in <paramref name="source" />.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
         public static string GetShortest(this IEnumerable<string> source)
         {
             if (source == null)

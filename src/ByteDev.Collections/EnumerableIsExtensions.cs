@@ -5,11 +5,13 @@ using System.Linq;
 namespace ByteDev.Collections
 {
     /// <summary>
-    /// Extension Is methods for IEnumerable.
+    /// Extension Is methods for <see cref="T:System.Collections.Generic.IEnumerable`1" />.
     /// </summary>
     public static class EnumerableIsExtensions
     {
-        /// <summary>Determines if the enumerable has zero elements.</summary>
+        /// <summary>
+        /// Indicates whether the enumerable has zero elements.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The enumerable to check if is empty.</param>
         /// <returns>True if empty; otherwise returns false.</returns>
@@ -22,7 +24,9 @@ namespace ByteDev.Collections
             return !source.Any();
         }
 
-        /// <summary>Determines if the enumerable is null or is empty.</summary>
+        /// <summary>
+        /// Indicates whether the enumerable is null or is empty.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The enumerable to check if is null or empty.</param>
         /// <returns>True if null or empty; otherwise returns false.</returns>
@@ -31,7 +35,9 @@ namespace ByteDev.Collections
             return source == null || source.IsEmpty();
         }
 
-        /// <summary>Determines if the enumerable has exactly one element.</summary>
+        /// <summary>
+        /// Indicates whether the enumerable has exactly one element.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The enumerable to check if contains exactly one element.</param>
         /// <returns>True if contains one element; otherwise returns false.</returns>
@@ -44,7 +50,9 @@ namespace ByteDev.Collections
             return source.Count() == 1;
         }
 
-        /// <summary>Determines if two enumerables are equivalent. The order of items does not matter.</summary>
+        /// <summary>
+        /// Determines if two enumerables are equivalent. The order of items is irrelevant.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The original enumerable to check against.</param>
         /// <param name="other">The other enumerable to check against.</param>

@@ -5,20 +5,24 @@ using System.Linq;
 namespace ByteDev.Collections
 {
     /// <summary>
-    /// Extension methods for IList.
+    /// Extension methods for <see cref="T:System.Collections.Generic.IList`1" />. 
     /// </summary>
     public static class ListExtensions
     {
-        /// <summary>Returns empty List when null.</summary>
+        /// <summary>
+        /// Returns new empty list when null.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The list to return empty on if null.</param>
-        /// <returns>Empty list if null; otherwise the list.</returns>
+        /// <returns>Empty list if null; otherwise returns the list.</returns>
         public static IList<TSource> NullToEmpty<TSource>(this IList<TSource> source)
         {
             return source ?? new List<TSource>();
         }
 
-        /// <summary>Fills an empty list's given number of elements with a value.</summary>
+        /// <summary>
+        /// Fills an empty list's given number of elements with a value.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The list to fill.</param>
         /// <param name="numberToFill">Number of elements to fill.</param>
@@ -39,7 +43,9 @@ namespace ByteDev.Collections
             }
         }
 
-        /// <summary>Moves the first instance of target value to first position.</summary>
+        /// <summary>
+        /// Moves the first instance of target value to first position.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The list to move to first on.</param>
         /// <param name="target">The target to move to first position.</param>
@@ -60,7 +66,9 @@ namespace ByteDev.Collections
             source.Insert(0, target);
         }
 
-        /// <summary>Removes all elements where the predicate is true.</summary>
+        /// <summary>
+        /// Removes all elements where the predicate is true.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The list to remove on.</param>
         /// <param name="predicate">The predicate to evaluate against each element.</param>

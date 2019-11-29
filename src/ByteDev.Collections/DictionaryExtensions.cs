@@ -8,7 +8,9 @@ namespace ByteDev.Collections
     /// </summary>
     public static class DictionaryExtensions
     {
-        /// <summary>Add a range of items to the source dictionary.</summary>
+        /// <summary>
+        /// Add a range of items to the source dictionary.
+        /// </summary>
         /// <typeparam name="TKey">The type of the keys of <paramref name="source" />.</typeparam>
         /// <typeparam name="TValue">The type of the values of <paramref name="source" />.</typeparam>
         /// <param name="source">The dictionary to add the range of items to.</param>
@@ -29,7 +31,9 @@ namespace ByteDev.Collections
             }
         }
 
-        /// <summary>Add a range of items to the source dictionary. If a key already exists its value will be updated.</summary>
+        /// <summary>
+        /// Add a range of items to the source dictionary. If a key already exists its value will be updated.
+        /// </summary>
         /// <typeparam name="TKey">The type of the keys of <paramref name="source" />.</typeparam>
         /// <typeparam name="TValue">The type of the values of <paramref name="source" />.</typeparam>
         /// <param name="source">The dictionary to add or update the range of items to.</param>
@@ -57,7 +61,9 @@ namespace ByteDev.Collections
             }
         }
 
-        /// <summary>Gets a value from the dictionary using a key in a case insensitive manner.</summary>
+        /// <summary>
+        /// Gets a value from the dictionary using a key in a case insensitive manner.
+        /// </summary>
         /// <typeparam name="TValue">The type of the values of <paramref name="source" />.</typeparam>
         /// <param name="source">The dictionary to add or update the range of items to.</param>
         /// <param name="key">Key to use in retrieving the value.</param>

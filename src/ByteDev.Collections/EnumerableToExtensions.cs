@@ -4,11 +4,13 @@ using System.Text;
 namespace ByteDev.Collections
 {
     /// <summary>
-    /// Extension To methods for IEnumerable.
+    /// Extension methods for <see cref="T:System.Collections.Generic.IEnumerable`1" />.
     /// </summary>
     public static class EnumerableToExtensions
     {
-        /// <summary>Returns the enumerable as a delimited string.</summary>
+        /// <summary>
+        /// Returns the enumerable as a delimited string.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The enumerable to return as a delimited string.</param>
         /// <param name="delimiter">Delimiter to use between elements.</param>
@@ -36,7 +38,9 @@ namespace ByteDev.Collections
             return sb.ToString();
         }
 
-        /// <summary>Returns the enumerable as a comma separated value string.</summary>
+        /// <summary>
+        /// Returns the enumerable as a comma separated value string.
+        /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The enumerable to return as a delimited string.</param>
         /// <returns>The enumerable as a comma separated string.</returns>
