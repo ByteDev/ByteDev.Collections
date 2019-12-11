@@ -7,17 +7,17 @@ namespace ByteDev.Collections.UnitTests
     [TestFixture]
     public class ArrayExtensionsTests
     {
-        private const string Value = "New Value";
-
         [TestFixture]
         public class Populate : ArrayExtensionsTests
         {
+            private const string SingleValue = "New Value";
+
             [Test]
             public void WhenSourceIsNull_ThenThrowException()
             {
                 string[] sut = null;
 
-                Assert.Throws<ArgumentNullException>(() => sut.Populate(Value));
+                Assert.Throws<ArgumentNullException>(() => sut.Populate(SingleValue));
             }
 
             [Test]
@@ -25,15 +25,15 @@ namespace ByteDev.Collections.UnitTests
             {
                 string[] sut = new string[0];
 
-                sut.Populate(Value);
+                sut.Populate(SingleValue);
 
                 Assert.That(sut, Is.Empty);
             }
 
             [Test]
-            public void WhenValueIsNull_ThenPopulateAllElements()
+            public void WhenSingleValueIsNull_ThenPopulateAllElements()
             {
-                string[] sut = {"John", "Peter"};
+                string[] sut = {"X", "Y"};
 
                 sut.Populate(null);
 
@@ -43,15 +43,41 @@ namespace ByteDev.Collections.UnitTests
             }
 
             [Test]
-            public void WhenValueIsString_ThenPopulateAllElements()
+            public void WhenSingleValueIsString_ThenPopulateAllElements()
             {
-                string[] sut = {"John", "Peter"};
+                string[] sut = {"X", "Y"};
 
-                sut.Populate(Value);
+                sut.Populate(SingleValue);
 
                 Assert.That(sut.Length, Is.EqualTo(2));
-                Assert.That(sut.First(), Is.EqualTo(Value));
-                Assert.That(sut.Second(), Is.EqualTo(Value));
+                Assert.That(sut.First(), Is.EqualTo(SingleValue));
+                Assert.That(sut.Second(), Is.EqualTo(SingleValue));
+            }
+
+            [Test]
+            public void WhenLessValuesThanSutLength_ThenPopulateAllElements()
+            {
+                string[] sut = { "X", "Y", "Z" };
+
+                sut.Populate("A", "B");
+
+                Assert.That(sut.Length, Is.EqualTo(3));
+                Assert.That(sut.First(), Is.EqualTo("A"));
+                Assert.That(sut.Second(), Is.EqualTo("B"));
+                Assert.That(sut.Third(), Is.EqualTo("A"));
+            }
+
+            [Test]
+            public void WhenMoreValuesThanSutLength_ThenPopulateAllElements()
+            {
+                string[] sut = { "X", "Y", "Z" };
+
+                sut.Populate("A", "B", "C", "D");
+
+                Assert.That(sut.Length, Is.EqualTo(3));
+                Assert.That(sut.First(), Is.EqualTo("A"));
+                Assert.That(sut.Second(), Is.EqualTo("B"));
+                Assert.That(sut.Third(), Is.EqualTo("C"));
             }
         }
     }

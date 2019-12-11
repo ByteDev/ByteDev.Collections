@@ -33,7 +33,7 @@ namespace ByteDev.Collections.UnitTests
 
                 var result = sut.GetLongest();
 
-                Assert.That(result, Is.SameAs(sut[0]));
+                Assert.That(result, Is.SameAs(sut.First()));
             }
 
             [Test]
@@ -43,7 +43,7 @@ namespace ByteDev.Collections.UnitTests
 
                 var result = sut.GetLongest();
 
-                Assert.That(result, Is.SameAs(sut[1]));
+                Assert.That(result, Is.SameAs(sut.Second()));
             }
 
             [Test]
@@ -53,7 +53,7 @@ namespace ByteDev.Collections.UnitTests
 
                 var result = sut.GetLongest();
 
-                Assert.That(result, Is.SameAs(sut[1]));
+                Assert.That(result, Is.SameAs(sut.Second()));
             }
 
             [Test]
@@ -63,7 +63,7 @@ namespace ByteDev.Collections.UnitTests
 
                 var result = sut.GetLongest();
 
-                Assert.That(result, Is.SameAs(sut[2]));
+                Assert.That(result, Is.SameAs(sut.Third()));
             }
 
             [Test]
@@ -103,7 +103,7 @@ namespace ByteDev.Collections.UnitTests
 
                 var result = sut.GetShortest();
 
-                Assert.That(result, Is.SameAs(sut[0]));
+                Assert.That(result, Is.SameAs(sut.First()));
             }
 
             [Test]
@@ -113,7 +113,7 @@ namespace ByteDev.Collections.UnitTests
 
                 var result = sut.GetShortest();
 
-                Assert.That(result, Is.SameAs(sut[0]));
+                Assert.That(result, Is.SameAs(sut.First()));
             }
 
             [Test]
@@ -123,7 +123,7 @@ namespace ByteDev.Collections.UnitTests
 
                 var result = sut.GetShortest();
 
-                Assert.That(result, Is.SameAs(sut[1]));
+                Assert.That(result, Is.SameAs(sut.Second()));
             }
 
             [Test]
@@ -133,7 +133,7 @@ namespace ByteDev.Collections.UnitTests
 
                 var result = sut.GetShortest();
 
-                Assert.That(result, Is.SameAs(sut[0]));
+                Assert.That(result, Is.SameAs(sut.First()));
             }
 
             [Test]
