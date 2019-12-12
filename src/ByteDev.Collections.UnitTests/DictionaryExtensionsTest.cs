@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 
 namespace ByteDev.Collections.UnitTests
@@ -127,32 +128,100 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class GetValueIgnoreKeyCase : DictionaryExtensionsTest
+        public class GetValuesIgnoreKeyCase : DictionaryExtensionsTest
         {
             [Test]
             public void WhenSourceIsNull_ThenThrowException()
             {
                 Dictionary<string, string> sut = null;
 
-                Assert.Throws<ArgumentNullException>(() => sut.GetValueIgnoreKeyCase("SomeKey"));
+                Assert.Throws<ArgumentNullException>(() => sut.GetValuesIgnoreKeyCase("SomeKey"));
             }
 
             [Test]
             public void WhenKeyIsNull_ThenThrowException()
             {
-                Assert.Throws<ArgumentException>(() => _sut.GetValueIgnoreKeyCase(null));
+                Assert.Throws<ArgumentException>(() => _sut.GetValuesIgnoreKeyCase(null));
             }
 
             [Test]
             public void WhenKeyIsEmpty_ThenThrowException()
             {
-                Assert.Throws<ArgumentException>(() => _sut.GetValueIgnoreKeyCase(string.Empty));
+                Assert.Throws<ArgumentException>(() => _sut.GetValuesIgnoreKeyCase(string.Empty));
             }
 
             [Test]
             public void WhenKeyIsNotPresent_ThenReturnDefault()
             {
-                var result = _sut.GetValueIgnoreKeyCase("someKey");
+                var result = _sut.GetValuesIgnoreKeyCase("someKey");
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [Test]
+            public void WhenKeyPresentOnce_ThenReturnValue()
+            {
+                _sut.Add("key", "someValue");
+                _sut.Add("key2", "someValue2");
+
+                var result = _sut.GetValuesIgnoreKeyCase("key");
+                
+                Assert.That(result.Single(), Is.EqualTo("someValue"));
+            }
+
+            [Test]
+            public void WhenKeyPresentOnceButDifferentCase_ThenReturnValue()
+            {
+                _sut.Add("someKey", "someValue");
+                _sut.Add("someKey2", "someValue2");
+
+                var result = _sut.GetValuesIgnoreKeyCase("SOMEKEY");
+
+                Assert.That(result.Single(), Is.EqualTo("someValue"));
+            }
+
+            [Test]
+            public void WhenKeyPresentTwiceButDifferentCase_ThenReturnValues()
+            {
+                _sut.Add("someKey", "someValue");
+                _sut.Add("SomeKey", "Somevalue");
+                _sut.Add("Somekey2", "someValue2");
+
+                var result = _sut.GetValuesIgnoreKeyCase("SOMEKEY");
+
+                Assert.That(result.Count, Is.EqualTo(2));
+                Assert.That(result.First(), Is.EqualTo("someValue"));
+                Assert.That(result.Second(), Is.EqualTo("Somevalue"));
+            }
+        }
+
+        [TestFixture]
+        public class GetFirstValueIgnoreKeyCase : DictionaryExtensionsTest
+        {
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                Dictionary<string, string> sut = null;
+
+                Assert.Throws<ArgumentNullException>(() => sut.GetFirstValueIgnoreKeyCase("key1"));
+            }
+
+            [Test]
+            public void WhenKeyIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentException>(() => _sut.GetFirstValueIgnoreKeyCase(null));
+            }
+
+            [Test]
+            public void WhenKeyIsEmpty_ThenThrowException()
+            {
+                Assert.Throws<ArgumentException>(() => _sut.GetFirstValueIgnoreKeyCase(string.Empty));
+            }
+
+            [Test]
+            public void WhenKeyIsNotPresent_ThenReturnDefault()
+            {
+                var result = _sut.GetFirstValueIgnoreKeyCase("key1");
 
                 Assert.That(result, Is.Null);
             }
@@ -160,21 +229,35 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenKeyPresent_ThenReturnValue()
             {
-                _sut.Add("someKey", "someValue");
+                _sut.Add("key", "value1");
+                _sut.Add("key2", "value2");
 
-                var result = _sut.GetValueIgnoreKeyCase("someKey");
+                var result = _sut.GetFirstValueIgnoreKeyCase("key");
 
-                Assert.That(result, Is.EqualTo("someValue"));
+                Assert.That(result, Is.EqualTo("value1"));
             }
 
             [Test]
             public void WhenKeyPresentButDifferentCase_ThenReturnValue()
             {
-                _sut.Add("someKey", "someValue");
+                _sut.Add("key", "value1");
+                _sut.Add("key2", "value2");
 
-                var result = _sut.GetValueIgnoreKeyCase("SOMEKEY");
+                var result = _sut.GetFirstValueIgnoreKeyCase("KEY");
 
-                Assert.That(result, Is.EqualTo("someValue"));
+                Assert.That(result, Is.EqualTo("value1"));
+            }
+
+            [Test]
+            public void WhenKeyPresentTwiceButDifferentCase_ThenReturnFirstValue()
+            {
+                _sut.Add("key", "value1");
+                _sut.Add("Key", "value2");
+                _sut.Add("key2", "value3");
+
+                var result = _sut.GetFirstValueIgnoreKeyCase("KEY");
+                
+                Assert.That(result, Is.EqualTo("value1"));
             }
         }
     }

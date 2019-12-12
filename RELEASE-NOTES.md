@@ -1,13 +1,15 @@
 # Release Notes
 
-## 1.5.0 - ?
+## 2.0.0 - ?
 
 Breaking changes:
-- (None)
+- Removed DictionaryExtensions.GetValueIgnoreKeyCase
 
 New features:
 - ArrayExtensions.Populate now takes params array of values instead of single value.
 - Added ListExtensions.MoveToLast
+- Added DictionaryExtensions.GetValuesIgnoreKeyCase
+- Added DictionaryExtensions.GetFirstValueIgnoreKeyCase
 
 Bug fixes / internal changes:
 - (None)

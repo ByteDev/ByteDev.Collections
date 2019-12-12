@@ -37,7 +37,8 @@ Assembly contains extension methods:
 - IDictionary<TKey, TValue>:
   - AddRange
   - AddOrUpdateRange
-  - GetValueIgnoreKeyCase
+  - GetValuesIgnoreKeyCase
+  - GetFirstValueIgnoreKeyCase
 - IEnumerable<T>:
   - Second
   - SecondOrDefault

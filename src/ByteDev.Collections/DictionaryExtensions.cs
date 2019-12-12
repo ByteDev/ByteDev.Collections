@@ -62,15 +62,15 @@ namespace ByteDev.Collections
         }
 
         /// <summary>
-        /// Gets a value from the dictionary using a key in a case insensitive manner.
+        /// Retrieves a list of values from the dictionary using a key in a case insensitive manner.
         /// </summary>
         /// <typeparam name="TValue">The type of the values of <paramref name="source" />.</typeparam>
-        /// <param name="source">The dictionary to add or update the range of items to.</param>
+        /// <param name="source">The dictionary to retrieve from.</param>
         /// <param name="key">Key to use in retrieving the value.</param>
-        /// <returns>Value based on the key provided. If key does not exist then default is returned.</returns>
+        /// <returns>List of values based on the key provided.</returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
         /// <exception cref="T:System.ArgumentException"><paramref name="key" /> is null or empty.</exception>
-        public static TValue GetValueIgnoreKeyCase<TValue>(this IDictionary<string, TValue> source, string key)
+        public static IList<TValue> GetValuesIgnoreKeyCase<TValue>(this IDictionary<string, TValue> source, string key)
         {
             if(source == null)
                 throw new ArgumentNullException(nameof(source));
@@ -78,12 +78,38 @@ namespace ByteDev.Collections
             if (string.IsNullOrEmpty(key))
                 throw new ArgumentException(nameof(key));
 
-            foreach (var element in source)
+            var values = new List<TValue>();
+
+            foreach (var keyValuePair in source)
             {
-                if (string.Equals(element.Key, key, StringComparison.OrdinalIgnoreCase))
-                {
-                    return element.Value;
-                }
+                if (string.Equals(keyValuePair.Key, key, StringComparison.OrdinalIgnoreCase))
+                    values.Add(keyValuePair.Value);
+            }
+
+            return values;
+        }
+
+        /// <summary>
+        /// Retrieves the first value from the dictionary using a key in a case insensitive manner.
+        /// </summary>
+        /// <typeparam name="TValue">The type of the values of <paramref name="source" />.</typeparam>
+        /// <param name="source">The dictionary to retrieve from.</param>
+        /// <param name="key">Key to use in retrieving the value.</param>
+        /// <returns>First value based on the key provided. If key does not exist then default is returned.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        /// <exception cref="T:System.ArgumentException"><paramref name="key" /> is null or empty.</exception>
+        public static TValue GetFirstValueIgnoreKeyCase<TValue>(this IDictionary<string, TValue> source, string key)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            if (string.IsNullOrEmpty(key))
+                throw new ArgumentException(nameof(key));
+
+            foreach (var keyValuePair in source)
+            {
+                if (string.Equals(keyValuePair.Key, key, StringComparison.OrdinalIgnoreCase))
+                    return keyValuePair.Value;
             }
 
             return default(TValue);
