@@ -7,6 +7,7 @@ Breaking changes:
 
 New features:
 - ArrayExtensions.Populate now takes params array of values instead of single value.
+- Added ListExtensions.MoveToLast
 
 Bug fixes / internal changes:
 - (None)

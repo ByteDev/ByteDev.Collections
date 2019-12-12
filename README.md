@@ -73,6 +73,7 @@ Assembly contains extension methods:
   - NullToEmpty
   - Fill
   - MoveToFirst
+  - MoveToLast
   - RemoveWhere
 - NameValueCollection: 
   - AddOrUpdate

@@ -44,26 +44,49 @@ namespace ByteDev.Collections
         }
 
         /// <summary>
-        /// Moves the first instance of target value to first position.
+        /// Moves the first occurence of <paramref name="item" /> to first position.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The list to move to first on.</param>
-        /// <param name="target">The target to move to first position.</param>
+        /// <param name="item">The item to move to first position.</param>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
-        /// <exception cref="T:System.ArgumentNullException"><paramref name="target" /> is null.</exception>
-        public static void MoveToFirst<TSource>(this IList<TSource> source, TSource target) where TSource : class
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="item" /> is null.</exception>
+        public static void MoveToFirst<TSource>(this IList<TSource> source, TSource item) where TSource : class
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
 
-            if (target == null)
-                throw new ArgumentNullException(nameof(target));
+            if (item == null)
+                throw new ArgumentNullException(nameof(item));
 
-            if (!source.Contains(target))
+            if (!source.Contains(item))
                 return;
             
-            source.Remove(target);
-            source.Insert(0, target);
+            source.Remove(item);
+            source.Insert(0, item);
+        }
+
+        /// <summary>
+        /// Moves the first occurence of <paramref name="item" /> to last position.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+        /// <param name="source">The list to move to last on.</param>
+        /// <param name="item">The item to move to last position.</param>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="item" /> is null.</exception>
+        public static void MoveToLast<TSource>(this IList<TSource> source, TSource item) where TSource : class
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            if (item == null)
+                throw new ArgumentNullException(nameof(item));
+
+            if (!source.Contains(item))
+                return;
+
+            source.Remove(item);
+            source.Insert(source.Count, item);
         }
 
         /// <summary>

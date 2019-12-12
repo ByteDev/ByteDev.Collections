@@ -8,6 +8,11 @@ namespace ByteDev.Collections.UnitTests
     [TestFixture]
     public class ListExtensionsTest
     {
+        public class Customer
+        {
+            public string Name { get; set; }
+        }
+
         [TestFixture]
         public class NullToEmpty
         {
@@ -96,7 +101,7 @@ namespace ByteDev.Collections.UnitTests
             }
 
             [Test]
-            public void WhenTargetIsNull_ThenThrowException()
+            public void WhenItemIsNull_ThenThrowException()
             {
                 var sut = CreateSut();
 
@@ -114,18 +119,7 @@ namespace ByteDev.Collections.UnitTests
             }
 
             [Test]
-            public void WhenTargetExists_ThenMoveToFirst()
-            {
-                var sut = CreateSut(_customer1, _customer2);
-
-                sut.MoveToFirst(_customer2);
-
-                Assert.That(sut.First(), Is.SameAs(_customer2));
-                Assert.That(sut.Second(), Is.SameAs(_customer1));
-            }
-
-            [Test]
-            public void WhenTargetDoesNotExist_ThenNotChangeList()
+            public void WhenItemDoesNotExist_ThenNotChangeList()
             {
                 var sut = CreateSut(_customer2, _customer2);
 
@@ -136,16 +130,122 @@ namespace ByteDev.Collections.UnitTests
                 Assert.That(sut.Second(), Is.SameAs(_customer2));
             }
 
+            [Test]
+            public void WhenItemExists_ThenMoveToFirst()
+            {
+                var sut = CreateSut(_customer1, _customer2);
+
+                sut.MoveToFirst(_customer2);
+
+                Assert.That(sut.Count, Is.EqualTo(2));
+                Assert.That(sut.First(), Is.SameAs(_customer2));
+                Assert.That(sut.Second(), Is.SameAs(_customer1));
+            }
+
+            [Test]
+            public void WhenItemExistsTwice_ThenMoveFirstInstanceToFirst()
+            {
+                var sut = CreateSut(_customer1, _customer2, _customer1, _customer2);
+
+                sut.MoveToFirst(_customer2);
+
+                Assert.That(sut.Count, Is.EqualTo(4));
+                Assert.That(sut.First(), Is.SameAs(_customer2));
+                Assert.That(sut.Second(), Is.SameAs(_customer1));
+                Assert.That(sut.Third(), Is.SameAs(_customer1));
+                Assert.That(sut.Fourth(), Is.SameAs(_customer2));
+            }
+
             private static IList<Customer> CreateSut(params Customer[] customers)
             {
                 var list = new List<Customer>();
                 list.AddRange(customers);
                 return list;
             }
+        }
 
-            public class Customer
+        [TestFixture]
+        public class MoveToLast : ListExtensionsTest
+        {
+            private Customer _customer1;
+            private Customer _customer2;
+
+            [SetUp]
+            public void SetUp()
             {
-                public string Name { get; set; }
+                _customer1 = new Customer { Name = "John" };
+                _customer2 = new Customer { Name = "Peter" };
+            }
+
+            [Test]
+            public void WhenListIsNull_ThenThrowException()
+            {
+                IList<Customer> sut = null;
+
+                Assert.Throws<ArgumentNullException>(() => sut.MoveToLast(_customer1));
+            }
+
+            [Test]
+            public void WhenItemIsNull_ThenThrowException()
+            {
+                var sut = CreateSut();
+
+                Assert.Throws<ArgumentNullException>(() => sut.MoveToLast(null));
+            }
+
+            [Test]
+            public void WhenListIsEmpty_ThenLeaveListEmpty()
+            {
+                var sut = CreateSut();
+
+                sut.MoveToLast(_customer1);
+
+                Assert.That(sut.Count, Is.EqualTo(0));
+            }
+
+            [Test]
+            public void WhenItemDoesNotExist_ThenNotChangeList()
+            {
+                var sut = CreateSut(_customer2, _customer2);
+
+                sut.MoveToLast(_customer1);
+
+                Assert.That(sut.Count, Is.EqualTo(2));
+                Assert.That(sut.First(), Is.SameAs(_customer2));
+                Assert.That(sut.Second(), Is.SameAs(_customer2));
+            }
+
+            [Test]
+            public void WhenItemExists_ThenMoveToLast()
+            {
+                var sut = CreateSut(_customer1, _customer2);
+
+                sut.MoveToLast(_customer1);
+
+                Assert.That(sut.Count, Is.EqualTo(2));
+                Assert.That(sut.First(), Is.SameAs(_customer2));
+                Assert.That(sut.Second(), Is.SameAs(_customer1));
+            }
+
+            [Test]
+            public void WhenItemExistsTwice_ThenMoveFirstInstanceToLast()
+            {
+                var sut = CreateSut(_customer1, _customer2, _customer1, _customer2);
+
+                sut.MoveToLast(_customer1);
+
+                Assert.That(sut.Count, Is.EqualTo(4));
+                Assert.That(sut.First(), Is.SameAs(_customer2));
+                Assert.That(sut.Second(), Is.SameAs(_customer1));
+                Assert.That(sut.Third(), Is.SameAs(_customer2));
+                Assert.That(sut.Fourth(), Is.SameAs(_customer1));
+            }
+
+            private static IList<Customer> CreateSut(params Customer[] customers)
+            {
+                var list = new List<Customer>();
+                list.AddRange(customers);
+                return list;
             }
         }
 
@@ -163,7 +263,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenPredicateIsNull_ThenThrowException()
             {
-                var sut = new List<int> {1, 2, 3, 1, 2};
+                var sut = new List<int> {1, 2, 3};
 
                 Assert.Throws<ArgumentNullException>(() => sut.RemoveWhere(null));
             }
