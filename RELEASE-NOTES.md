@@ -1,6 +1,6 @@
 # Release Notes
 
-## 2.0.0 - ?
+## 2.0.0 - 16 December 2019
 
 Breaking changes:
 - Removed DictionaryExtensions.GetValueIgnoreKeyCase

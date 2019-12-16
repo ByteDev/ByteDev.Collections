@@ -15,6 +15,12 @@ ByteDev.Collections is hosted as a package on nuget.org.  To install from the Pa
 
 Further details can be found on the [nuget page](https://www.nuget.org/packages/ByteDev.Collections/).
 
+## Release Notes
+
+Releases follow semantic versioning.
+
+Full details of the release notes can be viewed on [GitHub](https://github.com/ByteDev/ByteDev.Collections/blob/master/RELEASE-NOTES.md).
+
 ## Code
 
 The repo can be cloned from git bash:
