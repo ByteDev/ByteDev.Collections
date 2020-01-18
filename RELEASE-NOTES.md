@@ -1,5 +1,16 @@
 # Release Notes
 
+## 2.1.0 - 18 January 2020
+
+Breaking changes:
+- (None)
+
+New features:
+- Added DictionaryExtensions.AddOrUpdate (with predicate overload).
+
+Bug fixes / internal changes:
+- (None)
+
 ## 2.0.0 - 16 December 2019
 
 Breaking changes:
@@ -7,9 +18,9 @@ Breaking changes:
 
 New features:
 - ArrayExtensions.Populate now takes params array of values instead of single value.
-- Added ListExtensions.MoveToLast
-- Added DictionaryExtensions.GetValuesIgnoreKeyCase
-- Added DictionaryExtensions.GetFirstValueIgnoreKeyCase
+- Added ListExtensions.MoveToLast.
+- Added DictionaryExtensions.GetValuesIgnoreKeyCase.
+- Added DictionaryExtensions.GetFirstValueIgnoreKeyCase.
 
 Bug fixes / internal changes:
 - (None)
@@ -20,10 +31,10 @@ Breaking changes:
 - (None)
 
 New features:
-- Added two dimension array extension method GetRow
-- Added two dimension array extension method GetColumn
-- Added two dimension array extension method GetRowCount
-- Added two dimension array extension method GetColumnCount
+- Added two dimension array extension method GetRow.
+- Added two dimension array extension method GetColumn.
+- Added two dimension array extension method GetRowCount.
+- Added two dimension array extension method GetColumnCount.
 
 Bug fixes / internal changes:
 - (None)
