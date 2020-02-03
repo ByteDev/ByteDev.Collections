@@ -19,9 +19,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenIsNull_ThenReturnEmpty()
             {
-                IList<string> sut = null;
-
-                var result = sut.NullToEmpty();
+                var result = ListExtensions.NullToEmpty(null as IList<string>);
 
                 Assert.That(result, Is.Empty);
             }
@@ -43,9 +41,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenIsNull_ThenThrowException()
             {
-                IList<string> sut = null;
-
-                Assert.Throws<ArgumentNullException>(() => sut.Fill(1, "Hello"));
+                Assert.Throws<ArgumentNullException>(() => ListExtensions.Fill(null, 1, "Hello"));
             }
 
             [Test]
@@ -95,9 +91,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenListIsNull_ThenThrowException()
             {
-                IList<Customer> sut = null;
-
-                Assert.Throws<ArgumentNullException>(() => sut.MoveToFirst(_customer1));
+                Assert.Throws<ArgumentNullException>(() => ListExtensions.MoveToFirst(null, _customer1));
             }
 
             [Test]
@@ -180,9 +174,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenListIsNull_ThenThrowException()
             {
-                IList<Customer> sut = null;
-
-                Assert.Throws<ArgumentNullException>(() => sut.MoveToLast(_customer1));
+                Assert.Throws<ArgumentNullException>(() => ListExtensions.MoveToLast(null, _customer1));
             }
 
             [Test]
@@ -255,9 +247,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenSourceIsNull_ThenThrowException()
             {
-                List<int> sut = null;
-
-                Assert.Throws<ArgumentNullException>(() => sut.RemoveWhere(x => x == 1));
+                Assert.Throws<ArgumentNullException>(() => ListExtensions.RemoveWhere(null as List<int>, x => x == 1));
             }
 
             [Test]

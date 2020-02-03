@@ -22,9 +22,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenSourceIsNull_ThenThrowException()
             {
-                Dictionary<string, string> sut = null;
-
-                Assert.Throws<ArgumentNullException>(() => sut.AddRange(new KeyValuePair<string, string>[0]));
+                Assert.Throws<ArgumentNullException>(() => DictionaryExtensions.AddRange(null, new KeyValuePair<string, string>[0]));
             }
 
             [Test]
@@ -76,9 +74,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenSourceIsNull_ThenThrowException()
             {
-                Dictionary<string, string> sut = null;
-
-                Assert.Throws<ArgumentNullException>(() => sut.AddOrUpdateRange(new KeyValuePair<string, string>[0]));
+                Assert.Throws<ArgumentNullException>(() => DictionaryExtensions.AddOrUpdateRange(null, new KeyValuePair<string, string>[0]));
             }
 
             [Test]
@@ -133,9 +129,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenSourceIsNull_ThenThrowException()
             {
-                Dictionary<string, string> sut = null;
-
-                Assert.Throws<ArgumentNullException>(() => sut.GetValuesIgnoreKeyCase("SomeKey"));
+                Assert.Throws<ArgumentNullException>(() => DictionaryExtensions.GetValuesIgnoreKeyCase(null as Dictionary<string, string>, "SomeKey"));
             }
 
             [Test]
@@ -201,9 +195,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenSourceIsNull_ThenThrowException()
             {
-                Dictionary<string, string> sut = null;
-
-                Assert.Throws<ArgumentNullException>(() => sut.GetFirstValueIgnoreKeyCase("key1"));
+                Assert.Throws<ArgumentNullException>(() => DictionaryExtensions.GetFirstValueIgnoreKeyCase(null as Dictionary<string, string>, "key1"));
             }
 
             [Test]

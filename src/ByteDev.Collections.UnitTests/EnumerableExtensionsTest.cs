@@ -14,9 +14,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenIsNull_ThenReturnEmpty()
             {
-                IEnumerable<string> sut = null;
-
-                var result = sut.NullToEmpty();
+                var result = EnumerableExtensions.NullToEmpty(null as IEnumerable<string>);
 
                 Assert.That(result.Count(), Is.EqualTo(0));
             }
@@ -119,21 +117,6 @@ namespace ByteDev.Collections.UnitTests
             private string Act(Predicate<string> predicate)
             {
                 return _sut.Find(predicate);
-            }
-        }
-
-        internal class Dummy
-        {
-            private readonly string _name;
-
-            public Dummy(string name)
-            {
-                _name = name;
-            }
-
-            public override string ToString()
-            {
-                return _name;
             }
         }
     }

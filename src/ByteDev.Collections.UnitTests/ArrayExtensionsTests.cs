@@ -15,9 +15,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenSourceIsNull_ThenThrowException()
             {
-                string[] sut = null;
-
-                Assert.Throws<ArgumentNullException>(() => sut.Populate(SingleValue));
+                Assert.Throws<ArgumentNullException>(() => ArrayExtensions.Populate(null, SingleValue));
             }
 
             [Test]

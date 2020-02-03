@@ -13,9 +13,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenSourceIsNull_ThenThrowException()
             {
-                NameValueCollection sut = null;
-
-                Assert.Throws<ArgumentNullException>(() => sut.AddOrUpdate("key1", "value1"));
+                Assert.Throws<ArgumentNullException>(() => NameValueCollectionExtensions.AddOrUpdate(null, "key1", "value1"));
             }
 
             [Test]
@@ -50,9 +48,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenSourceIsNull_ThenThrowException()
             {
-                NameValueCollection sut = null;
-
-                Assert.Throws<ArgumentNullException>(() => sut.ContainsKey("key1"));
+                Assert.Throws<ArgumentNullException>(() => NameValueCollectionExtensions.ContainsKey(null, "key1"));
             }
 
             [Test]
