@@ -9,6 +9,61 @@ namespace ByteDev.Collections
     public static class DictionaryExtensions
     {
         /// <summary>
+        /// Add a key value to the source dictionary. If a key already exists its value will be updated.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the keys of <paramref name="source" />.</typeparam>
+        /// <typeparam name="TValue">The type of the values of <paramref name="source" />.</typeparam>
+        /// <param name="source">The dictionary to add the key value to.</param>
+        /// <param name="key">The object to use as the key of the element to add or update.</param>
+        /// <param name="value">The object to use as the value of the element to add or update.</param>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="key">key</paramref> is null.</exception>
+        public static void AddOrUpdate<TKey, TValue>(this IDictionary<TKey, TValue> source, TKey key, TValue value)
+        {
+            if(source == null)
+                throw new ArgumentNullException(nameof(source));
+            
+            if (source.ContainsKey(key))
+            {
+                source[key] = value;
+            }
+            else
+            {
+                source.Add(key, value);
+            }
+        }
+
+        /// <summary>
+        /// Add a key value to the source dictionary. If a key already exists its value will be updated if <paramref name="predicate"/> evaluates to true.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the keys of <paramref name="source" />.</typeparam>
+        /// <typeparam name="TValue">The type of the values of <paramref name="source" />.</typeparam>
+        /// <param name="source">The dictionary to add the key value to.</param>
+        /// <param name="key">The object to use as the key of the element to add or update.</param>
+        /// <param name="value">The object to use as the value of the element to add or update.</param>
+        /// <param name="predicate">Predicate to evaluate if the key exists.</param>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="key">key</paramref> is null.</exception>
+        public static void AddOrUpdate<TKey, TValue>(this IDictionary<TKey, TValue> source, TKey key, TValue value, Predicate<TValue> predicate)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            if (predicate == null)
+                throw new ArgumentNullException(nameof(predicate));
+
+            if (source.ContainsKey(key))
+            {
+                if (predicate(source[key]))
+                    source[key] = value;
+            }
+            else
+            {
+                source.Add(key, value);
+            }
+        }
+
+        /// <summary>
         /// Add a range of items to the source dictionary.
         /// </summary>
         /// <typeparam name="TKey">The type of the keys of <paramref name="source" />.</typeparam>

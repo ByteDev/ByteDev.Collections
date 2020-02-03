@@ -17,6 +17,107 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
+        public class AddOrUpdate : DictionaryExtensionsTest
+        {
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                Dictionary<string, string> sut = null;
+
+                Assert.Throws<ArgumentNullException>(() => sut.AddOrUpdate("key1", "value1"));
+            }
+
+            [Test]
+            public void WhenKeyIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => _sut.AddOrUpdate(null, "value1"));
+            }
+
+            [Test]
+            public void WhenValueIsNull_ThenAdd()
+            {
+                _sut.AddOrUpdate("key1", null);
+
+                Assert.That(_sut["key1"], Is.Null);
+            }
+
+            [Test]
+            public void WhenDoesNotHaveKey_ThenAdd()
+            {
+                _sut.AddOrUpdate("key1", "value1");
+
+                Assert.That(_sut["key1"], Is.EqualTo("value1"));
+            }
+
+            [Test]
+            public void WhenHasKey_ThenUpdate()
+            {
+                _sut.Add("key1", "value1");
+                _sut.AddOrUpdate("key1", "value2");
+
+                Assert.That(_sut["key1"], Is.EqualTo("value2"));
+            }
+        }
+
+        [TestFixture]
+        public class AddOrUpdate_WithPredicate : DictionaryExtensionsTest
+        {
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                Dictionary<string, string> sut = null;
+
+                Assert.Throws<ArgumentNullException>(() => sut.AddOrUpdate("key1", "value1", v => v == "value1"));
+            }
+
+            [Test]
+            public void WhenKeyIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => _sut.AddOrUpdate(null, "value1", v => v == "value1"));
+            }
+
+            [Test]
+            public void WhenPredicateIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => _sut.AddOrUpdate("key1", "value1", null));
+            }
+
+            [Test]
+            public void WhenValueIsNull_ThenAdd()
+            {
+                _sut.AddOrUpdate("key1", null, v => v == "value1");
+
+                Assert.That(_sut["key1"], Is.Null);
+            }
+
+            [Test]
+            public void WhenDoesNotHaveKey_ThenAdd()
+            {
+                _sut.AddOrUpdate("key1", "value1", v => v == "value1");
+
+                Assert.That(_sut["key1"], Is.EqualTo("value1"));
+            }
+
+            [Test]
+            public void WhenHasKey_AndPredicateMatches_ThenUpdate()
+            {
+                _sut.Add("key1", "value1");
+                _sut.AddOrUpdate("key1", "value2", v => v == "value1");
+
+                Assert.That(_sut["key1"], Is.EqualTo("value2"));
+            }
+
+            [Test]
+            public void WhenHasKey_AndPredicateDoesNotMatch_ThenDoesNotUpdate()
+            {
+                _sut.Add("key1", "value1");
+                _sut.AddOrUpdate("key1", "value2", v => v == "not value1");
+
+                Assert.That(_sut["key1"], Is.EqualTo("value1"));
+            }
+        }
+
+        [TestFixture]
         public class AddRange : DictionaryExtensionsTest
         {
             [Test]

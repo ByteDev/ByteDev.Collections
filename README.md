@@ -41,6 +41,7 @@ Assembly contains extension methods:
   - GetRowCount
   - Populate
 - IDictionary<TKey, TValue>:
+  - AddOrUpdate
   - AddRange
   - AddOrUpdateRange
   - GetValuesIgnoreKeyCase
