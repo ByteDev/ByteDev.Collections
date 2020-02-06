@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
 
-namespace ByteDev.Collections.PackageTester.Net461
+namespace ByteDev.Collections.NetCore.PackageTests
 {
     [TestFixture]
     public class Tests

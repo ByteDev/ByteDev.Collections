@@ -8,8 +8,8 @@
     <ProjectGuid>{632E1BCB-05BC-44CC-84D8-E3C582EF7DFA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ByteDev.Collections.PackageTester.Net461</RootNamespace>
-    <AssemblyName>ByteDev.Collections.PackageTester.Net461</AssemblyName>
+    <RootNamespace>ByteDev.Collections.Net461.PackageTests</RootNamespace>
+    <AssemblyName>ByteDev.Collections.Net461.PackageTests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
