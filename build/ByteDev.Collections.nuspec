@@ -2,18 +2,21 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>ByteDev.Collections</id>
-    <version>0.0.1</version>
     <title>ByteDev.Collections</title>
+    <version>0.0.1</version>
     <authors>Paul Stanley</authors>
     <owners>Paul Stanley</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Set of extension methods for various types of .NET collections.</description>
     <copyright>Copyright 2019</copyright>
+	<requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Set of extension methods for various types of .NET collections.</description>
     <tags>dotnet collection collections enumerable dictionary list</tags>
 	<iconUrl>https://raw.githubusercontent.com/bytedev/ByteDev.Collections/master/images/icon.png</iconUrl>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0" />
+    </dependencies>
   </metadata>
   <files>
-    <file src="ByteDev.Collections\bin\Release\netstandard2.0\ByteDev.Collections.dll" target="lib\netstandard2.0" />
-    <file src="ByteDev.Collections\bin\Release\netstandard2.0\ByteDev.Collections.xml" target="lib\netstandard2.0" />
+    <file src="..\src\ByteDev.Collections\bin\Release\netstandard2.0\ByteDev.Collections.dll" target="lib\netstandard2.0" />
+    <file src="..\src\ByteDev.Collections\bin\Release\netstandard2.0\ByteDev.Collections.xml" target="lib\netstandard2.0" />
   </files>
 </package>

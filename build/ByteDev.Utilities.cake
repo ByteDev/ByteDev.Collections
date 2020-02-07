@@ -27,26 +27,24 @@ string GetNuGetVersion()
 
 void CleanObjDirectories()
 {
-	var objSrcDirs = GetDirectories("../src/**/obj");
-	
-	CleanDirectories(objSrcDirs);
+	CleanDirectories(GetDirectories("../src/**/obj"));
+	CleanDirectories(GetDirectories("../test/**/obj"));
 }
 
 void CleanBinDirectories()
 {	
-	var binSrcDirs = GetDirectories("../src/**/bin");
-
-	CleanDirectories(binSrcDirs);
+	CleanDirectories(GetDirectories("../src/**/bin"));
+	CleanDirectories(GetDirectories("../test/**/bin"));
 }
 
 FilePathCollection GetUnitTestProjFiles()
 {
-	return GetFiles("../src/*.UnitTests/**/*.csproj");
+	return GetFiles("../test/*.UnitTests/**/*.csproj");
 }
 
 FilePathCollection GetIntTestProjFiles()
 {
-	return GetFiles("../src/*.IntTests/**/*.csproj");
+	return GetFiles("../test/*.IntTests/**/*.csproj");
 }
 
 void DotNetCoreTests(FilePathCollection projects, DotNetCoreTestSettings settings)

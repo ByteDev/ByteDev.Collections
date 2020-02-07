@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ByteDev.Collections.PackageTester.Net461")]
+[assembly: AssemblyTitle("ByteDev.Collections.Net461.PackageTests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ByteDev.Collections.PackageTester.Net461")]
+[assembly: AssemblyProduct("ByteDev.Collections.Net461.PackageTests")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("632e1bcb-05bc-44cc-84d8-e3c582ef7dfa")]
+[assembly: Guid("a16d86ab-305a-412e-a7ec-e53023a27d39")]
 
 // Version information for an assembly consists of the following four values:
 //
