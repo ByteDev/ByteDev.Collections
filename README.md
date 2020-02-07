@@ -20,7 +20,7 @@ Further details can be found on the [nuget page](https://www.nuget.org/packages/
 
 Releases follow semantic versioning.
 
-Full details of the release notes can be viewed on [GitHub](https://github.com/ByteDev/ByteDev.Collections/blob/master/RELEASE-NOTES.md).
+Full details of the release notes can be viewed on [GitHub](https://github.com/ByteDev/ByteDev.Collections/blob/master/docs/RELEASE-NOTES.md).
 
 ## Code
 
