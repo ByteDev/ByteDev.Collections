@@ -8,3 +8,5 @@ foreach ($item in $items)
 		Remove-Item $item.FullName -recurse
 	}	
 }
+
+Write-Output "Tools folder cleaned."
