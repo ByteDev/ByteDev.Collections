@@ -1,5 +1,16 @@
 # Release Notes
 
+## 2.1.1 - 13 February 2020
+
+Breaking changes:
+- (None)
+
+New features:
+- (None)
+
+Bug fixes / internal changes:
+- Added .NET Standard 2.0 dependency group for package
+
 ## 2.1.0 - 18 January 2020
 
 Breaking changes:

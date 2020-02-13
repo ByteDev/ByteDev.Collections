@@ -18,17 +18,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{3F9A73C8
 		build\ByteDev.Utilities.cake = build\ByteDev.Utilities.cake
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PackageTests", "PackageTests", "{0DCF7BE0-C59A-42A4-BAEB-3831DC4E4A62}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{97C2C2AC-FD5B-4797-91A5-7FF5081B3330}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.Collections", "src\ByteDev.Collections\ByteDev.Collections.csproj", "{3D9CA74D-0348-48F1-8C06-95E4D57F8455}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.Collections.NetCore.PackageTests", "test\ByteDev.Collections.NetCore.PackageTests\ByteDev.Collections.NetCore.PackageTests.csproj", "{BAE06135-4D6D-41E6-9ED8-72EB39261DA3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.Collections.UnitTests", "test\ByteDev.Collections.UnitTests\ByteDev.Collections.UnitTests.csproj", "{8C54AB7B-ABFE-4E61-852E-8733BAAC9185}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByteDev.Collections.Net461.PackageTests", "test\ByteDev.Collections.Net461.PackageTests\ByteDev.Collections.Net461.PackageTests.csproj", "{A16D86AB-305A-412E-A7EC-E53023A27D39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.Collections.Net461.PackageTests", "test\ByteDev.Collections.Net461.PackageTests\ByteDev.Collections.Net461.PackageTests.csproj", "{A16D86AB-305A-412E-A7EC-E53023A27D39}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PackageTests", "PackageTests", "{DD010F5F-100F-4EA4-B38B-FB4FFC660B18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,11 +55,10 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{0DCF7BE0-C59A-42A4-BAEB-3831DC4E4A62} = {E0485F4D-842B-4F43-A33D-7E3CBA45D310}
-		{97C2C2AC-FD5B-4797-91A5-7FF5081B3330} = {E0485F4D-842B-4F43-A33D-7E3CBA45D310}
-		{BAE06135-4D6D-41E6-9ED8-72EB39261DA3} = {0DCF7BE0-C59A-42A4-BAEB-3831DC4E4A62}
-		{8C54AB7B-ABFE-4E61-852E-8733BAAC9185} = {97C2C2AC-FD5B-4797-91A5-7FF5081B3330}
-		{A16D86AB-305A-412E-A7EC-E53023A27D39} = {0DCF7BE0-C59A-42A4-BAEB-3831DC4E4A62}
+		{BAE06135-4D6D-41E6-9ED8-72EB39261DA3} = {DD010F5F-100F-4EA4-B38B-FB4FFC660B18}
+		{8C54AB7B-ABFE-4E61-852E-8733BAAC9185} = {E0485F4D-842B-4F43-A33D-7E3CBA45D310}
+		{A16D86AB-305A-412E-A7EC-E53023A27D39} = {DD010F5F-100F-4EA4-B38B-FB4FFC660B18}
+		{DD010F5F-100F-4EA4-B38B-FB4FFC660B18} = {E0485F4D-842B-4F43-A33D-7E3CBA45D310}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {934609B1-FFDD-479E-AE0A-E3D75790C5F6}
