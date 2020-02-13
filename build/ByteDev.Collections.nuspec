@@ -7,10 +7,10 @@
     <authors>Paul Stanley</authors>
     <owners>Paul Stanley</owners>
     <copyright>Copyright 2019</copyright>
-	<requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Set of extension methods for various types of .NET collections.</description>
     <tags>dotnet collection collections enumerable dictionary list</tags>
-	<iconUrl>https://raw.githubusercontent.com/bytedev/ByteDev.Collections/master/images/icon.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/bytedev/ByteDev.Collections/master/images/icon.png</iconUrl>
     <dependencies>
       <group targetFramework=".NETStandard2.0" />
     </dependencies>
