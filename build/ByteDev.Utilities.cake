@@ -47,6 +47,11 @@ FilePathCollection GetIntTestProjFiles()
 	return GetFiles("../test/*.IntTests/**/*.csproj");
 }
 
+FilePathCollection GetPackageTestCoreProjFiles()
+{
+	return GetFiles("../test/*.NetCore*PackageTests/*.csproj");
+}
+
 void DotNetCoreTests(FilePathCollection projects, DotNetCoreTestSettings settings)
 {
 	foreach(var project in projects)
@@ -69,3 +74,30 @@ void DotNetCoreIntTests(DotNetCoreTestSettings settings)
 	DotNetCoreTests(projects, settings);
 }
 
+void DotNetCorePackageTests(DotNetCoreTestSettings settings)
+{
+	var projects = GetPackageTestCoreProjFiles();
+
+	DotNetCoreTests(projects, settings);
+}
+
+void NetFrameworkUnitTests(string configuration)
+{
+	var assemblies = GetFiles($"../test/*UnitTests/bin/{configuration}/**/*.UnitTests.dll");
+		
+	NUnit3(assemblies);
+}
+
+void NetFrameworkIntTests(string configuration)
+{
+	var assemblies = GetFiles($"../test/*IntTests/bin/{configuration}/**/*.IntTests.dll");
+		
+	NUnit3(assemblies);
+}
+
+void NetFrameworkPackageTests(string configuration)
+{
+	var assemblies = GetFiles($"../test/*.Net4*.PackageTests/bin/{configuration}/**/*.PackageTests.dll");
+		
+	NUnit3(assemblies);
+}
