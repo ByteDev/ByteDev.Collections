@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ByteDev.Collections
 {
@@ -29,6 +30,27 @@ namespace ByteDev.Collections
             {
                 source.Add(value);
             }
+        }
+
+        /// <summary>
+        /// Removes all elements where the predicate is true.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+        /// <param name="source">The list to perform the operation on.</param>
+        /// <param name="predicate">The predicate to evaluate against each element.</param>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="predicate" /> is null.</exception>
+        public static void RemoveWhere<TSource>(this ICollection<TSource> source, Func<TSource, bool> predicate)
+        {
+            if(source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            if(predicate == null)
+                throw new ArgumentNullException(nameof(predicate));
+
+            source.Where(predicate)
+                .ToArray()
+                .ForEach(element => source.Remove(element));
         }
     }
 }

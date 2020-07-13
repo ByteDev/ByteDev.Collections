@@ -81,12 +81,13 @@ Assembly contains extension methods:
 - IEnumerable<string>:
   - GetLongest
   - GetShortest 
+- ICollection<T>
+  - Fill
+  - RemoveWhere
 - IList<T>: 
   - NullToEmpty
-  - Fill
   - MoveToFirst
   - MoveToLast
-  - RemoveWhere
   - ReplaceAt
   - ReplaceAll
 - NameValueCollection: 

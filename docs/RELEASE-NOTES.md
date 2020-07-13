@@ -13,8 +13,9 @@ New features:
 - Added ListExtensions.ReplaceAt
 - Added ListExtensions.ReplaceAll
 
-Bug fixes:
-- (None)
+Bug fixes / internal changes:
+- Moved IList.Fill to ICollection.Fill
+- Moved IList.RemoveWhere to ICollection.RemoveWhere
 
 ## 2.1.1 - 13 February 2020
 

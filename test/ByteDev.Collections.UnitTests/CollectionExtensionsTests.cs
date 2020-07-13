@@ -47,5 +47,43 @@ namespace ByteDev.Collections.UnitTests
                 Assert.That(sut.Second(), Is.EqualTo("Hello"));
             }
         }
+
+        [TestFixture]
+        public class RemoveWhere
+        {
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => CollectionExtensions.RemoveWhere(null as List<int>, x => x == 1));
+            }
+
+            [Test]
+            public void WhenPredicateIsNull_ThenThrowException()
+            {
+                var sut = new List<int> {1, 2, 3};
+
+                Assert.Throws<ArgumentNullException>(() => sut.RemoveWhere(null));
+            }
+
+            [Test]
+            public void WhenSourceIsEmpty_ThenRemoveNothing()
+            {
+                var sut = new List<int>();
+
+                sut.RemoveWhere(x => x == 1);
+
+                Assert.That(sut, Is.Empty);
+            }
+
+            [Test]
+            public void WhereMatchesCondition_ThenRemoveElements()
+            {
+                var sut = new List<int> {1, 2, 3, 1, 2};
+
+                sut.RemoveWhere(x => x == 1 || x == 2);
+
+                Assert.That(sut.Single(), Is.EqualTo(3));
+            }
+        }
     }
 }
