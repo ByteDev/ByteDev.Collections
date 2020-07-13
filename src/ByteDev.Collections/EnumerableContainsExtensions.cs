@@ -19,7 +19,7 @@ namespace ByteDev.Collections
         /// <returns>True if all values in the sequence are contained in the collection; otherwise false.</returns>
         public static bool ContainsAll<TSource>(this IEnumerable<TSource> source, params TSource[] values)
         {
-            return ContainsAll(source, values, default);
+            return ContainsAll(source, values, EqualityComparer<TSource>.Default);
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace ByteDev.Collections
         /// <returns>True if all values in the sequence are contained in the collection; otherwise false.</returns>
         public static bool ContainsAll<TSource>(this IEnumerable<TSource> source, IEnumerable<TSource> values)
         {
-            return ContainsAll(source, values, default);
+            return ContainsAll(source, values, EqualityComparer<TSource>.Default);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace ByteDev.Collections
         /// <returns>True if any values in the sequence are contained in the collection; otherwise false.</returns>
         public static bool ContainsAny<TSource>(this IEnumerable<TSource> source, params TSource[] values)
         {
-            return ContainsAny(source, values, default);
+            return ContainsAny(source, values, EqualityComparer<TSource>.Default);
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace ByteDev.Collections
         /// <returns>True if any values in the sequence are contained in the collection; otherwise false.</returns>
         public static bool ContainsAny<TSource>(this IEnumerable<TSource> source, IEnumerable<TSource> values)
         {
-            return ContainsAny(source, values, default);
+            return ContainsAny(source, values, EqualityComparer<TSource>.Default);
         }
 
         /// <summary>

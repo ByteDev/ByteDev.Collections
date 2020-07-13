@@ -87,6 +87,8 @@ Assembly contains extension methods:
   - MoveToFirst
   - MoveToLast
   - RemoveWhere
+  - ReplaceAt
+  - ReplaceAll
 - NameValueCollection: 
   - AddOrUpdate
   - AddIfNotContainsKey

@@ -278,7 +278,6 @@ namespace ByteDev.Collections.UnitTests
                 Assert.That(sut.Single(), Is.EqualTo(3));
             }
         }
-
     }
 }
     

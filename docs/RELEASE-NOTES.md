@@ -10,6 +10,8 @@ New features:
 - Added DictionaryExtensions.AddIfNotContainsKey
 - Added EnumerableExtensions.ContainsAll
 - Added EnumerableExtensions.ContainsAny
+- Added ListExtensions.ReplaceAt
+- Added ListExtensions.ReplaceAll
 
 Bug fixes:
 - (None)

@@ -13,7 +13,7 @@ namespace ByteDev.Collections
         /// Returns new empty list when null.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
-        /// <param name="source">The list to return empty on if null.</param>
+        /// <param name="source">The list to perform the operation on.</param>
         /// <returns>Empty list if null; otherwise returns the list.</returns>
         public static IList<TSource> NullToEmpty<TSource>(this IList<TSource> source)
         {
@@ -24,7 +24,7 @@ namespace ByteDev.Collections
         /// Fills an empty list's given number of elements with a value.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
-        /// <param name="source">The list to fill.</param>
+        /// <param name="source">The list to perform the operation on.</param>
         /// <param name="numberToFill">Number of elements to fill.</param>
         /// <param name="value">The value to fill with.</param>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
@@ -47,7 +47,7 @@ namespace ByteDev.Collections
         /// Moves the first occurence of <paramref name="item" /> to first position.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
-        /// <param name="source">The list to move to first on.</param>
+        /// <param name="source">The list to perform the operation on.</param>
         /// <param name="item">The item to move to first position.</param>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="item" /> is null.</exception>
@@ -70,7 +70,7 @@ namespace ByteDev.Collections
         /// Moves the first occurence of <paramref name="item" /> to last position.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
-        /// <param name="source">The list to move to last on.</param>
+        /// <param name="source">The list to perform the operation on.</param>
         /// <param name="item">The item to move to last position.</param>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="item" /> is null.</exception>
@@ -93,7 +93,7 @@ namespace ByteDev.Collections
         /// Removes all elements where the predicate is true.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
-        /// <param name="source">The list to remove on.</param>
+        /// <param name="source">The list to perform the operation on.</param>
         /// <param name="predicate">The predicate to evaluate against each element.</param>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="predicate" /> is null.</exception>
