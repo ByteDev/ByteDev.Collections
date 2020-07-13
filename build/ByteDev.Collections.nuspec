@@ -9,8 +9,10 @@
     <copyright>Copyright 2019</copyright>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Set of extension methods for various types of .NET collections.</description>
-    <tags>dotnet collection collections enumerable dictionary list</tags>
-    <iconUrl>https://raw.githubusercontent.com/bytedev/ByteDev.Collections/master/images/icon.png</iconUrl>
+    <tags>dotnet collection collections enumerable dictionary list namevaluecollection</tags>
+    <projectUrl>https://github.com/ByteDev/ByteDev.Collections</projectUrl>
+    <icon>images\icon.png</icon>
+    <license type="file">LICENSE</license>
     <dependencies>
       <group targetFramework=".NETStandard2.0" />
     </dependencies>
@@ -18,5 +20,7 @@
   <files>
     <file src="..\src\ByteDev.Collections\bin\Release\netstandard2.0\ByteDev.Collections.dll" target="lib\netstandard2.0" />
     <file src="..\src\ByteDev.Collections\bin\Release\netstandard2.0\ByteDev.Collections.xml" target="lib\netstandard2.0" />
+    <file src="..\images\icon.png" target="images\" />
+    <file src="..\LICENSE*" target="" />
   </files>
 </package>
