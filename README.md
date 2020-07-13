@@ -68,6 +68,7 @@ Assembly contains extension methods:
   - Tenth
   - TenthOrDefault
   - ContainsAll
+  - ContainsAny
   - NullToEmpty
   - ForEach
   - Find

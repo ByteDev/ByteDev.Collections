@@ -9,6 +9,7 @@ New features:
 - Added NameValueCollection.AddIfNotContainsKey
 - Added DictionaryExtensions.AddIfNotContainsKey
 - Added EnumerableExtensions.ContainsAll
+- Added EnumerableExtensions.ContainsAny
 
 Bug fixes:
 - (None)
