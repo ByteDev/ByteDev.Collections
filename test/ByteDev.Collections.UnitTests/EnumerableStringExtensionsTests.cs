@@ -5,10 +5,10 @@ using NUnit.Framework;
 namespace ByteDev.Collections.UnitTests
 {
     [TestFixture]
-    public class EnumerableStringExtensionsTest
+    public class EnumerableStringExtensionsTests
     {
         [TestFixture]
-        public class GetLongest : EnumerableStringExtensionsTest
+        public class GetLongest : EnumerableStringExtensionsTests
         {
             [Test]
             public void WhenIsNull_ThenThrowException()
@@ -78,7 +78,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class GetShortest : EnumerableStringExtensionsTest
+        public class GetShortest : EnumerableStringExtensionsTests
         {
             [Test]
             public void WhenIsNull_ThenThrowException()

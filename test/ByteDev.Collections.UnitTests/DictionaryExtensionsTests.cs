@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace ByteDev.Collections.UnitTests
 {
     [TestFixture]
-    public class DictionaryExtensionsTest
+    public class DictionaryExtensionsTests
     {
         private Dictionary<string, string> _sut;
 
@@ -17,7 +17,43 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class AddOrUpdate : DictionaryExtensionsTest
+        public class AddIfNotContainsKey : DictionaryExtensionsTests
+        {
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                Dictionary<string, string> sut = null;
+
+                Assert.Throws<ArgumentNullException>(() => sut.AddIfNotContainsKey("key1", "value1"));
+            }
+
+            [Test]
+            public void WhenKeyIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => _sut.AddIfNotContainsKey(null, "value1"));
+            }
+
+            [Test]
+            public void WhenKeyExists_ThenDoNotAdd()
+            {
+                _sut.Add("key1", "value1");
+
+                _sut.AddIfNotContainsKey("key1", "value2");
+
+                Assert.That(_sut["key1"], Is.EqualTo("value1"));
+            }
+
+            [Test]
+            public void WhenKeyDoesNotExist_ThenAdd()
+            {
+                _sut.AddIfNotContainsKey("key1", "value2");
+
+                Assert.That(_sut["key1"], Is.EqualTo("value2"));
+            }
+        }
+
+        [TestFixture]
+        public class AddOrUpdate : DictionaryExtensionsTests
         {
             [Test]
             public void WhenSourceIsNull_ThenThrowException()
@@ -60,7 +96,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class AddOrUpdate_WithPredicate : DictionaryExtensionsTest
+        public class AddOrUpdate_WithPredicate : DictionaryExtensionsTests
         {
             [Test]
             public void WhenSourceIsNull_ThenThrowException()
@@ -118,7 +154,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class AddRange : DictionaryExtensionsTest
+        public class AddRange : DictionaryExtensionsTests
         {
             [Test]
             public void WhenSourceIsNull_ThenThrowException()
@@ -170,7 +206,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class AddOrUpdateRange : DictionaryExtensionsTest
+        public class AddOrUpdateRange : DictionaryExtensionsTests
         {
             [Test]
             public void WhenSourceIsNull_ThenThrowException()
@@ -225,7 +261,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class GetValuesIgnoreKeyCase : DictionaryExtensionsTest
+        public class GetValuesIgnoreKeyCase : DictionaryExtensionsTests
         {
             [Test]
             public void WhenSourceIsNull_ThenThrowException()
@@ -291,7 +327,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class GetFirstValueIgnoreKeyCase : DictionaryExtensionsTest
+        public class GetFirstValueIgnoreKeyCase : DictionaryExtensionsTests
         {
             [Test]
             public void WhenSourceIsNull_ThenThrowException()

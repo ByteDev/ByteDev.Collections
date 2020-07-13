@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace ByteDev.Collections.UnitTests
 {
     [TestFixture]
-    public class EnumerableExtensionsTest
+    public class EnumerableExtensionsTests
     {
         [TestFixture]
         public class NullToEmpty
@@ -117,6 +117,62 @@ namespace ByteDev.Collections.UnitTests
             private string Act(Predicate<string> predicate)
             {
                 return _sut.Find(predicate);
+            }
+        }
+
+        [TestFixture]
+        public class ContainsAll
+        {
+            private IEnumerable<string> _sut;
+
+            [SetUp]
+            public void SetUp()
+            {
+                _sut = new[] { "Hello", "John", "Smith" };
+            }
+
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => EnumerableExtensions.ContainsAll(null, new object()));
+            }
+
+            [Test]
+            public void WhenValuesIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => _sut.ContainsAll(null));
+            }
+
+            [Test]
+            public void WhenValuesIsEmpty_ThenReturnTrue()
+            {
+                var result = _sut.ContainsAll();
+
+                Assert.That(result, Is.True);
+            }
+
+            [Test]
+            public void WhenContainsAll_ThenReturnTrue()
+            {
+                var result = _sut.ContainsAll("Hello", "Smith");
+
+                Assert.That(result, Is.True);
+            }
+
+            [Test]
+            public void WhenDoesNotContainAll_ThenReturnFalse()
+            {
+                var result = _sut.ContainsAll("Hello", "Smith", "NotInCollection");
+
+                Assert.That(result, Is.False);
+            }
+
+            [Test]
+            public void WhenContainsAllInEnumerable_ThenReturnTrue()
+            {
+                var result = _sut.ContainsAll(new List<string> { "Hello", "Smith" });
+
+                Assert.That(result, Is.True);
             }
         }
     }

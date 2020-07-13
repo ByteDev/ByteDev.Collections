@@ -45,6 +45,7 @@ Assembly contains extension methods:
   - AddOrUpdate
   - AddRange
   - AddOrUpdateRange
+  - AddIfNotContainsKey
   - GetValuesIgnoreKeyCase
   - GetFirstValueIgnoreKeyCase
 - IEnumerable<T>:
@@ -66,6 +67,7 @@ Assembly contains extension methods:
   - NinthOrDefault
   - Tenth
   - TenthOrDefault
+  - ContainsAll
   - NullToEmpty
   - ForEach
   - Find
@@ -86,6 +88,7 @@ Assembly contains extension methods:
   - RemoveWhere
 - NameValueCollection: 
   - AddOrUpdate
+  - AddIfNotContainsKey
   - ContainsKey
 
 

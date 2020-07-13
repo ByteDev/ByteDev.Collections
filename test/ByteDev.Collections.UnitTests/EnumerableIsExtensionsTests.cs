@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace ByteDev.Collections.UnitTests
 {
     [TestFixture]
-    public class EnumerableIsExtensionsTest
+    public class EnumerableIsExtensionsTests
     {
         [TestFixture]
         public class IsNullOrEmpty

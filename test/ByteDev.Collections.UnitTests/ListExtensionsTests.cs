@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace ByteDev.Collections.UnitTests
 {
     [TestFixture]
-    public class ListExtensionsTest
+    public class ListExtensionsTests
     {
         public class Customer
         {
@@ -36,7 +36,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class Fill : ListExtensionsTest
+        public class Fill : ListExtensionsTests
         {
             [Test]
             public void WhenIsNull_ThenThrowException()
@@ -159,7 +159,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class MoveToLast : ListExtensionsTest
+        public class MoveToLast : ListExtensionsTests
         {
             private Customer _customer1;
             private Customer _customer2;
@@ -278,6 +278,7 @@ namespace ByteDev.Collections.UnitTests
                 Assert.That(sut.Single(), Is.EqualTo(3));
             }
         }
+
     }
 }
     

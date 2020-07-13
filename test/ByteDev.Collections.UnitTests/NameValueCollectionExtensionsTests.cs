@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace ByteDev.Collections.UnitTests
 {
     [TestFixture]
-    public class NameValueCollectionExtensionsTest
+    public class NameValueCollectionExtensionsTests
     {
         [TestFixture]
         public class AddOrUpdate
@@ -39,6 +39,43 @@ namespace ByteDev.Collections.UnitTests
                 sut.AddOrUpdate("key1", expected);
 
                 Assert.That(sut["key1"], Is.EqualTo(expected));
+            }
+        }
+
+        [TestFixture]
+        public class AddIfNotContainsKey
+        {
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => NameValueCollectionExtensions.AddIfNotContainsKey(null, "key1", "value1"));
+            }
+            
+            [Test]
+            public void WhenKeyExists_ThenDoNotAdd()
+            {
+                var sut = new NameValueCollection
+                {
+                    {"key1", "value1"}
+                };
+
+                sut.AddIfNotContainsKey("key1", "value2");
+
+                Assert.That(sut["key1"], Is.EqualTo("value1"));
+            }
+
+            [Test]
+            public void WhenKeyDoesNotExist_ThenAdd()
+            {
+                var sut = new NameValueCollection
+                {
+                    {"key1", "value1"}
+                };
+
+                sut.AddIfNotContainsKey("key2", "value2");
+
+                Assert.That(sut["key1"], Is.EqualTo("value1"));
+                Assert.That(sut["key2"], Is.EqualTo("value2"));
             }
         }
 

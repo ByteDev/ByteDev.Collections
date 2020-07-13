@@ -12,7 +12,7 @@ namespace ByteDev.Collections
         /// <summary>
         /// Add or update the key value pair.
         /// </summary>
-        /// <param name="source">The name value collection to add or update the key value pair on.</param>
+        /// <param name="source">The name value collection to perform the operation on.</param>
         /// <param name="key">The key to use when adding or updating the name value collection.</param>
         /// <param name="value">The value to use when adding or updating the name value collection.</param>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
@@ -28,9 +28,25 @@ namespace ByteDev.Collections
         }
 
         /// <summary>
+        /// Adds a key value pair if the key does not already exist.
+        /// </summary>
+        /// <param name="source">The name value collection to perform the operation on.</param>
+        /// <param name="key">The key to use when checking if exists and adding if it does not.</param>
+        /// <param name="value">The value to add to the name value collection.</param>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        public static void AddIfNotContainsKey(this NameValueCollection source, string key, string value)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            if (!source.ContainsKey(key))
+                source.Add(key, value);
+        }
+
+        /// <summary>
         /// Check if <paramref name="source" /> contains a key.
         /// </summary>
-        /// <param name="source">The name value collection to check if key exists.</param>
+        /// <param name="source">The name value collection to perform the operation on.</param>
         /// <param name="key">The key to check if is being used or not.</param>
         /// <returns>True if the name value collection contains the key; otherwise returns false.</returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
@@ -38,7 +54,7 @@ namespace ByteDev.Collections
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-
+            
             if (source.Get(key) == null)
                 return source.AllKeys.Contains(key);
             

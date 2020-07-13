@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace ByteDev.Collections.UnitTests
 {
     [TestFixture]
-    public class EnumerableElementSelectionExtensionsTest
+    public class EnumerableElementSelectionExtensionsTests
     {
         private IList<string> _sut;
 
@@ -16,7 +16,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class Second : EnumerableElementSelectionExtensionsTest
+        public class Second : EnumerableElementSelectionExtensionsTests
         {
             [Test]
             public void WhenIsNull_ThenThrowException()
@@ -55,7 +55,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class SecondOrDefault : EnumerableElementSelectionExtensionsTest
+        public class SecondOrDefault : EnumerableElementSelectionExtensionsTests
         {
             [Test]
             public void WhenIsEmpty_ThenReturnDefault()
@@ -90,7 +90,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class Third : EnumerableElementSelectionExtensionsTest
+        public class Third : EnumerableElementSelectionExtensionsTests
         {
             [Test]
             public void WhenHasTwoElements_ThenThrowException()
@@ -116,7 +116,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class ThirdOrDefault : EnumerableElementSelectionExtensionsTest
+        public class ThirdOrDefault : EnumerableElementSelectionExtensionsTests
         {
             [Test]
             public void WhenHasTwoElements_ThenReturnDefault()
@@ -143,7 +143,7 @@ namespace ByteDev.Collections.UnitTests
         }
         
         [TestFixture]
-        public class Fourth : EnumerableElementSelectionExtensionsTest
+        public class Fourth : EnumerableElementSelectionExtensionsTests
         {
             [Test]
             public void WhenHasThreeElements_ThenThrowException()
@@ -169,7 +169,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class FourthOrDefault : EnumerableElementSelectionExtensionsTest
+        public class FourthOrDefault : EnumerableElementSelectionExtensionsTests
         {
             [Test]
             public void WhenHasThreeElements_ThenReturnDefault()
@@ -196,7 +196,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class Fifth : EnumerableElementSelectionExtensionsTest
+        public class Fifth : EnumerableElementSelectionExtensionsTests
         {
             [Test]
             public void WhenHasFourElements_ThenThrowException()
@@ -222,7 +222,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class FifthOrDefault : EnumerableElementSelectionExtensionsTest
+        public class FifthOrDefault : EnumerableElementSelectionExtensionsTests
         {
             [Test]
             public void WhenHasFourElements_ThenReturnDefault()
@@ -249,7 +249,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class Sixth : EnumerableElementSelectionExtensionsTest
+        public class Sixth : EnumerableElementSelectionExtensionsTests
         {
             [Test]
             public void WhenHasFiveElements_ThenThrowException()
@@ -275,7 +275,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class SixthOrDefault : EnumerableElementSelectionExtensionsTest
+        public class SixthOrDefault : EnumerableElementSelectionExtensionsTests
         {
             [Test]
             public void WhenHasFiveElements_ThenReturnDefault()
@@ -302,7 +302,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class Seventh : EnumerableElementSelectionExtensionsTest
+        public class Seventh : EnumerableElementSelectionExtensionsTests
         {
             [Test]
             public void WhenHasSixElements_ThenThrowException()
@@ -328,7 +328,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class SeventhOrDefault : EnumerableElementSelectionExtensionsTest
+        public class SeventhOrDefault : EnumerableElementSelectionExtensionsTests
         {
             [Test]
             public void WhenHasSixElements_ThenReturnDefault()
@@ -355,7 +355,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class Eighth : EnumerableElementSelectionExtensionsTest
+        public class Eighth : EnumerableElementSelectionExtensionsTests
         {
             [Test]
             public void WhenHasSevenElements_ThenThrowException()
@@ -381,7 +381,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class EighthOrDefault : EnumerableElementSelectionExtensionsTest
+        public class EighthOrDefault : EnumerableElementSelectionExtensionsTests
         {
             [Test]
             public void WhenHasSevenElements_ThenReturnDefault()
@@ -408,7 +408,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class Nineth : EnumerableElementSelectionExtensionsTest
+        public class Nineth : EnumerableElementSelectionExtensionsTests
         {
             [Test]
             public void WhenHasEightElements_ThenThrowException()
@@ -434,7 +434,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class NinethOrDefault : EnumerableElementSelectionExtensionsTest
+        public class NinethOrDefault : EnumerableElementSelectionExtensionsTests
         {
             [Test]
             public void WhenHasEightElements_ThenReturnDefault()
@@ -461,7 +461,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class Tenth : EnumerableElementSelectionExtensionsTest
+        public class Tenth : EnumerableElementSelectionExtensionsTests
         {
             [Test]
             public void WhenHasNineElements_ThenThrowException()
@@ -487,7 +487,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class TenthOrDefault : EnumerableElementSelectionExtensionsTest
+        public class TenthOrDefault : EnumerableElementSelectionExtensionsTests
         {
             [Test]
             public void WhenHasNineElements_ThenReturnDefault()

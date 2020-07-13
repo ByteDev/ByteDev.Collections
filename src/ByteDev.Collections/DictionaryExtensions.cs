@@ -4,10 +4,31 @@ using System.Collections.Generic;
 namespace ByteDev.Collections
 {
     /// <summary>
-    /// Extension methods for IDictionary.
+    /// Extension methods for <see cref="T:System.Collections.Generic.IDictionary`1" />.
     /// </summary>
     public static class DictionaryExtensions
     {
+        /// <summary>
+        /// Adds a key value pair if the key does not already exist in the source dictionary.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the keys of <paramref name="source" />.</typeparam>
+        /// <typeparam name="TValue">The type of the values of <paramref name="source" />.</typeparam>
+        /// <param name="source">The dictionary to add the key value to.</param>
+        /// <param name="key">The object to use as the key of the element to check if exists and add.</param>
+        /// <param name="value">The object to use as the value of the element to check if exists and add.</param>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="key">key</paramref> is null.</exception>
+        public static void AddIfNotContainsKey<TKey, TValue>(this IDictionary<TKey, TValue> source, TKey key, TValue value)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            
+            if (!source.ContainsKey(key))
+            {
+                source.Add(key, value);
+            }
+        }
+
         /// <summary>
         /// Add a key value to the source dictionary. If a key already exists its value will be updated.
         /// </summary>
@@ -167,7 +188,7 @@ namespace ByteDev.Collections
                     return keyValuePair.Value;
             }
 
-            return default(TValue);
+            return default;
         }
     }
 }

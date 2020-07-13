@@ -63,7 +63,59 @@ namespace ByteDev.Collections
                     return item;
             }
 
-            return default(TSource);
+            return default;
+        }
+
+        /// <summary>
+        /// Determines whether a collection contains all the values in a sequence by
+        /// using the default equality comparer.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+        /// <param name="source">The collection to check.</param>
+        /// <param name="values">Sequence of values to check are contained.</param>
+        /// <returns>True if all values in the sequence are contained in the collection; otherwise false.</returns>
+        public static bool ContainsAll<TSource>(this IEnumerable<TSource> source, params TSource[] values)
+        {
+            return ContainsAll(source, values, default);
+        }
+
+        /// <summary>
+        /// Determines whether a collection contains all the values in a sequence by
+        /// using the default equality comparer.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+        /// <param name="source">The collection to check.</param>
+        /// <param name="values">Sequence of values to check are contained.</param>
+        /// <returns>True if all values in the sequence are contained in the collection; otherwise false.</returns>
+        public static bool ContainsAll<TSource>(this IEnumerable<TSource> source, IEnumerable<TSource> values)
+        {
+            return ContainsAll(source, values, default);
+        }
+
+        /// <summary>
+        /// Determines whether a collection contains all the values in a sequence by
+        /// using the specified equality comparer.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+        /// <param name="source">The collection to check.</param>
+        /// <param name="values">Sequence of values to check are contained.</param>
+        /// <param name="comparer"></param>
+        /// <returns>True if all values in the sequence are contained in the collection; otherwise false.</returns>
+        public static bool ContainsAll<TSource>(this IEnumerable<TSource> source, IEnumerable<TSource> values, IEqualityComparer<TSource> comparer)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            if (values == null)
+                throw new ArgumentNullException(nameof(values));
+
+            foreach (var value in values)
+            {
+                if (!source.Contains(value, comparer))
+                    return false;
+            }
+
+            return true;
         }
     }
 }

@@ -1,5 +1,18 @@
 # Release Notes
 
+## 2.2.0 - ?? July 2020
+
+Breaking changes:
+- (None)
+
+New features:
+- Added NameValueCollection.AddIfNotContainsKey
+- Added DictionaryExtensions.AddIfNotContainsKey
+- Added EnumerableExtensions.ContainsAll
+
+Bug fixes:
+- (None)
+
 ## 2.1.1 - 13 February 2020
 
 Breaking changes:

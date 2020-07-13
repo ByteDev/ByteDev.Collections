@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace ByteDev.Collections.UnitTests
 {
     [TestFixture]
-    public class EnumerableToExtensionsTest
+    public class EnumerableToExtensionsTests
     {
         [TestFixture]
         public class ToDelimitedString
