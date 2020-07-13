@@ -389,5 +389,85 @@ namespace ByteDev.Collections.UnitTests
                 Assert.That(result, Is.EqualTo("value1"));
             }
         }
+
+        [TestFixture]
+        public class ContainsAllKey : DictionaryExtensionsTests
+        {
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => DictionaryExtensions.ContainsAllKey(null as Dictionary<string, string>, "key1"));
+            }
+
+            [Test]
+            public void WhenKeysIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => _sut.ContainsAllKey(null));
+            }
+
+            [Test]
+            public void WhenContainsAllKeys_ThenReturnsTrue()
+            {
+                _sut.Add("key1", "value1");
+                _sut.Add("key2", "value1");
+                _sut.Add("key3", "value1");
+
+                var result = _sut.ContainsAllKey("key1", "key3");
+
+                Assert.That(result, Is.True);
+            }
+
+            [Test]
+            public void WhenDoesNotContainAllKeys_ThenReturnsFalse()
+            {
+                _sut.Add("key1", "value1");
+                _sut.Add("key2", "value1");
+                _sut.Add("key3", "value1");
+
+                var result = _sut.ContainsAllKey("key1", "key4");
+
+                Assert.That(result, Is.False);
+            }
+        }
+
+        [TestFixture]
+        public class ContainsAnyKey : DictionaryExtensionsTests
+        {
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => DictionaryExtensions.ContainsAnyKey(null as Dictionary<string, string>, "key1"));
+            }
+
+            [Test]
+            public void WhenKeysIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => _sut.ContainsAnyKey(null));
+            }
+
+            [Test]
+            public void WhenContainsAnyKey_ThenReturnsTrue()
+            {
+                _sut.Add("key1", "value1");
+                _sut.Add("key2", "value1");
+                _sut.Add("key3", "value1");
+
+                var result = _sut.ContainsAnyKey("key2", "key4");
+
+                Assert.That(result, Is.True);
+            }
+
+            [Test]
+            public void WhenDoesNotContainAnyKey_ThenReturnsFalse()
+            {
+                _sut.Add("key1", "value1");
+                _sut.Add("key2", "value1");
+                _sut.Add("key3", "value1");
+
+                var result = _sut.ContainsAnyKey("key4", "key5");
+
+                Assert.That(result, Is.False);
+            }
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace ByteDev.Collections
         /// </summary>
         /// <typeparam name="TKey">The type of the keys of <paramref name="source" />.</typeparam>
         /// <typeparam name="TValue">The type of the values of <paramref name="source" />.</typeparam>
-        /// <param name="source">The dictionary to add the key value to.</param>
+        /// <param name="source">The dictionary to perform the operation on.</param>
         /// <param name="key">The object to use as the key of the element to check if exists and add.</param>
         /// <param name="value">The object to use as the value of the element to check if exists and add.</param>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
@@ -34,7 +34,7 @@ namespace ByteDev.Collections
         /// </summary>
         /// <typeparam name="TKey">The type of the keys of <paramref name="source" />.</typeparam>
         /// <typeparam name="TValue">The type of the values of <paramref name="source" />.</typeparam>
-        /// <param name="source">The dictionary to add the key value to.</param>
+        /// <param name="source">The dictionary to perform the operation on.</param>
         /// <param name="key">The object to use as the key of the element to add or update.</param>
         /// <param name="value">The object to use as the value of the element to add or update.</param>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
@@ -59,7 +59,7 @@ namespace ByteDev.Collections
         /// </summary>
         /// <typeparam name="TKey">The type of the keys of <paramref name="source" />.</typeparam>
         /// <typeparam name="TValue">The type of the values of <paramref name="source" />.</typeparam>
-        /// <param name="source">The dictionary to add the key value to.</param>
+        /// <param name="source">The dictionary to perform the operation on.</param>
         /// <param name="key">The object to use as the key of the element to add or update.</param>
         /// <param name="value">The object to use as the value of the element to add or update.</param>
         /// <param name="predicate">Predicate to evaluate if the key exists.</param>
@@ -89,7 +89,7 @@ namespace ByteDev.Collections
         /// </summary>
         /// <typeparam name="TKey">The type of the keys of <paramref name="source" />.</typeparam>
         /// <typeparam name="TValue">The type of the values of <paramref name="source" />.</typeparam>
-        /// <param name="source">The dictionary to add the range of items to.</param>
+        /// <param name="source">The dictionary to perform the operation on.</param>
         /// <param name="items">The items to add to the dictionary.</param>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="items" /> is null.</exception>
@@ -112,7 +112,7 @@ namespace ByteDev.Collections
         /// </summary>
         /// <typeparam name="TKey">The type of the keys of <paramref name="source" />.</typeparam>
         /// <typeparam name="TValue">The type of the values of <paramref name="source" />.</typeparam>
-        /// <param name="source">The dictionary to add or update the range of items to.</param>
+        /// <param name="source">The dictionary to perform the operation on.</param>
         /// <param name="items">The items to add or update to the dictionary.</param>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="items" /> is null.</exception>
@@ -141,7 +141,7 @@ namespace ByteDev.Collections
         /// Retrieves a list of values from the dictionary using a key in a case insensitive manner.
         /// </summary>
         /// <typeparam name="TValue">The type of the values of <paramref name="source" />.</typeparam>
-        /// <param name="source">The dictionary to retrieve from.</param>
+        /// <param name="source">The dictionary to perform the operation on.</param>
         /// <param name="key">Key to use in retrieving the value.</param>
         /// <returns>List of values based on the key provided.</returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
@@ -169,7 +169,7 @@ namespace ByteDev.Collections
         /// Retrieves the first value from the dictionary using a key in a case insensitive manner.
         /// </summary>
         /// <typeparam name="TValue">The type of the values of <paramref name="source" />.</typeparam>
-        /// <param name="source">The dictionary to retrieve from.</param>
+        /// <param name="source">The dictionary to perform the operation on.</param>
         /// <param name="key">Key to use in retrieving the value.</param>
         /// <returns>First value based on the key provided. If key does not exist then default is returned.</returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
@@ -189,6 +189,56 @@ namespace ByteDev.Collections
             }
 
             return default;
+        }
+
+        /// <summary>
+        /// Determines whether a dictionary contains all of the keys in a sequence.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the keys of <paramref name="source" />.</typeparam>
+        /// <typeparam name="TValue">The type of the values of <paramref name="source" />.</typeparam>
+        /// <param name="source">The dictionary to perform the operation on.</param>
+        /// <param name="keys">Sequence of keys.</param>
+        /// <returns>True if the dictionary contains all the keys in the sequence; otherwise false.</returns>
+        public static bool ContainsAllKey<TKey, TValue>(this IDictionary<TKey, TValue> source, params TKey[] keys)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            if (keys == null)
+                throw new ArgumentNullException(nameof(keys));
+            
+            foreach (var key in keys)
+            {
+                if (!source.ContainsKey(key))
+                    return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Determines whether a dictionary contains any of the keys in a sequence.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the keys of <paramref name="source" />.</typeparam>
+        /// <typeparam name="TValue">The type of the values of <paramref name="source" />.</typeparam>
+        /// <param name="source">The dictionary to perform the operation on.</param>
+        /// <param name="keys">Sequence of keys.</param>
+        /// <returns>True if the dictionary contains any of the keys in the sequence; otherwise false.</returns>
+        public static bool ContainsAnyKey<TKey, TValue>(this IDictionary<TKey, TValue> source, params TKey[] keys)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            if (keys == null)
+                throw new ArgumentNullException(nameof(keys));
+
+            foreach (var key in keys)
+            {
+                if (source.ContainsKey(key))
+                    return true;
+            }
+
+            return false;
         }
     }
 }

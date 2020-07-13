@@ -40,6 +40,8 @@ Assembly contains extension methods:
   - AddRange
   - AddOrUpdateRange
   - AddIfNotContainsKey
+  - ContainsAllKey
+  - ContainsAnyKey
   - GetValuesIgnoreKeyCase
   - GetFirstValueIgnoreKeyCase
 - IEnumerable<T>:
