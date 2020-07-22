@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ByteDev.Collections.Sequences
 {
@@ -77,7 +78,7 @@ namespace ByteDev.Collections.Sequences
         }
 
         /// <summary>
-        /// Creates the Prime number sequence.
+        /// Creates a Prime number sequence.
         /// </summary>
         /// <param name="size">Size of the sequence.</param>
         /// <param name="start">The starting point in the sequence.</param>
@@ -87,7 +88,7 @@ namespace ByteDev.Collections.Sequences
             if (size < 1)
                 return new List<int>();
 
-            var list = new List<int>();
+            var list = new List<int>(size);
 
             for (int i = start; i < int.MaxValue; i++)
             {
@@ -98,6 +99,35 @@ namespace ByteDev.Collections.Sequences
                     if (list.Count >= size)
                         return list;
                 }
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        /// Creates a Geometric number sequence.
+        /// </summary>
+        /// <param name="size">Size of the sequence.</param>
+        /// <param name="start">The starting point in the sequence.</param>
+        /// <param name="multiplier">The multiplier to apply each term to create the next.</param>
+        /// <returns>Collection containing the sequence of numbers.</returns>
+        public static IList<int> Geometric(int size, int start, int multiplier)
+        {
+            if (size < 1)
+                return new List<int>();
+
+            if (start == 0)
+                throw new ArgumentException("Start cannot be zero.", nameof(start));
+
+            var list = new List<int>(size);
+            var value = start;
+
+            while(list.Count < size)
+            {
+                if (list.Count > 0)
+                    value = value * multiplier;
+
+                list.Add(value);
             }
 
             return list;

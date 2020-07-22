@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using ByteDev.Collections.Sequences;
 using NUnit.Framework;
 
@@ -162,6 +163,42 @@ namespace ByteDev.Collections.UnitTests.Sequences
             public void WhenSizeGreaterThanZero_AndStartIsTen_ThenReturnSequence(int size, int lastValue)
             {
                 var result = Sequencer.Primes(size, 10);
+
+                Assert.That(result.Count, Is.EqualTo(size));
+                Assert.That(result.Last(), Is.EqualTo(lastValue));
+            }
+        }
+
+        [TestFixture]
+        public class Geometric
+        {
+            [Test]
+            public void WhenStartIsZero_ThenThrowException()
+            {
+                Assert.Throws<ArgumentException>(() => Sequencer.Geometric(10, 0, 2));
+            }
+
+            [TestCase(-1)]
+            [TestCase(0)]
+            public void WhenSizeIsZeroOrLess_ThenReturnEmpty(int size)
+            {
+                var result = Sequencer.Geometric(size, 1, 2);
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [TestCase(1, 1)]
+            [TestCase(2, 2)]
+            [TestCase(3, 4)]
+            [TestCase(4, 8)]
+            [TestCase(5, 16)]
+            [TestCase(6, 32)]
+            [TestCase(7, 64)]
+            [TestCase(8, 128)]
+            [TestCase(9, 256)]
+            public void WhenStartOne_AndMultiplierTwo_ThenReturnSequence(int size, int lastValue)
+            {
+                var result = Sequencer.Geometric(size, 1, 2);
 
                 Assert.That(result.Count, Is.EqualTo(size));
                 Assert.That(result.Last(), Is.EqualTo(lastValue));
