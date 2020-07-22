@@ -204,5 +204,31 @@ namespace ByteDev.Collections.UnitTests.Sequences
                 Assert.That(result.Last(), Is.EqualTo(lastValue));
             }
         }
+
+        [TestFixture]
+        public class Arithmetic
+        {
+            [TestCase(-1)]
+            [TestCase(0)]
+            public void WhenSizeIsZeroOrLess_ThenReturnEmpty(int size)
+            {
+                var result = Sequencer.Arithmetic(size, 1, 2);
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [TestCase(1, 1)]
+            [TestCase(2, 3)]
+            [TestCase(3, 5)]
+            [TestCase(4, 7)]
+            [TestCase(5, 9)]
+            public void WhenStartIsOne_AndDiffTwo_ThenReturnSequence(int size, int lastValue)
+            {
+                var result = Sequencer.Arithmetic(size, 1, 2);
+
+                Assert.That(result.Count, Is.EqualTo(size));
+                Assert.That(result.Last(), Is.EqualTo(lastValue));
+            }
+        }
     }
 }

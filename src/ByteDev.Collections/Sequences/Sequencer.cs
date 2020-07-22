@@ -15,39 +15,18 @@ namespace ByteDev.Collections.Sequences
         /// <returns>Collection containing the sequence of numbers.</returns>
         public static IList<int> Natural(int size)
         {
-            if (size < 1)
-                return new List<int>();
-
-            var list = new List<int>(size);
-
-            for (var i = 0; i < size; i++)
-            {
-                list.Add(i + 1);
-            }
-
-            return list;
+            return Arithmetic(size, 1, 1);
         }
 
         /// <summary>
-        /// Creates the Integer number sequence
-        /// (<paramref name="start" />, +1, +2, +3...).
+        /// Creates the Integer number sequence.
         /// </summary>
         /// <param name="size">Size of the sequence.</param>
         /// <param name="start">The first number in the sequence.</param>
         /// <returns>Collection containing the sequence of numbers.</returns>
         public static IList<int> Integers(int size, int start = 0)
         {
-            if (size < 1)
-                return new List<int>();
-
-            var list = new List<int>(size);
-
-            for (var i = 0; i < size; i++)
-            {
-                list.Add(start + i);
-            }
-
-            return list;
+            return Arithmetic(size, start, 1);
         }
 
         /// <summary>
@@ -128,6 +107,30 @@ namespace ByteDev.Collections.Sequences
                     value = value * multiplier;
 
                 list.Add(value);
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        /// Creates a Arithmetic number sequence.
+        /// </summary>
+        /// <param name="size">Size of the sequence.</param>
+        /// <param name="start">The starting point in the sequence.</param>
+        /// <param name="commonDifference">The difference between each value in the sequence.</param>
+        /// <returns>Collection containing the sequence of numbers.</returns>
+        public static IList<int> Arithmetic(int size, int start, int commonDifference)
+        {
+            if (size < 1)
+                return new List<int>();
+
+            var list = new List<int>(size);
+            var value = start;
+
+            for (var i = 0; i < size; i++)
+            {
+                list.Add(value);
+                value = value + commonDifference;
             }
 
             return list;
