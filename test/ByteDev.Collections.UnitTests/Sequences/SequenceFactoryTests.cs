@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace ByteDev.Collections.UnitTests.Sequences
 {
     [TestFixture]
-    public class SequenceFactoryTests
+    public class SequencerTests
     {
         [TestFixture]
         public class Natural

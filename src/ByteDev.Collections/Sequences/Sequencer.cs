@@ -30,6 +30,30 @@ namespace ByteDev.Collections.Sequences
         }
 
         /// <summary>
+        /// Creates a Arithmetic number sequence.
+        /// </summary>
+        /// <param name="size">Size of the sequence.</param>
+        /// <param name="start">The starting point in the sequence.</param>
+        /// <param name="commonDifference">The difference between each value in the sequence.</param>
+        /// <returns>Collection containing the sequence of numbers.</returns>
+        public static IList<int> Arithmetic(int size, int start, int commonDifference)
+        {
+            if (size < 1)
+                return new List<int>();
+
+            var list = new List<int>(size);
+            var value = start;
+
+            for (var i = 0; i < size; i++)
+            {
+                list.Add(value);
+                value = value + commonDifference;
+            }
+
+            return list;
+        }
+
+        /// <summary>
         /// Creates the Fibonacci number sequence (0, 1, 1, 2, 3, 5...).
         /// </summary>
         /// <param name="size">Size of the sequence.</param>
@@ -107,30 +131,6 @@ namespace ByteDev.Collections.Sequences
                     value = value * multiplier;
 
                 list.Add(value);
-            }
-
-            return list;
-        }
-
-        /// <summary>
-        /// Creates a Arithmetic number sequence.
-        /// </summary>
-        /// <param name="size">Size of the sequence.</param>
-        /// <param name="start">The starting point in the sequence.</param>
-        /// <param name="commonDifference">The difference between each value in the sequence.</param>
-        /// <returns>Collection containing the sequence of numbers.</returns>
-        public static IList<int> Arithmetic(int size, int start, int commonDifference)
-        {
-            if (size < 1)
-                return new List<int>();
-
-            var list = new List<int>(size);
-            var value = start;
-
-            for (var i = 0; i < size; i++)
-            {
-                list.Add(value);
-                value = value + commonDifference;
             }
 
             return list;
