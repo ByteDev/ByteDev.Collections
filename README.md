@@ -4,7 +4,7 @@
 
 # ByteDev.Collections
 
-Set of extension methods for various types of .NET collections.
+Set of extended .NET collection related functionality.
 
 ## Installation
 
@@ -24,9 +24,10 @@ Full details of the release notes can be viewed on [GitHub](https://github.com/B
 
 ## Usage
 
+### Extension methods
+
 To use any extension methods simply reference the `ByteDev.Collections` namespace.
 
-Assembly contains extension methods:
 - Array []:
   - Populate
 - Array [,]:
@@ -91,4 +92,39 @@ Assembly contains extension methods:
   - AddIfNotContainsKey
   - ContainsKey
 
+---
 
+### Sequences
+
+The `Sequencer` class can be used to quickly create different sets of number sequences.
+
+```csharp
+// Create different number sequences
+
+using ByteDev.Collections.Sequences;
+
+// ...
+
+const int size = 8;
+
+// 1, 2, 3, 4, 5, 6, 7, 8
+IList<int> n = Sequencer.Natural(size);   
+
+// 0, 1, 2, 3, 4, 5, 6, 7
+IList<int> i1 = Sequencer.Integers(size);  
+
+// -2, -1, 0, 1, 2, 3, 4, 5
+IList<int> i2 = Sequencer.Integers(size, -2);
+
+// 1, 3, 5, 7, 9, 11, 13, 15
+IList<int> a = Sequencer.Arithmetic(size, 1, 2);
+
+// 1, 2, 4, 8, 16, 32, 64, 128
+IList<int> g = Sequencer.Geometric(size, 1, 2);
+
+// 0, 1, 1, 2, 3, 5, 8, 13
+IList<int> f = Sequencer.Fibonacci(size);
+
+// 2, 3, 5, 7, 11, 13, 17, 19
+IList<int> p = Sequencer.Primes(size);
+```
