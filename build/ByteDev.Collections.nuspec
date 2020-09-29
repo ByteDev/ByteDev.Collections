@@ -8,7 +8,7 @@
     <owners>Paul Stanley</owners>
     <copyright>Copyright 2019</copyright>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Set of extension methods for various types of .NET collections.</description>
+    <description>Set of extended collections related functionality.</description>
     <tags>dotnet collection collections enumerable dictionary list namevaluecollection</tags>
     <projectUrl>https://github.com/ByteDev/ByteDev.Collections</projectUrl>
     <icon>images\icon.png</icon>

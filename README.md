@@ -4,7 +4,7 @@
 
 # ByteDev.Collections
 
-Set of extended .NET collection related functionality.
+Set of extended collections related functionality.
 
 ## Installation
 
