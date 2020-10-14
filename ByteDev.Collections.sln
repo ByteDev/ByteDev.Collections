@@ -20,7 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{3F9A73C8
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.Collections", "src\ByteDev.Collections\ByteDev.Collections.csproj", "{3D9CA74D-0348-48F1-8C06-95E4D57F8455}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.Collections.UnitTests", "test\ByteDev.Collections.UnitTests\ByteDev.Collections.UnitTests.csproj", "{8C54AB7B-ABFE-4E61-852E-8733BAAC9185}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.Collections.UnitTests", "tests\ByteDev.Collections.UnitTests\ByteDev.Collections.UnitTests.csproj", "{8C54AB7B-ABFE-4E61-852E-8733BAAC9185}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
