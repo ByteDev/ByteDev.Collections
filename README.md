@@ -45,6 +45,7 @@ To use any extension methods simply reference the `ByteDev.Collections` namespac
   - ContainsAnyKey
   - GetValuesIgnoreKeyCase
   - GetFirstValueIgnoreKeyCase
+  - ToNameValueCollection
 - IEnumerable<T>:
   - Second
   - SecondOrDefault
@@ -91,6 +92,7 @@ To use any extension methods simply reference the `ByteDev.Collections` namespac
   - AddOrUpdate
   - AddIfNotContainsKey
   - ContainsKey
+  - ToDictionary
 
 ---
 

@@ -469,5 +469,36 @@ namespace ByteDev.Collections.UnitTests
                 Assert.That(result, Is.False);
             }
         }
+
+        [TestFixture]
+        public class ToNameValueCollection : DictionaryExtensionsTests
+        {
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => DictionaryExtensions.ToNameValueCollection(null as Dictionary<string, string>));
+            }
+
+            [Test]
+            public void WhenSourceIsEmpty_ThenReturnEmpty()
+            {
+                var result = _sut.ToNameValueCollection();
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [Test]
+            public void WhenContainsMultipleKeyValues_ThenReturnAsNameValueCollection()
+            {
+                _sut.Add("key1", "value1");
+                _sut.Add("key2", "value2");
+
+                var result = _sut.ToNameValueCollection();
+
+                Assert.That(result.Count, Is.EqualTo(2));
+                Assert.That(result["key1"], Is.EqualTo("value1"));
+                Assert.That(result["key2"], Is.EqualTo("value2"));
+            }
+        }
     }
 }

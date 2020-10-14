@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 
 namespace ByteDev.Collections
 {
@@ -239,6 +240,28 @@ namespace ByteDev.Collections
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Converts the dictionary to a NameValueCollection.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the keys of <paramref name="source" />.</typeparam>
+        /// <typeparam name="TValue">The type of the values of <paramref name="source" />.</typeparam>
+        /// <param name="source">The dictionary to perform the operation on.</param>
+        /// <returns>NameValueCollection representation of the dictionary.</returns>
+        public static NameValueCollection ToNameValueCollection<TKey, TValue>(this IDictionary<TKey, TValue> source)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            var nameValues = new NameValueCollection(source.Count);
+
+            foreach (var item in source) 
+            {
+                nameValues.Add(item.Key.ToString(), item.Value.ToString());
+            }
+
+            return nameValues;
         }
     }
 }

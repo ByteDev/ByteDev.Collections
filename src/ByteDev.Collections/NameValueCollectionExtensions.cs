@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 
@@ -59,6 +60,19 @@ namespace ByteDev.Collections
                 return source.AllKeys.Contains(key);
             
             return true;
+        }
+
+        /// <summary>
+        /// Converts <paramref name="source" /> to dictionary.
+        /// </summary>
+        /// <param name="source">The name value collection to perform the operation on.</param>
+        /// <returns>Dictionary with string keys and string values.</returns>
+        public static IDictionary<string, string> ToDictionary(this NameValueCollection source)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            return source.AllKeys.ToDictionary(key => key, key => source[key]);
         }
     }
 }

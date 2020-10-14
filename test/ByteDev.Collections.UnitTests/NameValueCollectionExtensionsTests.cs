@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Specialized;
+using System.Linq;
 using NUnit.Framework;
 
 namespace ByteDev.Collections.UnitTests
@@ -135,6 +136,42 @@ namespace ByteDev.Collections.UnitTests
                 var result = sut.ContainsKey("key1");
 
                 Assert.That(result, Is.True);
+            }
+        }
+
+        [TestFixture]
+        public class ToDictionary : NameValueCollectionExtensionsTests
+        {
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => NameValueCollectionExtensions.ToDictionary(null));
+            }
+
+            [Test]
+            public void WhenSourceIsEmpty_ThenReturnEmpty()
+            {
+                var sut = new NameValueCollection();
+
+                var result = sut.ToDictionary();
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [Test]
+            public void WhenContainsMultipleKeys_ThenReturnsAsDictionary()
+            {
+                var sut = new NameValueCollection
+                {
+                    {"key1", "value1"},
+                    {"key2", "value2"}
+                };
+
+                var result = sut.ToDictionary();
+
+                Assert.That(result.Count, Is.EqualTo(2));
+                Assert.That(result["key1"], Is.EqualTo("value1"));
+                Assert.That(result["key2"], Is.EqualTo("value2"));
             }
         }
     }

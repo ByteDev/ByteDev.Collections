@@ -1,5 +1,17 @@
 # Release Notes
 
+## 2.4.0 - 14 October 2020
+
+Breaking changes:
+- (None)
+
+New features:
+- Added `DictionaryExtensions.ToNameValueCollection`
+- Added `NameValueCollectionExtensions.ToDictionary`
+
+Bug fixes / internal changes:
+- (None)
+
 ## 2.3.0 - 29 September 2020
 
 Breaking changes:
