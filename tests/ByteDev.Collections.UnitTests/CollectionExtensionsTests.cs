@@ -38,13 +38,46 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenNumberToFillIsTwo_ThenFillTwoElements()
             {
-                var sut = new List<string>();
+                ICollection<string> sut = new List<string>();
 
                 sut.Fill(2, "Hello");
-
+                
                 Assert.That(sut.Count, Is.EqualTo(2));
                 Assert.That(sut.First(), Is.EqualTo("Hello"));
                 Assert.That(sut.Second(), Is.EqualTo("Hello"));
+            }
+        }
+
+        [TestFixture]
+        public class IsIndexValid : ListExtensionsTests
+        {
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => CollectionExtensions.IsIndexValid(null as IList<string>, 0));
+            }
+
+            [TestCase(-1)]
+            [TestCase(3)]
+            public void WhenIndexIsOutOfRange_ThenReturnFalse(int index)
+            {
+                var sut = new List<string> { "item1", "item2", "item3" };
+
+                var result = sut.IsIndexValid(index);
+
+                Assert.That(result, Is.False);
+            }
+
+            [TestCase(0)]
+            [TestCase(1)]
+            [TestCase(2)]
+            public void WhenIndexIsInRange_ThenReturnTrue(int index)
+            {
+                var sut = new List<string> { "item1", "item2", "item3" };
+
+                var result = sut.IsIndexValid(index);
+
+                Assert.That(result, Is.True);
             }
         }
 

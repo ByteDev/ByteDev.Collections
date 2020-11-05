@@ -52,5 +52,21 @@ namespace ByteDev.Collections
                 .ToArray()
                 .ForEach(element => source.Remove(element));
         }
+
+        /// <summary>
+        /// Determines if a index is valid (in range) for the list.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+        /// <param name="source">The list to perform the operation on.</param>
+        /// <param name="index">Index to check if valid.</param>
+        /// <returns>True the index is valid; otherwise index is invalid.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        public static bool IsIndexValid<TSource>(this ICollection<TSource> source, int index)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            return index >= 0 && index < source.Count;
+        }
     }
 }

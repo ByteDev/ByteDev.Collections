@@ -43,8 +43,10 @@ To use any extension methods simply reference the `ByteDev.Collections` namespac
   - AddIfNotContainsKey
   - ContainsAllKey
   - ContainsAnyKey
+  - GetFirstValueIgnoreKeyCase  
+  - GetValueOrDefault
   - GetValuesIgnoreKeyCase
-  - GetFirstValueIgnoreKeyCase
+  - RenameKey
   - ToNameValueCollection
 - IEnumerable<T>:
   - Second
@@ -79,15 +81,17 @@ To use any extension methods simply reference the `ByteDev.Collections` namespac
 - IEnumerable<string>:
   - GetLongest
   - GetShortest 
-- ICollection<T>
+- ICollection<T>:
   - Fill
+  - IsIndexValid
   - RemoveWhere
-- IList<T>: 
+- IList<T>:
   - NullToEmpty
   - MoveToFirst
   - MoveToLast
   - ReplaceAt
   - ReplaceAll
+  - Swap
 - NameValueCollection: 
   - AddOrUpdate
   - AddIfNotContainsKey

@@ -139,6 +139,26 @@ namespace ByteDev.Collections
         }
 
         /// <summary>
+        /// Retrieves a key's value if the key exists; otherwise returns the value default.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the keys of <paramref name="source" />.</typeparam>
+        /// <typeparam name="TValue">The type of the values of <paramref name="source" />.</typeparam>
+        /// <param name="source">The dictionary to perform the operation on.</param>
+        /// <param name="key">Key to use in retrieving the value.</param>
+        /// <param name="defaultValue">Default value to return if the key does not exist.</param>
+        /// <returns>Key's value if the key exists; otherwise the value default.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        public static TValue GetValueOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> source, TKey key, TValue defaultValue = default)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            
+            return source.ContainsKey(key)
+                ? source[key]
+                : defaultValue;
+        }
+
+        /// <summary>
         /// Retrieves a list of values from the dictionary using a key in a case insensitive manner.
         /// </summary>
         /// <typeparam name="TValue">The type of the values of <paramref name="source" />.</typeparam>
@@ -200,6 +220,8 @@ namespace ByteDev.Collections
         /// <param name="source">The dictionary to perform the operation on.</param>
         /// <param name="keys">Sequence of keys.</param>
         /// <returns>True if the dictionary contains all the keys in the sequence; otherwise false.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        /// <exception cref="T:System.ArgumentException"><paramref name="keys" /> is null or empty.</exception>
         public static bool ContainsAllKey<TKey, TValue>(this IDictionary<TKey, TValue> source, params TKey[] keys)
         {
             if (source == null)
@@ -225,6 +247,8 @@ namespace ByteDev.Collections
         /// <param name="source">The dictionary to perform the operation on.</param>
         /// <param name="keys">Sequence of keys.</param>
         /// <returns>True if the dictionary contains any of the keys in the sequence; otherwise false.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        /// <exception cref="T:System.ArgumentException"><paramref name="keys" /> is null or empty.</exception>
         public static bool ContainsAnyKey<TKey, TValue>(this IDictionary<TKey, TValue> source, params TKey[] keys)
         {
             if (source == null)
@@ -240,6 +264,42 @@ namespace ByteDev.Collections
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Rename an existing key in the dictionary.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the keys of <paramref name="source" />.</typeparam>
+        /// <typeparam name="TValue">The type of the values of <paramref name="source" />.</typeparam>
+        /// <param name="source">The dictionary to perform the operation on.</param>
+        /// <param name="originalKey">Original key name.</param>
+        /// <param name="newKey">New key name.</param>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="originalKey" /> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="newKey" /> is null.</exception>
+        /// <exception cref="T:System.ArgumentException"><paramref name="newKey" />Dictionary already contains the new key.</exception>
+        public static void RenameKey<TKey, TValue>(this IDictionary<TKey, TValue> source, TKey originalKey, TKey newKey)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            if (originalKey == null)
+                throw new ArgumentNullException(nameof(originalKey));
+
+            if (newKey == null)
+                throw new ArgumentNullException(nameof(newKey));
+
+            if (newKey.Equals(originalKey))
+                return;
+
+            if (source.ContainsKey(newKey))
+                throw new ArgumentException("Dictionary already contains the new key.");
+
+            var value = source[originalKey];
+
+            source.Remove(originalKey);
+
+            source.Add(newKey, value);
         }
 
         /// <summary>

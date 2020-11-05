@@ -49,7 +49,7 @@ namespace ByteDev.Collections.UnitTests
             }
 
             [Test]
-            public void WhenListIsNull_ThenThrowException()
+            public void WhenSourceIsNull_ThenThrowException()
             {
                 Assert.Throws<ArgumentNullException>(() => ListExtensions.MoveToFirst(null, _customer1));
             }
@@ -132,7 +132,7 @@ namespace ByteDev.Collections.UnitTests
             }
 
             [Test]
-            public void WhenListIsNull_ThenThrowException()
+            public void WhenSourceIsNull_ThenThrowException()
             {
                 Assert.Throws<ArgumentNullException>(() => ListExtensions.MoveToLast(null, _customer1));
             }
@@ -191,6 +191,71 @@ namespace ByteDev.Collections.UnitTests
                 Assert.That(sut.Second(), Is.SameAs(_customer1));
                 Assert.That(sut.Third(), Is.SameAs(_customer2));
                 Assert.That(sut.Fourth(), Is.SameAs(_customer1));
+            }
+
+            private static IList<Customer> CreateSut(params Customer[] customers)
+            {
+                var list = new List<Customer>();
+                list.AddRange(customers);
+                return list;
+            }
+        }
+
+        [TestFixture]
+        public class Swap : ListExtensionsTests
+        {
+            private Customer _customer1;
+            private Customer _customer2;
+
+            [SetUp]
+            public void SetUp()
+            {
+                _customer1 = new Customer { Name = "John" };
+                _customer2 = new Customer { Name = "Peter" };
+            }
+
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => ListExtensions.Swap(null as IList<string>, 0, 1));
+            }
+
+            [Test]
+            public void WhenOriginalIndexIsOutOfRange_ThenThrowExcepton()
+            {
+                var sut = CreateSut(_customer1, _customer2);
+
+                Assert.Throws<ArgumentOutOfRangeException>(() => sut.Swap(-1, 0));
+            }
+
+            [Test]
+            public void WhenTargetIndexIsOutOfRange_ThenThrowExcepton()
+            {
+                var sut = CreateSut(_customer1, _customer2);
+
+                Assert.Throws<ArgumentOutOfRangeException>(() => sut.Swap(0, -1));
+            }
+
+            [Test]
+            public void WhenTargetAndOriginalIndexAreEqual_ThenDoNothing()
+            {
+                var sut = CreateSut(_customer1, _customer2);
+
+                sut.Swap(0, 0);
+
+                Assert.That(sut.First().Name, Is.EqualTo(_customer1.Name));
+                Assert.That(sut.Second().Name, Is.EqualTo(_customer2.Name));
+            }
+
+            [Test]
+            public void WhenIndexesAreValid_ThenSwap()
+            {
+                var sut = CreateSut(_customer1, _customer2);
+
+                sut.Swap(0, 1);
+                
+                Assert.That(sut.First().Name, Is.EqualTo(_customer2.Name));
+                Assert.That(sut.Second().Name, Is.EqualTo(_customer1.Name));
             }
 
             private static IList<Customer> CreateSut(params Customer[] customers)

@@ -64,5 +64,35 @@ namespace ByteDev.Collections
             source.Remove(item);
             source.Insert(source.Count, item);
         }
+
+        /// <summary>
+        /// Swaps the item at one index for the item at another index.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+        /// <param name="source">The list to perform the operation on.</param>
+        /// <param name="originalIndex">Index of original element to swap.</param>
+        /// <param name="targetIndex">Index of target element to swap.</param>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="originalIndex" /> is out of range.</exception>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="targetIndex" /> is out of range.</exception>
+        public static void Swap<TSource>(this IList<TSource> source, int originalIndex, int targetIndex)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            if (!source.IsIndexValid(originalIndex))
+                throw new ArgumentOutOfRangeException(nameof(originalIndex));
+
+            if (!source.IsIndexValid(targetIndex))
+                throw new ArgumentOutOfRangeException(nameof(targetIndex));
+
+            if (targetIndex == originalIndex)
+                return;
+
+            var item = source[targetIndex];
+
+            source[targetIndex] = source[originalIndex];
+            source[originalIndex] = item;
+        }
     }
 }

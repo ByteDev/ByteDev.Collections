@@ -1,5 +1,19 @@
 # Release Notes
 
+## 2.5.0 - 05 November 2020
+
+Breaking changes:
+- (None)
+
+New features:
+- Added `DictionaryExtensions.GetValueOrDefault`
+- Added `DictionaryExtensions.RenameKey`
+- Added `CollectionExtensions.IsIndexValid`
+- Added `ListExtensions.Swap`
+
+Bug fixes / internal changes:
+- (None)
+
 ## 2.4.0 - 14 October 2020
 
 Breaking changes:

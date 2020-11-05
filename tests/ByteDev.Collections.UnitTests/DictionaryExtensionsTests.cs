@@ -261,6 +261,110 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
+        public class GetValueOrDefault : DictionaryExtensionsTests
+        {
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => DictionaryExtensions.GetValueOrDefault(null as Dictionary<string, string>, "key"));
+            }
+
+            [Test]
+            public void WhenKeyExists_ThenReturnsValue()
+            {
+                _sut.Add("key1", "value1");
+                _sut.Add("key2", "value2");
+
+                var result = _sut.GetValueOrDefault("key2");
+
+                Assert.That(result, Is.EqualTo("value2"));
+            }
+
+            [Test]
+            public void WhenKeyDoesNotExist_ThenReturnNull()
+            {
+                _sut.Add("key1", "value1");
+                _sut.Add("key2", "value2");
+
+                var result = _sut.GetValueOrDefault("key3");
+
+                Assert.That(result, Is.Null);
+            }
+
+            [Test]
+            public void WhenKeyDoesNotExist_AndDefaultSpecified_ThenReturnDefault()
+            {
+                _sut.Add("key1", "value1");
+                _sut.Add("key2", "value2");
+
+                var result = _sut.GetValueOrDefault("key3", "myDefault");
+
+                Assert.That(result, Is.EqualTo("myDefault"));
+            }
+        }
+
+        [TestFixture]
+        public class RenameKey : DictionaryExtensionsTests
+        {
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => DictionaryExtensions.RenameKey(null as Dictionary<string, string>, "key1", "key2"));
+            }
+
+            [Test]
+            public void WhenOriginalKeyIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => _sut.RenameKey(null, "key2"));
+            }
+
+            [Test]
+            public void WhenNewKeyIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => _sut.RenameKey("key1", null));
+            }
+
+            [Test]
+            public void WhenOriginalKeyDoesNotExist_ThenThrowException()
+            {
+                Assert.Throws<KeyNotFoundException>(() => _sut.RenameKey("key1", "key2"));
+            }
+
+            [Test]
+            public void WhenNewKeyAlreadyExists_ThenThrowException()
+            {
+                _sut.Add("key1", "value1");
+                _sut.Add("key2", "value2");
+
+                var ex = Assert.Throws<ArgumentException>(() => _sut.RenameKey("key1", "key2"));
+                Assert.That(ex.Message, Is.EqualTo("Dictionary already contains the new key."));
+            }
+
+            [Test]
+            public void WhenOriginalAndNewKeyAreEqual_ThenDoNothing()
+            {
+                _sut.Add("key1", "value1");
+                _sut.Add("key2", "value2");
+
+                _sut.RenameKey("key1", "key1");
+
+                Assert.That(_sut["key1"], Is.EqualTo("value1"));
+                Assert.That(_sut["key2"], Is.EqualTo("value2"));
+            }
+
+            [Test]
+            public void WhenNewKeyDoesNotExist_ThenRename()
+            {
+                _sut.Add("key1", "value1");
+                _sut.Add("key2", "value2");
+
+                _sut.RenameKey("key1", "newKey");
+
+                Assert.That(_sut["newKey"], Is.EqualTo("value1"));
+            }
+        }
+
+        [TestFixture]
         public class GetValuesIgnoreKeyCase : DictionaryExtensionsTests
         {
             [Test]
