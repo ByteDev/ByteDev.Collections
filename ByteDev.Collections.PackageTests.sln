@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.Collections.Net461.PackageTests", "test\ByteDev.Collections.Net461.PackageTests\ByteDev.Collections.Net461.PackageTests.csproj", "{4B83F9D6-5906-4232-A506-C1F54436A7B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.Collections.Net461.PackageTests", "tests\ByteDev.Collections.Net461.PackageTests\ByteDev.Collections.Net461.PackageTests.csproj", "{4B83F9D6-5906-4232-A506-C1F54436A7B0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.Collections.NetCore.PackageTests", "test\ByteDev.Collections.NetCore.PackageTests\ByteDev.Collections.NetCore.PackageTests.csproj", "{9B80B626-AA3F-4D37-AB7F-B69D2F5E639F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.Collections.NetCore.PackageTests", "tests\ByteDev.Collections.NetCore.PackageTests\ByteDev.Collections.NetCore.PackageTests.csproj", "{9B80B626-AA3F-4D37-AB7F-B69D2F5E639F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{CD9D71A9-893D-4A64-ABBB-228D088C9377}"
 	ProjectSection(SolutionItems) = preProject
