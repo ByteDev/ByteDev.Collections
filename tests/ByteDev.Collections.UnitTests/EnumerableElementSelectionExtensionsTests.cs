@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 
 namespace ByteDev.Collections.UnitTests
@@ -13,6 +14,62 @@ namespace ByteDev.Collections.UnitTests
         public void SetUp()
         {
             _sut = new List<string>();
+        }
+
+        [TestFixture]
+        public class Last_Count : EnumerableElementSelectionExtensionsTests
+        {
+            [Test]
+            public void WhenIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => (null as IEnumerable<object>).Last(1));
+            }
+
+            [TestCase(-1)]
+            [TestCase(0)]
+            public void WhenCountIsLessThanOne_ThenReturnEmpty(int count)
+            {
+                var result = _sut.Last(count);
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [Test]
+            public void WhenCountIsOne_ThenReturnLastElement()
+            {
+                _sut.Add("item1");
+                _sut.Add("item2");
+
+                var result = _sut.Last(1);
+
+                Assert.That(result.Single(), Is.EqualTo("item2"));
+            }
+
+            [Test]
+            public void WhenCountIsTwo_AndSizeIsTwo_ThenReturnAllElements()
+            {
+                _sut.Add("item1");
+                _sut.Add("item2");
+
+                var result = _sut.Last(2);
+
+                Assert.That(result.Count(), Is.EqualTo(2));
+                Assert.That(result.First(), Is.EqualTo("item1"));
+                Assert.That(result.Second(), Is.EqualTo("item2"));
+            }
+
+            [TestCase(1)]
+            [TestCase(2)]
+            [TestCase(3)]
+            [TestCase(4)]
+            public void WhenCountIsGreaterThanOrEqualSize_ThenReturnAllElements(int count)
+            {
+                _sut.Add("item1");
+
+                var result = _sut.Last(count);
+
+                Assert.That(result.Single(), Is.EqualTo("item1"));
+            }
         }
 
         [TestFixture]

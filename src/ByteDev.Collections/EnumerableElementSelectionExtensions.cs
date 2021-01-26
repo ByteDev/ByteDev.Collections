@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ByteDev.Collections
 {
@@ -8,6 +9,28 @@ namespace ByteDev.Collections
     /// </summary>
     public static class EnumerableElementSelectionExtensions
     {
+        /// <summary>
+        /// Returns the last <paramref name="count" /> number of elements from the sequence.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+        /// <param name="source">The <see cref="T:System.Collections.Generic.IEnumerable`1" /> to return the elements from.</param>
+        /// <param name="count">Number of elements to return from the sequence.</param>
+        /// <returns>The second element in the specified sequence.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        public static IEnumerable<TSource> Last<TSource>(this IEnumerable<TSource> source, int count)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            
+            if (count < 1)
+                return Enumerable.Empty<TSource>();
+            
+            if (count == 1)
+                return new[] { source.Last() };
+
+            return source.Skip(source.Count() - count);
+        }
+
         /// <summary>
         /// Returns the second element of a sequence.
         /// </summary>
@@ -253,13 +276,13 @@ namespace ByteDev.Collections
                 if (throwException)
                     throw new InvalidOperationException("Sequence contains no elements.");
 
-                return default(TSource);
+                return default;
             }
 
             if(throwException)
                 throw new InvalidOperationException(GetErrorMessageNoElementFor(index));
 
-            return default(TSource);
+            return default;
         }
 
         private static string GetErrorMessageNoElementFor(int index)

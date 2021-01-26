@@ -1,5 +1,16 @@
 # Release Notes
 
+## 2.6.0 - ?
+
+Breaking changes:
+- (None)
+
+New features:
+- Added `IEnumerable<T>.Last(int count)` overload method extension.
+
+Bug fixes / internal changes:
+- (None)
+
 ## 2.5.0 - 05 November 2020
 
 Breaking changes:
