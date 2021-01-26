@@ -6,7 +6,9 @@ Breaking changes:
 - (None)
 
 New features:
-- Added `IEnumerable<T>.Last(int count)` overload method extension.
+- Added `IEnumerable<T>.Last(int count)` overload.
+- Added `IEnumerable<T>.MaxBy`.
+- Added `IEnumerable<T>.MinBy`.
 
 Bug fixes / internal changes:
 - (None)

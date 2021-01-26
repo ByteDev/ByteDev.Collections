@@ -69,6 +69,9 @@ To use any extension methods simply reference the `ByteDev.Collections` namespac
   - TenthOrDefault
   - ContainsAll
   - ContainsAny
+  - Last(count)
+  - MaxBy
+  - MinBy
   - NullToEmpty
   - ForEach
   - Find
