@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ByteDev.Collections
@@ -30,24 +31,6 @@ namespace ByteDev.Collections
         }
 
         /// <summary>
-        /// Retrieves a particular row by <paramref name="rowNumber" />.
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
-        /// <param name="source">The two dimension array to retrieve the row from.</param>
-        /// <param name="rowNumber">Number of row to retrieve. First row is zero.</param>
-        /// <returns>Row at number <paramref name="rowNumber" />.</returns>
-        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
-        public static TSource[] GetRow<TSource>(this TSource[,] source, int rowNumber)
-        {
-            if(source == null)
-                throw new ArgumentNullException(nameof(source));
-
-            return Enumerable.Range(0, source.GetColumnCount())
-                .Select(e => source[e, rowNumber])
-                .ToArray();
-        }
-
-        /// <summary>
         /// Retrieves a particular column by <paramref name="columnNumber" />.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
@@ -62,6 +45,24 @@ namespace ByteDev.Collections
 
             return Enumerable.Range(0, source.GetRowCount())
                 .Select(e => source[columnNumber, e])
+                .ToArray();
+        }
+
+        /// <summary>
+        /// Retrieves a particular row by <paramref name="rowNumber" />.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+        /// <param name="source">The two dimension array to retrieve the row from.</param>
+        /// <param name="rowNumber">Number of row to retrieve. First row is zero.</param>
+        /// <returns>Row at number <paramref name="rowNumber" />.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        public static TSource[] GetRow<TSource>(this TSource[,] source, int rowNumber)
+        {
+            if(source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            return Enumerable.Range(0, source.GetColumnCount())
+                .Select(e => source[e, rowNumber])
                 .ToArray();
         }
 
@@ -93,6 +94,34 @@ namespace ByteDev.Collections
                 throw new ArgumentNullException(nameof(source));
 
             return source.GetLength(1);
+        }
+
+        /// <summary>
+        /// Returns the two dimension array as a single dimension array. The returned array will contain
+        /// a concatenation of each row. 
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+        /// <param name="source">The two dimension array to get the row count on.</param>
+        /// <returns>Single dimension array.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        public static TSource[] ToSingleDimension<TSource>(this TSource[,] source)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            var array = new TSource[source.Length];
+            var i = 0;
+
+            for (var rowIndex = 0; rowIndex < source.GetRowCount(); rowIndex++)
+            {
+                for (var colIndex = 0; colIndex < source.GetColumnCount(); colIndex++)
+                {
+                    array[i] = source[colIndex, rowIndex];
+                    i++;
+                }
+            }
+
+            return array;
         }
     }
 }

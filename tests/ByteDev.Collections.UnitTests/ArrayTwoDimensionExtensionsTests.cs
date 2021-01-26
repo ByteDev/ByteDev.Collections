@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 
 namespace ByteDev.Collections.UnitTests
 {
@@ -238,6 +239,52 @@ namespace ByteDev.Collections.UnitTests
                 var result = sut.GetColumnCount();
 
                 Assert.That(result, Is.EqualTo(4));
+            }
+        }
+
+        [TestFixture]
+        public class ToSingleDimension : ArrayTwoDimensionExtensionsTests
+        {
+            [Test]
+            public void WhenIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => ArrayTwoDimensionExtensions.ToSingleDimension<string>(null));
+            }
+
+            [Test]
+            public void WhenIsEmpty_ThenReturnEmpty()
+            {
+                var sut = new string[0, 0];
+
+                var result = sut.ToSingleDimension();
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [Test]
+            public void WhenHasColumnsAndRows_ThenReturnSingleDimArray()
+            {
+                var sut = new string[3, 2];
+
+                sut[0, 0] = "R0-C0";
+                sut[1, 0] = "R0-C1";
+                sut[2, 0] = "R0-C2";
+
+                sut[0, 1] = "R1-C0";
+                sut[1, 1] = "R1-C1";
+                sut[2, 1] = "R1-C2";
+
+                var result = sut.ToSingleDimension();
+
+                Assert.That(result.Length, Is.EqualTo(6));
+
+                Assert.That(result.First(), Is.EqualTo("R0-C0"));
+                Assert.That(result.Second(), Is.EqualTo("R0-C1"));
+                Assert.That(result.Third(), Is.EqualTo("R0-C2"));
+
+                Assert.That(result.Fourth(), Is.EqualTo("R1-C0"));
+                Assert.That(result.Fifth(), Is.EqualTo("R1-C1"));
+                Assert.That(result.Sixth(), Is.EqualTo("R1-C2"));
             }
         }
     }

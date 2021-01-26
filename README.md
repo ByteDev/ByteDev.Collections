@@ -36,6 +36,7 @@ To use any extension methods simply reference the `ByteDev.Collections` namespac
   - GetRow
   - GetRowCount
   - Populate
+  - ToSingleDimension
 - IDictionary<TKey, TValue>:
   - AddOrUpdate
   - AddRange

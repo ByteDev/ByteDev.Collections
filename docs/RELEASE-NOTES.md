@@ -9,6 +9,7 @@ New features:
 - Added `IEnumerable<T>.Last(int count)` overload.
 - Added `IEnumerable<T>.MaxBy`.
 - Added `IEnumerable<T>.MinBy`.
+- Added `T[,].ToSingleDimension`.
 
 Bug fixes / internal changes:
 - (None)
