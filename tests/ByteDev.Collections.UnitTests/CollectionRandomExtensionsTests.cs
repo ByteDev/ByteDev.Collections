@@ -43,6 +43,32 @@ namespace ByteDev.Collections.UnitTests
 
                 Assert.That(result, Is.EqualTo(1).Or.EqualTo(5).Or.EqualTo(10));
             }
+
+            [Test]
+            public void WhenRunEnoughTimes_ThenReturnAllPossiblities()
+            {
+                ICollection<int> sut = new List<int> { 1, 5, 10 };
+
+                bool oneFound = false;
+                bool fiveFound = false;
+                bool tenFound = false;
+
+                for (var i = 0; i < 100; i++)
+                {
+                    var result = sut.GetRandom();
+
+                    switch (result)
+                    {
+                        case 1: oneFound = true; break;
+                        case 5: fiveFound = true; break;
+                        case 10: tenFound = true; break;
+                    }
+                }
+
+                Assert.That(oneFound, Is.True);
+                Assert.That(fiveFound, Is.True);
+                Assert.That(tenFound, Is.True);
+            }
         }
 
         [TestFixture]
