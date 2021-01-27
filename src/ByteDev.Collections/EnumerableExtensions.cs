@@ -62,8 +62,32 @@ namespace ByteDev.Collections
                 if (predicate(item))
                     return item;
             }
-
+            
             return default;
+        }
+
+        /// <summary>
+        /// Determines whether all elements in a sequence are unique. Uniqueness of an 
+        /// element is based on it's hash.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+        /// <param name="source">The sequence to check if all elements are unique.</param>
+        /// <returns>True all elements are unique; otherwise false.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        public static bool AllUnique<TSource>(this IEnumerable<TSource> source)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            var hashSet = new HashSet<TSource>();
+            
+            foreach (var item in source)
+            {
+                if (!hashSet.Add(item))
+                    return false;
+            }
+
+            return true;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 
 namespace ByteDev.Collections.UnitTests
@@ -116,6 +117,56 @@ namespace ByteDev.Collections.UnitTests
             private string Act(Predicate<string> predicate)
             {
                 return _sut.Find(predicate);
+            }
+        }
+
+        [TestFixture]
+        public class AllUnique : EnumerableExtensionsTests
+        {
+            [Test]
+            public void WhenIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => EnumerableExtensions.AllUnique(null as IEnumerable<int>));
+            }
+
+            [Test]
+            public void WhenIsEmpty_ThenReturnTrue()
+            {
+                IEnumerable<int> sut = Enumerable.Empty<int>();
+
+                var result = sut.AllUnique();
+
+                Assert.That(result, Is.True);
+            }
+
+            [Test]
+            public void WhenIsSingle_ThenReturnTrue()
+            {
+                IEnumerable<int> sut = new[] {1};
+
+                var result = sut.AllUnique();
+
+                Assert.That(result, Is.True);
+            }
+
+            [Test]
+            public void WhenIsMultipleUniqueElements_ThenReturnTrue()
+            {
+                IEnumerable<int> sut = new[] {1,2,3};
+
+                var result = sut.AllUnique();
+
+                Assert.That(result, Is.True);
+            }
+
+            [Test]
+            public void WhenHasDuplicates_ThenReturnFalse()
+            {
+                IEnumerable<int> sut = new[] {1,2,3,2};
+
+                var result = sut.AllUnique();
+
+                Assert.That(result, Is.False);
             }
         }
     }

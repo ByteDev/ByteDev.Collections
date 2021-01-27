@@ -9,6 +9,7 @@ New features:
 - Added `IEnumerable<T>.Last(int count)` overload.
 - Added `IEnumerable<T>.MaxBy`.
 - Added `IEnumerable<T>.MinBy`.
+- Added `IEnumerable<T>.AllUnique`.
 - Added `T[,].ToSingleDimension`.
 - Added `ICollection<T>.AddRange`.
 - Added `ICollection<T>.GetRandom`.
