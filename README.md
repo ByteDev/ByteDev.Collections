@@ -89,7 +89,6 @@ To use any extension methods simply reference the `ByteDev.Collections` namespac
   - AddRange
   - Fill
   - IsIndexValid
-  - RemoveRange
   - RemoveWhere
 - IList<T>:
   - NullToEmpty

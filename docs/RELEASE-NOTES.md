@@ -11,7 +11,6 @@ New features:
 - Added `IEnumerable<T>.MinBy`.
 - Added `T[,].ToSingleDimension`.
 - Added `ICollection<T>.AddRange`.
-- Added `ICollection<T>.RemoveRange`.
 
 Bug fixes / internal changes:
 - (None)

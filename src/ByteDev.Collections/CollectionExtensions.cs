@@ -71,28 +71,6 @@ namespace ByteDev.Collections
         }
 
         /// <summary>
-        /// Removes the elements of the specified collection.
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
-        /// <param name="source">The collection to perform the operation on.</param>
-        /// <param name="collection">The collection whose elements will be removed.</param>
-        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
-        /// <exception cref="T:System.ArgumentNullException"><paramref name="collection" /> is null.</exception>
-        public static void RemoveRange<TSource>(this ICollection<TSource> source, IEnumerable<TSource> collection)
-        {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source));
-
-            if (collection == null)
-                throw new ArgumentNullException(nameof(collection));
-
-            foreach (var item in collection)
-            {
-                source.Remove(item);
-            }
-        }
-
-        /// <summary>
         /// Removes all elements where the predicate is true.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>

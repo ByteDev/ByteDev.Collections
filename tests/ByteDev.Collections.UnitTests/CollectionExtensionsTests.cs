@@ -129,49 +129,6 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class RemoveRange : CollectionExtensionsTests
-        {
-            private readonly IEnumerable<int> CollectionToRemove = new []{ 2, 3};
-
-            [Test]
-            public void WhenSourceIsNull_ThenThrowException()
-            {
-                Assert.Throws<ArgumentNullException>(() => CollectionExtensions.AddRange(null, CollectionToRemove));
-            }
-
-            [Test]
-            public void WhenCollectionIsNull_ThenThrowException()
-            {
-                ICollection<int> sut = new List<int> {1, 2, 3, 4, 5};
-                
-                Assert.Throws<ArgumentNullException>(() => sut.RemoveRange(null));
-            }
-
-            [Test]
-            public void WhenSourceIsEmpty_ThenRemoveNothing()
-            {
-                ICollection<int> sut = new List<int>();
-
-                sut.RemoveRange(CollectionToRemove);
-
-                Assert.That(sut, Is.Empty);
-            }
-
-            [Test]
-            public void WhenCollectionNotEmpty_ThenRemoveItems()
-            {
-                ICollection<int> sut = new List<int> {1, 2, 3, 4, 5};
-                
-                sut.RemoveRange(CollectionToRemove);
-
-                Assert.That(sut.Count, Is.EqualTo(3));
-                Assert.That(sut.First(), Is.EqualTo(1));
-                Assert.That(sut.Second(), Is.EqualTo(4));
-                Assert.That(sut.Third(), Is.EqualTo(5));
-            }
-        }
-
-        [TestFixture]
         public class RemoveWhere
         {
             [Test]
