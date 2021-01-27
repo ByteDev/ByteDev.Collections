@@ -11,6 +11,8 @@ New features:
 - Added `IEnumerable<T>.MinBy`.
 - Added `T[,].ToSingleDimension`.
 - Added `ICollection<T>.AddRange`.
+- Added `ICollection<T>.GetRandom`.
+- Added `ICollection<T>.GetRandomOrDefault`.
 
 Bug fixes / internal changes:
 - (None)

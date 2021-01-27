@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using NUnit.Framework;
 
 namespace ByteDev.Collections.UnitTests
@@ -16,7 +15,7 @@ namespace ByteDev.Collections.UnitTests
             {
                 var result = EnumerableExtensions.NullToEmpty(null as IEnumerable<string>);
 
-                Assert.That(result.Count(), Is.EqualTo(0));
+                Assert.That(result, Is.Empty);
             }
 
             [Test]
