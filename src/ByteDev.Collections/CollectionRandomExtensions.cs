@@ -9,7 +9,9 @@ namespace ByteDev.Collections
     /// </summary>
     public static class CollectionRandomExtensions
     {
-        private static readonly Random Random = new Random();
+        private static readonly Random _random = new Random();
+
+        private static readonly object _lock = new object();
 
         /// <summary>
         /// Returns a random element from the collection.
@@ -45,7 +47,14 @@ namespace ByteDev.Collections
             if (source == null || source.Count < 1)
                 return @default;
 
-            return source.ElementAt(Random.Next(source.Count));
+            int index;
+
+            lock(_lock)
+            {
+                index = _random.Next(source.Count);
+            }
+            
+            return source.ElementAt(index);
         }
     }
 }
