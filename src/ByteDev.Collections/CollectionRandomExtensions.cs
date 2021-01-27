@@ -47,14 +47,17 @@ namespace ByteDev.Collections
             if (source == null || source.Count < 1)
                 return @default;
 
-            int index;
+            var index = source.GetRandomIndex();
 
-            lock(_lock)
-            {
-                index = _random.Next(source.Count);
-            }
-            
             return source.ElementAt(index);
+        }
+
+        internal static int GetRandomIndex<TSource>(this ICollection<TSource> source)
+        {
+            lock (_lock)
+            {
+                return _random.Next(source.Count);
+            }
         }
     }
 }

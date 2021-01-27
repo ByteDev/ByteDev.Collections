@@ -98,6 +98,7 @@ To use any extension methods simply reference the `ByteDev.Collections` namespac
   - MoveToLast
   - ReplaceAt
   - ReplaceAll
+  - Shuffle
   - Swap
 - NameValueCollection: 
   - AddOrUpdate

@@ -13,6 +13,7 @@ New features:
 - Added `ICollection<T>.AddRange`.
 - Added `ICollection<T>.GetRandom`.
 - Added `ICollection<T>.GetRandomOrDefault`.
+- Added `IList<T>.Shuffle`.
 
 Bug fixes / internal changes:
 - (None)
