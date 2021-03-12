@@ -95,6 +95,7 @@ To use any extension methods simply reference the `ByteDev.Collections` namespac
   - IsIndexValid
   - RemoveWhere
 - IList<T>:
+  - GetNext
   - NullToEmpty
   - MoveToFirst
   - MoveToLast

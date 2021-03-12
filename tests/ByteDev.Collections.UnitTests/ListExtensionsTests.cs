@@ -265,6 +265,39 @@ namespace ByteDev.Collections.UnitTests
                 return list;
             }
         }
+
+        [TestFixture]
+        public class GetNext : ListExtensionsTests
+        {
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => ListExtensions.GetNext(null as IList<string>, 0));
+            }
+
+            [TestCase(-1)]
+            [TestCase(0)]
+            [TestCase(1)]
+            public void WhenNoNextItem_ThenReturnDefault(int index)
+            {
+                var sut = new List<string> { "1" };
+
+                var result = sut.GetNext(index);
+
+                Assert.That(result, Is.Null);
+            }
+
+            [TestCase(0, "2")]
+            [TestCase(1, "3")]
+            public void WhenHasNextItem_ThenReturnItem(int index, string expected)
+            {
+                var sut = new List<string> { "1", "2", "3" };
+
+                var result = sut.GetNext(index);
+
+                Assert.That(result, Is.EqualTo(expected));
+            }
+        }
     }
 }
     

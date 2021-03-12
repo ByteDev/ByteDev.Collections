@@ -1,5 +1,16 @@
 # Release Notes
 
+## 2.7.0 - 12 March 2021
+
+Breaking changes:
+- (None)
+
+New features:
+- Added `ListExtensions.GetNext`.
+
+Bug fixes / internal changes:
+- (None)
+
 ## 2.6.0 - 28 January 2021
 
 Breaking changes:
