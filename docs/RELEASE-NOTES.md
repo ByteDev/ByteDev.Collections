@@ -1,5 +1,19 @@
 # Release Notes
 
+## 3.0.0 - 17 March 2021
+
+Breaking changes:
+- Removed `CollectionRandomExtensions.GetRandomOrDefault`.
+- Renamed `CollectionRandomExtensions.GetRandom` to `TakeRandom`.
+- `TakeRandom` now works more like `Take` method.
+
+New features:
+- Added `CollectionRandomExtensions.RemoveRandom`.
+- Added `CollectionRandomExtensions.TakeRandom` with count.
+
+Bug fixes / internal changes:
+- (None)
+
 ## 2.7.0 - 12 March 2021
 
 Breaking changes:

@@ -89,11 +89,11 @@ To use any extension methods simply reference the `ByteDev.Collections` namespac
   - GetShortest 
 - ICollection<T>:
   - AddRange
-  - GetRandom
-  - GetRandomOrDefault
   - Fill
   - IsIndexValid
+  - RemoveRandom
   - RemoveWhere
+  - TakeRandom
 - IList<T>:
   - GetNext
   - NullToEmpty

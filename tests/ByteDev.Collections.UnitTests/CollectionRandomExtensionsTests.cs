@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 
 namespace ByteDev.Collections.UnitTests
@@ -8,12 +9,12 @@ namespace ByteDev.Collections.UnitTests
     public class CollectionRandomExtensionsTests
     {
         [TestFixture]
-        public class GetRandom : EnumerableExtensionsTests
+        public class TakeRandom : EnumerableExtensionsTests
         {
             [Test]
             public void WhenSourceIsNull_ThenThrowException()
             {
-                Assert.Throws<ArgumentNullException>(() => CollectionRandomExtensions.GetRandom(null as ICollection<int>));
+                Assert.Throws<ArgumentNullException>(() => CollectionRandomExtensions.TakeRandom(null as ICollection<int>));
             }
 
             [Test]
@@ -21,7 +22,7 @@ namespace ByteDev.Collections.UnitTests
             {
                 ICollection<int> sut = new List<int>();
 
-                Assert.Throws<ArgumentException>(() => sut.GetRandom());
+                Assert.Throws<InvalidOperationException>(() => sut.TakeRandom());
             }
 
             [Test]
@@ -29,7 +30,7 @@ namespace ByteDev.Collections.UnitTests
             {
                 ICollection<int> sut = new List<int> { 1 };
 
-                var result = sut.GetRandom();
+                var result = sut.TakeRandom();
 
                 Assert.That(result, Is.EqualTo(1));
             }
@@ -39,7 +40,7 @@ namespace ByteDev.Collections.UnitTests
             {
                 ICollection<int> sut = new List<int> { 1, 5, 10 };
 
-                var result = sut.GetRandom();
+                var result = sut.TakeRandom();
 
                 Assert.That(result, Is.EqualTo(1).Or.EqualTo(5).Or.EqualTo(10));
             }
@@ -55,7 +56,7 @@ namespace ByteDev.Collections.UnitTests
 
                 for (var i = 0; i < 100; i++)
                 {
-                    var result = sut.GetRandom();
+                    var result = sut.TakeRandom();
 
                     switch (result)
                     {
@@ -72,38 +73,84 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class GetRandomOrDefault : CollectionRandomExtensionsTests
+        public class TakeRandom_Count : CollectionRandomExtensionsTests
         {
-            private const int Default = 100;
-
             [Test]
-            public void WhenSourceIsNull_ThenReturnDefault()
+            public void WhenSourceIsNull_ThenThrowException()
             {
-                ICollection<int> sut = null;
-
-                var result = sut.GetRandomOrDefault(Default);
-
-                Assert.That(result, Is.EqualTo(Default));
+                Assert.Throws<ArgumentNullException>(() => CollectionRandomExtensions.TakeRandom(null as ICollection<int>, 1));
             }
 
-            [Test]
-            public void WhenSourceIsEmpty_ThenReturnDefault()
+            [TestCase(-1)]
+            [TestCase(0)]
+            public void WhenCountIsLessThanOne_ThenReturnEmpty(int count)
             {
                 ICollection<int> sut = new List<int>();
 
-                var result = sut.GetRandomOrDefault(Default);
+                var result = sut.TakeRandom(count);
 
-                Assert.That(result, Is.EqualTo(Default));
+                Assert.That(result, Is.Empty);
             }
 
             [Test]
-            public void WhenHasOneElements_ThenReturnElement()
+            public void WhenSourceIsEmpty_AndEvalResult_ThenThrowException()
+            {
+                ICollection<int> sut = new List<int>();
+
+                var result = sut.TakeRandom(1);
+
+                Assert.Throws<ArgumentOutOfRangeException>(() => _ = result.First());
+            }
+
+            [Test]
+            public void WhenHasOneElement_AndCountOne_ThenReturnSequence()
+            {
+                ICollection<int> sut = new List<int> { 10 };
+
+                var result = sut.TakeRandom(1);
+
+                Assert.That(result.Single(), Is.EqualTo(10));
+            }
+
+            [Test]
+            public void WhenHasThreeElements_AndCountTwo_ThenReturnSequence()
+            {
+                ICollection<int> sut = new List<int> { 1, 5, 10 };
+
+                var result = sut.TakeRandom(2);
+
+                Assert.That(result.Count(), Is.EqualTo(2));
+                Assert.That(result.First(), Is.EqualTo(1).Or.EqualTo(5).Or.EqualTo(10));
+                Assert.That(result.Second(), Is.EqualTo(1).Or.EqualTo(5).Or.EqualTo(10));
+            }
+        }
+
+        [TestFixture]
+        public class RemoveRandom : CollectionRandomExtensionsTests
+        {
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => CollectionRandomExtensions.RemoveRandom(null as ICollection<int>));
+            }
+
+            [Test]
+            public void WhenIsEmpty_ThenThrowException()
+            {
+                ICollection<int> sut = new List<int>();
+
+                Assert.Throws<InvalidOperationException>(() => sut.RemoveRandom());
+            }
+
+            [Test]
+            public void WhenHasSingleElement_ThenReturnElmentAndRemove()
             {
                 ICollection<int> sut = new List<int> { 1 };
-
-                var result = sut.GetRandomOrDefault(Default);
+                
+                var result = sut.RemoveRandom();
 
                 Assert.That(result, Is.EqualTo(1));
+                Assert.That(sut, Is.Empty);
             }
 
             [Test]
@@ -111,9 +158,21 @@ namespace ByteDev.Collections.UnitTests
             {
                 ICollection<int> sut = new List<int> { 1, 5, 10 };
 
-                var result = sut.GetRandomOrDefault(Default);
+                var result = sut.RemoveRandom();
 
                 Assert.That(result, Is.EqualTo(1).Or.EqualTo(5).Or.EqualTo(10));
+                Assert.That(sut.Count, Is.EqualTo(2));
+            }
+
+            [Test]
+            public void WhenHasTwoElements_AndCalledTwice_ThenRemove()
+            {
+                ICollection<int> sut = new List<int> { 1, 5 };
+
+                sut.RemoveRandom();
+                sut.RemoveRandom();
+
+                Assert.That(sut, Is.Empty);
             }
         }
     }
