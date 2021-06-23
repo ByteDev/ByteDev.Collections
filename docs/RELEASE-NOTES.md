@@ -1,5 +1,16 @@
 # Release Notes
 
+## 3.1.0 - 23 June 2021
+
+Breaking changes:
+- (None)
+
+New features:
+- Added `Sequencer.Whole` method.
+
+Bug fixes / internal changes:
+- (None)
+
 ## 3.0.0 - 17 March 2021
 
 Breaking changes:

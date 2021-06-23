@@ -19,6 +19,16 @@ namespace ByteDev.Collections.Sequences
         }
 
         /// <summary>
+        /// Creates the Whole number sequence (0, 1, 2, 3...).
+        /// </summary>
+        /// <param name="size">Size of the sequence.</param>
+        /// <returns>Collection containing the sequence of numbers.</returns>
+        public static IList<int> Whole(int size)
+        {
+            return Integers(size);
+        }
+
+        /// <summary>
         /// Creates the Integer number sequence.
         /// </summary>
         /// <param name="size">Size of the sequence.</param>
@@ -33,7 +43,7 @@ namespace ByteDev.Collections.Sequences
         /// Creates a Arithmetic number sequence.
         /// </summary>
         /// <param name="size">Size of the sequence.</param>
-        /// <param name="start">The starting point in the sequence.</param>
+        /// <param name="start">The first number in the sequence.</param>
         /// <param name="commonDifference">The difference between each value in the sequence.</param>
         /// <returns>Collection containing the sequence of numbers.</returns>
         public static IList<int> Arithmetic(int size, int start, int commonDifference)
@@ -48,6 +58,35 @@ namespace ByteDev.Collections.Sequences
             {
                 list.Add(value);
                 value = value + commonDifference;
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        /// Creates a Geometric number sequence.
+        /// </summary>
+        /// <param name="size">Size of the sequence.</param>
+        /// <param name="start">The starting point in the sequence.</param>
+        /// <param name="multiplier">The multiplier to apply each term to create the next.</param>
+        /// <returns>Collection containing the sequence of numbers.</returns>
+        public static IList<int> Geometric(int size, int start, int multiplier)
+        {
+            if (size < 1)
+                return new List<int>();
+
+            if (start == 0)
+                throw new ArgumentException("Start cannot be zero.", nameof(start));
+
+            var list = new List<int>(size);
+            var value = start;
+
+            while(list.Count < size)
+            {
+                if (list.Count > 0)
+                    value = value * multiplier;
+
+                list.Add(value);
             }
 
             return list;
@@ -102,35 +141,6 @@ namespace ByteDev.Collections.Sequences
                     if (list.Count >= size)
                         return list;
                 }
-            }
-
-            return list;
-        }
-
-        /// <summary>
-        /// Creates a Geometric number sequence.
-        /// </summary>
-        /// <param name="size">Size of the sequence.</param>
-        /// <param name="start">The starting point in the sequence.</param>
-        /// <param name="multiplier">The multiplier to apply each term to create the next.</param>
-        /// <returns>Collection containing the sequence of numbers.</returns>
-        public static IList<int> Geometric(int size, int start, int multiplier)
-        {
-            if (size < 1)
-                return new List<int>();
-
-            if (start == 0)
-                throw new ArgumentException("Start cannot be zero.", nameof(start));
-
-            var list = new List<int>(size);
-            var value = start;
-
-            while(list.Count < size)
-            {
-                if (list.Count > 0)
-                    value = value * multiplier;
-
-                list.Add(value);
             }
 
             return list;

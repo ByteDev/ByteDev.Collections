@@ -125,10 +125,13 @@ using ByteDev.Collections.Sequences;
 const int size = 8;
 
 // 1, 2, 3, 4, 5, 6, 7, 8
-IList<int> n = Sequencer.Natural(size);   
+IList<int> n = Sequencer.Natural(size);
 
 // 0, 1, 2, 3, 4, 5, 6, 7
-IList<int> i1 = Sequencer.Integers(size);  
+IList<int> w = Sequencer.Whole(size);
+
+// 0, 1, 2, 3, 4, 5, 6, 7
+IList<int> i1 = Sequencer.Integers(size);
 
 // -2, -1, 0, 1, 2, 3, 4, 5
 IList<int> i2 = Sequencer.Integers(size, -2);

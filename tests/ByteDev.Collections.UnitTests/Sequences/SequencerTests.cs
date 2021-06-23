@@ -41,6 +41,38 @@ namespace ByteDev.Collections.UnitTests.Sequences
         }
 
         [TestFixture]
+        public class Whole : SequencerTests
+        {
+            [TestCase(-1)]
+            [TestCase(0)]
+            public void WhenSizeIsZeroOrLess_ThenReturnEmpty(int size)
+            {
+                var result = Sequencer.Whole(size);
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [Test]
+            public void WhenSizeIsOne_ThenReturnSequence()
+            {
+                var result = Sequencer.Whole(1);
+
+                Assert.That(result.Single(), Is.EqualTo(0));
+            }
+
+            [Test]
+            public void WhenSizeIsThree_ThenReturnSequence()
+            {
+                var result = Sequencer.Whole(3);
+
+                Assert.That(result.Count, Is.EqualTo(3));
+                Assert.That(result.First(), Is.EqualTo(0));
+                Assert.That(result.Second(), Is.EqualTo(1));
+                Assert.That(result.Third(), Is.EqualTo(2));
+            }
+        }
+
+        [TestFixture]
         public class Integers
         {
             [TestCase(-1)]
