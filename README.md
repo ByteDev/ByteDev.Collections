@@ -147,4 +147,7 @@ IList<int> f = Sequencer.Fibonacci(size);
 
 // 2, 3, 5, 7, 11, 13, 17, 19
 IList<int> p = Sequencer.Primes(size);
+
+// 10, 5, 16, 8, 4, 2, 1
+IList<int> c = Sequencer.Collatz(10);
 ```
