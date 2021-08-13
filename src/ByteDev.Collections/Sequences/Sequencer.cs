@@ -43,21 +43,20 @@ namespace ByteDev.Collections.Sequences
         /// Creates a Arithmetic number sequence.
         /// </summary>
         /// <param name="size">Size of the sequence.</param>
-        /// <param name="start">The first number in the sequence.</param>
+        /// <param name="seed">Seed value to start the sequence with.</param>
         /// <param name="commonDifference">The difference between each value in the sequence.</param>
         /// <returns>Collection containing the sequence of numbers.</returns>
-        public static IList<int> Arithmetic(int size, int start, int commonDifference)
+        public static IList<int> Arithmetic(int size, int seed, int commonDifference)
         {
             if (size < 1)
                 return new List<int>();
 
             var list = new List<int>(size);
-            var value = start;
 
             for (var i = 0; i < size; i++)
             {
-                list.Add(value);
-                value = value + commonDifference;
+                list.Add(seed);
+                seed += commonDifference;
             }
 
             return list;
@@ -67,26 +66,23 @@ namespace ByteDev.Collections.Sequences
         /// Creates a Geometric number sequence.
         /// </summary>
         /// <param name="size">Size of the sequence.</param>
-        /// <param name="start">The starting point in the sequence.</param>
+        /// <param name="seed">Seed value to start the sequence with.</param>
         /// <param name="multiplier">The multiplier to apply each term to create the next.</param>
         /// <returns>Collection containing the sequence of numbers.</returns>
-        public static IList<int> Geometric(int size, int start, int multiplier)
+        public static IList<int> Geometric(int size, int seed, int multiplier)
         {
             if (size < 1)
                 return new List<int>();
 
-            if (start == 0)
-                throw new ArgumentException("Start cannot be zero.", nameof(start));
+            if (seed == 0)
+                throw new ArgumentException("Seed cannot be zero.", nameof(seed));
 
             var list = new List<int>(size);
-            var value = start;
 
             while(list.Count < size)
             {
-                if (list.Count > 0)
-                    value = value * multiplier;
-
-                list.Add(value);
+                list.Add(seed);
+                seed = seed * multiplier;
             }
 
             return list;
@@ -104,16 +100,16 @@ namespace ByteDev.Collections.Sequences
 
             var list = new List<int>(size);
 
-            var nextValue = 0;
+            var value = 0;
 
             for (var i = 0; i < size; i++)
             {
-                list.Add(nextValue);
+                list.Add(value);
 
                 if (i > 0)
-                    nextValue = nextValue + list[i - 1];
+                    value = value + list[i - 1];
                 else
-                    nextValue = 1;
+                    value = 1;
             }
 
             return list;
@@ -123,16 +119,16 @@ namespace ByteDev.Collections.Sequences
         /// Creates a Prime number sequence.
         /// </summary>
         /// <param name="size">Size of the sequence.</param>
-        /// <param name="start">The starting point in the sequence.</param>
+        /// <param name="seed">Seed value to start the sequence with.</param>
         /// <returns>Collection containing the sequence of numbers.</returns>
-        public static IList<int> Primes(int size, int start = 0)
+        public static IList<int> Primes(int size, int seed = 0)
         {
             if (size < 1)
                 return new List<int>();
 
             var list = new List<int>(size);
 
-            for (int i = start; i < int.MaxValue; i++)
+            for (int i = seed; i < int.MaxValue; i++)
             {
                 if (i.IsPrime())
                 {
@@ -141,6 +137,33 @@ namespace ByteDev.Collections.Sequences
                     if (list.Count >= size)
                         return list;
                 }
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        /// Creates a Collatz (AKA 3N+1) sequence starting with the initial seed value.
+        /// Sequence will halt when reaching the four known infinite cycles: 1, -1, -5 or -17.
+        /// </summary>
+        /// <param name="seed">Seed value to start the sequence with.</param>
+        /// <returns>Collection containing the sequence of numbers.</returns>
+        /// <exception cref="T:System.ArgumentException"><paramref name="seed" />Seed cannot be zero.</exception>
+        public static IList<int> Collatz(int seed)
+        {
+            if (seed == 0)
+                throw new ArgumentException("Seed cannot be zero.");
+
+            var list = new List<int> { seed };
+            
+            while (seed != 1 && seed != -1 && seed != -5 && seed != -17)
+            {
+                if (seed % 2 == 0)          // Even
+                    seed = seed / 2;
+                else                        // Odd
+                    seed = (3 * seed) + 1;
+
+                list.Add(seed);
             }
 
             return list;

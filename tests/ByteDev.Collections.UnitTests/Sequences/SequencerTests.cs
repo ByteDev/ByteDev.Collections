@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ByteDev.Collections.Sequences;
 using NUnit.Framework;
@@ -260,6 +261,85 @@ namespace ByteDev.Collections.UnitTests.Sequences
 
                 Assert.That(result.Count, Is.EqualTo(size));
                 Assert.That(result.Last(), Is.EqualTo(lastValue));
+            }
+        }
+
+        [TestFixture]
+        public class Collatz : SequencerTests
+        {
+            [Test]
+            public void WhenSeed0_ThenThrowException()
+            {
+                Assert.Throws<ArgumentException>(() => _ = Sequencer.Collatz(0));
+            }
+            
+            [Test]
+            public void WhenSeed1_ThenReturnSequence()
+            {
+                var result = Sequencer.Collatz(1);
+
+                Assert.That(result.Single(), Is.EqualTo(1));
+            }
+
+            [Test]
+            public void WhenSeed2_ThenReturnSequence()
+            {
+                var result = Sequencer.Collatz(2);
+
+                Assert.That(result.Count, Is.EqualTo(2));
+                Assert.That(result.First(), Is.EqualTo(2));
+                Assert.That(result.Second(), Is.EqualTo(1));
+            }
+
+            [Test]
+            public void WhenSeed10_ThenReturnSequence()
+            {
+                var result = Sequencer.Collatz(10);
+
+                Assert.That(result.Count, Is.EqualTo(7));
+                Assert.That(result.First(), Is.EqualTo(10));
+                Assert.That(result.Second(), Is.EqualTo(5));
+                Assert.That(result.Third(), Is.EqualTo(16));
+                Assert.That(result.Fourth(), Is.EqualTo(8));
+                Assert.That(result.Fifth(), Is.EqualTo(4));
+                Assert.That(result.Sixth(), Is.EqualTo(2));
+                Assert.That(result.Seventh(), Is.EqualTo(1));
+            }
+
+            [Test]
+            public void WhenSeedMinus1_ThenReturnSequence()
+            {
+                var result = Sequencer.Collatz(-1);
+
+                Assert.That(result.Single(), Is.EqualTo(-1));
+            }
+
+            [Test]
+            public void WhenSeedMinus2_ThenReturnSequence()
+            {
+                var result = Sequencer.Collatz(-2);
+
+                Assert.That(result.Count, Is.EqualTo(2));
+                Assert.That(result.First(), Is.EqualTo(-2));
+                Assert.That(result.Second(), Is.EqualTo(-1));
+            }
+
+            [Test]
+            public void WhenSeedMinus10_ThenReturnSequence()
+            {
+                var result = Sequencer.Collatz(-10);
+
+                Assert.That(result.Count, Is.EqualTo(2));
+                Assert.That(result.First(), Is.EqualTo(-10));
+                Assert.That(result.Second(), Is.EqualTo(-5));
+            }
+        }
+
+        private static void PrintSequence(IEnumerable<int> result)
+        {
+            foreach (var i in result)
+            {
+                Console.WriteLine(i);
             }
         }
     }

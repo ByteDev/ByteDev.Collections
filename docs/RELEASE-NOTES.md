@@ -1,5 +1,16 @@
 # Release Notes
 
+## 3.2.0 - ?
+
+Breaking changes:
+- (None)
+
+New features:
+- Added `Sequencer.Collatz` method.
+
+Bug fixes / internal changes:
+- (None)
+
 ## 3.1.0 - 23 June 2021
 
 Breaking changes:
