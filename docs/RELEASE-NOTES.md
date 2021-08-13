@@ -1,6 +1,6 @@
 # Release Notes
 
-## 3.2.0 - ?
+## 3.2.0 - 13 August 2021
 
 Breaking changes:
 - (None)
