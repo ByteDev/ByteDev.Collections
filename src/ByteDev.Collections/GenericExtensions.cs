@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace ByteDev.Collections
 {
@@ -15,7 +16,7 @@ namespace ByteDev.Collections
         /// <returns>Value as in single element sequence.</returns>
         public static IEnumerable<TSource> AsEnumerable<TSource>(this TSource source)
         {
-            yield return source;
+            return Enumerable.Repeat(source, 1);
         }
     }
 }

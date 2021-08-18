@@ -1,5 +1,18 @@
 # Release Notes
 
+## 3.3.0 - ?
+
+Breaking changes:
+- (None)
+
+New features:
+- Added `GenericExtensions.AsEnumerable` method.
+- Added `EnumerableExtensions.Concat` overload that takes params array of `TSource`.
+- Added `EnumerableExtensions.Concat` overload that takes params array of `IEnumerable<TSource>`.
+
+Bug fixes / internal changes:
+- (None)
+
 ## 3.2.0 - 13 August 2021
 
 Breaking changes:

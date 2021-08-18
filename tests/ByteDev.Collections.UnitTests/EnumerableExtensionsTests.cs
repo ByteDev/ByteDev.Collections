@@ -169,5 +169,94 @@ namespace ByteDev.Collections.UnitTests
                 Assert.That(result, Is.False);
             }
         }
+
+        [TestFixture]
+        public class Concat_Params : EnumerableExtensionsTests
+        {
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => EnumerableExtensions.Concat(null, 1));
+            }
+
+            [Test]
+            public void WhenParamsIsNull_ThenThrowException()
+            {
+                IEnumerable<int> sut = 1.AsEnumerable();
+
+                Assert.Throws<ArgumentNullException>(() => sut.Concat(null as int[]));
+            }
+
+            [Test]
+            public void WhenParamsContainsSingle_ThenConcat()
+            {
+                var sut = 1.AsEnumerable();
+
+                var result = sut.Concat(2);
+
+                Assert.That(result.Count(), Is.EqualTo(2));
+                Assert.That(result.First(), Is.EqualTo(1));
+                Assert.That(result.Second(), Is.EqualTo(2));
+            }
+
+            [Test]
+            public void WhenParamsContainsTwoElements_ThenConcat()
+            {
+                var sut = 1.AsEnumerable();
+
+                var result = sut.Concat(2, 3);
+
+                Assert.That(result.Count(), Is.EqualTo(3));
+                Assert.That(result.First(), Is.EqualTo(1));
+                Assert.That(result.Second(), Is.EqualTo(2));
+                Assert.That(result.Third(), Is.EqualTo(3));
+            }
+        }
+
+        [TestFixture]
+        public class Concat_ParamSequences : EnumerableExtensionsTests
+        {
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                var sequence = Enumerable.Repeat(1, 3);
+
+                Assert.Throws<ArgumentNullException>(() => _ = EnumerableExtensions.Concat(null as IEnumerable<int>, sequence));
+            }
+
+            [Test]
+            public void WhenParamsIsNull_ThenThrowException()
+            {
+                var sut = 1.AsEnumerable();
+
+                Assert.Throws<ArgumentNullException>(() => _ = EnumerableExtensions.Concat(sut, null as IEnumerable<int>[]));
+            }
+
+            [Test]
+            public void WhenParamsContainsSingle_ThenConcat()
+            {
+                var sut = 1.AsEnumerable();
+
+                var result = sut.Concat(2.AsEnumerable());
+
+                Assert.That(result.Count(), Is.EqualTo(2));
+                Assert.That(result.First(), Is.EqualTo(1));
+                Assert.That(result.Second(), Is.EqualTo(2));
+            }
+
+            [Test]
+            public void WhenParamsContainsTwoElements_ThenConcat()
+            {
+                var sut = 1.AsEnumerable();
+
+                var result = sut.Concat(2.AsEnumerable(), new []{ 3, 4 });
+
+                Assert.That(result.Count(), Is.EqualTo(4));
+                Assert.That(result.First(), Is.EqualTo(1));
+                Assert.That(result.Second(), Is.EqualTo(2));
+                Assert.That(result.Third(), Is.EqualTo(3));
+                Assert.That(result.Fourth(), Is.EqualTo(4));
+            }
+        }
     }
 }

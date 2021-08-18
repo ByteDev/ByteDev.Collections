@@ -89,5 +89,61 @@ namespace ByteDev.Collections
 
             return true;
         }
+
+        /// <summary>
+        /// Concatenates the params to the sequence.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+        /// <param name="source">The sequence to contatenate to.</param>
+        /// <param name="values">Values to concatenate to the original sequence.</param>
+        /// <returns>Sequence that contains both the original sequence and <paramref name="values" />.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="values" /> is null.</exception>
+        public static IEnumerable<TSource> Concat<TSource>(this IEnumerable<TSource> source, params TSource[] values)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            if (values == null)
+                throw new ArgumentNullException(nameof(values));
+
+            return source.Concat(values as IEnumerable<TSource>);
+        }
+
+        /// <summary>
+        /// Concatenates the elements of each sequence.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+        /// <param name="source">The sequence to contatenate to.</param>
+        /// <param name="sequences">The sequences to concatenate to the original sequence.</param>
+        /// <returns>Sequence that contains both the original sequence and <paramref name="sequences" />.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="sequences" /> is null.</exception>
+        public static IEnumerable<TSource> Concat<TSource>(this IEnumerable<TSource> source, params IEnumerable<TSource>[] sequences)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            if (sequences == null)
+                throw new ArgumentNullException(nameof(sequences));
+
+            return ConcatAllElements(source, sequences);
+        }
+
+        private static IEnumerable<TSource> ConcatAllElements<TSource>(IEnumerable<TSource> source, params IEnumerable<TSource>[] sequences)
+        {
+            foreach (var value in source)
+            {
+                yield return value;
+            }
+
+            foreach (var sequence in sequences)
+            {
+                foreach (var value in sequence)
+                {
+                    yield return value;
+                }
+            }
+        }
     }
 }

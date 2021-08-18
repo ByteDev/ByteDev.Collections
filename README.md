@@ -70,6 +70,7 @@ To use any extension methods simply reference the `ByteDev.Collections` namespac
   - Tenth
   - TenthOrDefault
   - AllUnique
+  - Concat (params overloads)
   - ContainsAll
   - ContainsAny
   - Last(count)
