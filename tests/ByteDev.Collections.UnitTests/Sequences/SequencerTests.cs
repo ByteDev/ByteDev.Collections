@@ -366,6 +366,307 @@ namespace ByteDev.Collections.UnitTests.Sequences
             }
         }
 
+        [TestFixture]
+        public class Triangular : SequencerTests
+        {
+            [TestCase(-1)]
+            [TestCase(0)]
+            public void WhenSizeIsZeroOrLess_ThenReturnEmpty(int size)
+            {
+                var result = Sequencer.Triangular(size);
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [Test]
+            public void WhenSizeIs1_ThenReturnSequence()
+            {
+                var result = Sequencer.Triangular(1);
+
+                Assert.That(result.Single(), Is.EqualTo(1));
+            }
+
+            [Test]
+            public void WhenSizeIs8_ThenReturnSequence()
+            {
+                var result = Sequencer.Triangular(8);
+
+                Assert.That(result.Count, Is.EqualTo(8));
+                Assert.That(result.First(), Is.EqualTo(1));
+                Assert.That(result.Second(), Is.EqualTo(3));
+                Assert.That(result.Third(), Is.EqualTo(6));
+                Assert.That(result.Fourth(), Is.EqualTo(10));
+                Assert.That(result.Fifth(), Is.EqualTo(15));
+                Assert.That(result.Sixth(), Is.EqualTo(21));
+                Assert.That(result.Seventh(), Is.EqualTo(28));
+                Assert.That(result.Eighth(), Is.EqualTo(36));
+            }
+        }
+
+        [TestFixture]
+        public class Square : SequencerTests
+        {
+            [TestCase(-1)]
+            [TestCase(0)]
+            public void WhenSizeIsZeroOrLess_ThenReturnEmpty(int size)
+            {
+                var result = Sequencer.Square(size);
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [Test]
+            public void WhenSizeIs1_ThenReturnSequence()
+            {
+                var result = Sequencer.Square(1);
+
+                Assert.That(result.Single(), Is.EqualTo(0));
+            }
+
+            [Test]
+            public void WhenSizeIs8_ThenReturnSequence()
+            {
+                var result = Sequencer.Square(8);
+
+                Assert.That(result.Count, Is.EqualTo(8));
+                Assert.That(result.First(), Is.EqualTo(0));
+                Assert.That(result.Second(), Is.EqualTo(1));
+                Assert.That(result.Third(), Is.EqualTo(4));
+                Assert.That(result.Fourth(), Is.EqualTo(9));
+                Assert.That(result.Fifth(), Is.EqualTo(16));
+                Assert.That(result.Sixth(), Is.EqualTo(25));
+                Assert.That(result.Seventh(), Is.EqualTo(36));
+                Assert.That(result.Eighth(), Is.EqualTo(49));
+            }
+        }
+
+        [TestFixture]
+        public class PowerOfTwo : SequencerTests
+        {
+            [TestCase(-1)]
+            [TestCase(0)]
+            public void WhenSizeIsZeroOrLess_ThenReturnEmpty(int size)
+            {
+                var result = Sequencer.PowerOfTwo(size);
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [Test]
+            public void WhenSizeIs1_ThenReturnSequence()
+            {
+                var result = Sequencer.PowerOfTwo(1);
+
+                Assert.That(result.Single(), Is.EqualTo(2));
+            }
+
+            [Test]
+            public void WhenSizeIs8_ThenReturnSequence()
+            {
+                var result = Sequencer.PowerOfTwo(8);
+
+                Assert.That(result.Count, Is.EqualTo(8));
+                Assert.That(result.First(), Is.EqualTo(2));
+                Assert.That(result.Second(), Is.EqualTo(4));
+                Assert.That(result.Third(), Is.EqualTo(8));
+                Assert.That(result.Fourth(), Is.EqualTo(16));
+                Assert.That(result.Fifth(), Is.EqualTo(32));
+                Assert.That(result.Sixth(), Is.EqualTo(64));
+                Assert.That(result.Seventh(), Is.EqualTo(128));
+                Assert.That(result.Eighth(), Is.EqualTo(256));
+            }
+        }
+
+        [TestFixture]
+        public class Even : SequencerTests
+        {
+            [TestCase(-1)]
+            [TestCase(0)]
+            public void WhenSizeIsZeroOrLess_ThenReturnEmpty(int size)
+            {
+                var result = Sequencer.Even(size);
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [Test]
+            public void WhenSizeIs1_ThenReturnSequence()
+            {
+                var result = Sequencer.Even(1);
+
+                Assert.That(result.Single(), Is.EqualTo(0));
+            }
+
+            [Test]
+            public void WhenSizeIs8_ThenReturnSequence()
+            {
+                var result = Sequencer.Even(8);
+
+                Assert.That(result.Count, Is.EqualTo(8));
+                Assert.That(result.First(), Is.EqualTo(0));
+                Assert.That(result.Second(), Is.EqualTo(2));
+                Assert.That(result.Third(), Is.EqualTo(4));
+                Assert.That(result.Fourth(), Is.EqualTo(6));
+                Assert.That(result.Fifth(), Is.EqualTo(8));
+                Assert.That(result.Sixth(), Is.EqualTo(10));
+                Assert.That(result.Seventh(), Is.EqualTo(12));
+                Assert.That(result.Eighth(), Is.EqualTo(14));
+            }
+
+            [TestCase(-1)]
+            [TestCase(1)]
+            public void WhenSeedIsNotEven_ThenThrowException(int seed)
+            {
+                Assert.Throws<ArgumentException>(() => Sequencer.Even(1, seed));
+            }
+
+            [Test]
+            public void WhenSeedIsEven_ThenReturnSequence()
+            {
+                var result = Sequencer.Even(8, 4);
+
+                Assert.That(result.Count, Is.EqualTo(8));
+                Assert.That(result.First(), Is.EqualTo(4));
+                Assert.That(result.Second(), Is.EqualTo(6));
+                Assert.That(result.Third(), Is.EqualTo(8));
+                Assert.That(result.Fourth(), Is.EqualTo(10));
+                Assert.That(result.Fifth(), Is.EqualTo(12));
+                Assert.That(result.Sixth(), Is.EqualTo(14));
+                Assert.That(result.Seventh(), Is.EqualTo(16));
+                Assert.That(result.Eighth(), Is.EqualTo(18));
+            }
+
+            [Test]
+            public void WhenSeedIsMinusEven_ThenReturnSequence()
+            {
+                var result = Sequencer.Even(8, -4);
+
+                Assert.That(result.Count, Is.EqualTo(8));
+                Assert.That(result.First(), Is.EqualTo(-4));
+                Assert.That(result.Second(), Is.EqualTo(-2));
+                Assert.That(result.Third(), Is.EqualTo(0));
+                Assert.That(result.Fourth(), Is.EqualTo(2));
+                Assert.That(result.Fifth(), Is.EqualTo(4));
+                Assert.That(result.Sixth(), Is.EqualTo(6));
+                Assert.That(result.Seventh(), Is.EqualTo(8));
+                Assert.That(result.Eighth(), Is.EqualTo(10));
+            }
+        }
+
+        [TestFixture]
+        public class Odd : SequencerTests
+        {
+            [TestCase(-1)]
+            [TestCase(0)]
+            public void WhenSizeIsZeroOrLess_ThenReturnEmpty(int size)
+            {
+                var result = Sequencer.Odd(size);
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [Test]
+            public void WhenSizeIs1_ThenReturnSequence()
+            {
+                var result = Sequencer.Odd(1);
+
+                Assert.That(result.Single(), Is.EqualTo(1));
+            }
+
+            [Test]
+            public void WhenSizeIs8_ThenReturnSequence()
+            {
+                var result = Sequencer.Odd(8);
+
+                Assert.That(result.Count, Is.EqualTo(8));
+                Assert.That(result.First(), Is.EqualTo(1));
+                Assert.That(result.Second(), Is.EqualTo(3));
+                Assert.That(result.Third(), Is.EqualTo(5));
+                Assert.That(result.Fourth(), Is.EqualTo(7));
+                Assert.That(result.Fifth(), Is.EqualTo(9));
+                Assert.That(result.Sixth(), Is.EqualTo(11));
+                Assert.That(result.Seventh(), Is.EqualTo(13));
+                Assert.That(result.Eighth(), Is.EqualTo(15));
+            }
+
+            [TestCase(-2)]
+            [TestCase(0)]
+            [TestCase(2)]
+            public void WhenSeedIsNotOdd_ThenThrowException(int seed)
+            {
+                Assert.Throws<ArgumentException>(() => Sequencer.Odd(1, seed));
+            }
+
+            [Test]
+            public void WhenSeedIsEven_ThenReturnSequence()
+            {
+                var result = Sequencer.Odd(8, 3);
+
+                Assert.That(result.Count, Is.EqualTo(8));
+                Assert.That(result.First(), Is.EqualTo(3));
+                Assert.That(result.Second(), Is.EqualTo(5));
+                Assert.That(result.Third(), Is.EqualTo(7));
+                Assert.That(result.Fourth(), Is.EqualTo(9));
+                Assert.That(result.Fifth(), Is.EqualTo(11));
+                Assert.That(result.Sixth(), Is.EqualTo(13));
+                Assert.That(result.Seventh(), Is.EqualTo(15));
+                Assert.That(result.Eighth(), Is.EqualTo(17));
+            }
+
+            [Test]
+            public void WhenSeedIsMinusEven_ThenReturnSequence()
+            {
+                var result = Sequencer.Odd(8, -3);
+
+                Assert.That(result.Count, Is.EqualTo(8));
+                Assert.That(result.First(), Is.EqualTo(-3));
+                Assert.That(result.Second(), Is.EqualTo(-1));
+                Assert.That(result.Third(), Is.EqualTo(1));
+                Assert.That(result.Fourth(), Is.EqualTo(3));
+                Assert.That(result.Fifth(), Is.EqualTo(5));
+                Assert.That(result.Sixth(), Is.EqualTo(7));
+                Assert.That(result.Seventh(), Is.EqualTo(9));
+                Assert.That(result.Eighth(), Is.EqualTo(11));
+            }
+        }
+
+        [TestFixture]
+        public class Tetrahedral : SequencerTests
+        {
+            [TestCase(-1)]
+            [TestCase(0)]
+            public void WhenSizeIsZeroOrLess_ThenReturnEmpty(int size)
+            {
+                var result = Sequencer.Tetrahedral(size);
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [Test]
+            public void WhenSizeIs1_ThenReturnSequence()
+            {
+                var result = Sequencer.Tetrahedral(1);
+
+                Assert.That(result.Single(), Is.EqualTo(1));
+            }
+
+            [Test]
+            public void WhenSizeIs8_ThenReturnSequence()
+            {
+                var result = Sequencer.Tetrahedral(8);
+                
+                Assert.That(result.Count, Is.EqualTo(8));
+                Assert.That(result.First(), Is.EqualTo(1));
+                Assert.That(result.Second(), Is.EqualTo(4));
+                Assert.That(result.Third(), Is.EqualTo(10));
+                Assert.That(result.Fourth(), Is.EqualTo(20));
+                Assert.That(result.Fifth(), Is.EqualTo(35));
+                Assert.That(result.Sixth(), Is.EqualTo(56));
+                Assert.That(result.Seventh(), Is.EqualTo(84));
+                Assert.That(result.Eighth(), Is.EqualTo(120));
+            }
+        }
+
         private static void PrintSequence(IEnumerable<int> result)
         {
             foreach (var i in result)

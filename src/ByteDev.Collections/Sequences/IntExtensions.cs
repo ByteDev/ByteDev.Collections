@@ -25,5 +25,23 @@ namespace ByteDev.Collections.Sequences
             
             return true;        
         }
+
+        public static bool IsEven(this int source)
+        {
+            return source.IsMultipleOf(2);
+        }
+
+        public static bool IsOdd(this int source)
+        {
+            return !IsEven(source);
+        }
+
+        public static bool IsMultipleOf(this int source, int value)
+        {
+            if (value == 0)
+                return true;
+            
+            return source % value == 0;
+        }
     }
 }

@@ -10,6 +10,12 @@ New features:
 - Added `EnumerableExtensions.Concat` overload that takes params array of `TSource`.
 - Added `EnumerableExtensions.Concat` overload that takes params array of `IEnumerable<TSource>`.
 - Added `Sequencer.Repeating` method.
+- Added `Sequencer.Triangular` method.
+- Added `Sequencer.Square` method.
+- Added `Sequencer.PowerOfTwo` method.
+- Added `Sequencer.Even` method.
+- Added `Sequencer.Odd` method.
+- Added `Sequencer.Tetrahedral` method.
 
 Bug fixes / internal changes:
 - (None)

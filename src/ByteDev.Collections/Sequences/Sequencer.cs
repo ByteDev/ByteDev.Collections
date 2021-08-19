@@ -9,7 +9,7 @@ namespace ByteDev.Collections.Sequences
     public static class Sequencer
     {
         /// <summary>
-        /// Creates the Natural number sequence (1, 2, 3, 4...).
+        /// Creates the Natural (AKA Counting) number sequence (1, 2, 3, 4...).
         /// </summary>
         /// <param name="size">Size of the sequence.</param>
         /// <returns>List containing the sequence of numbers.</returns>
@@ -183,7 +183,139 @@ namespace ByteDev.Collections.Sequences
             var list = new List<int>(size);
 
             for (var i = 0; i < size; i++)
+                list.Add(value);
+
+            return list;
+        }
+
+        /// <summary>
+        /// Creates the Triangular sequence of numbers (1, 3, 6, 10, 15 ...).
+        /// </summary>
+        /// <param name="size">Size of the sequence.</param>
+        /// <returns>List containing the sequence of numbers.</returns>
+        public static IList<int> Triangular(int size)
+        {
+            if (size < 1)
+                return new List<int>();
+
+            var list = new List<int>(size);
+            var value = 0;
+
+            for (var i = 1; i <= size; i++)
             {
+                value += i;
+                list.Add(value);
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        /// Creates a sequence of Whole numbers squared.
+        /// </summary>
+        /// <param name="size">Size of the sequence.</param>
+        /// <returns>List containing the sequence of numbers.</returns>
+        public static IList<int> Square(int size)
+        {
+            if (size < 1)
+                return new List<int>();
+
+            var list = new List<int>(size);
+
+            for (var i = 0; i < size; i++)
+            {
+                if (i == 0)
+                    list.Add(i);
+                else
+                    list.Add(i * i);
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        /// Creates the power of 2 (AKA 2 to the power of n) number sequence (2, 4, 8, 16, 32, 64, 128 ...).
+        /// </summary>
+        /// <param name="size">Size of the sequence.</param>
+        /// <returns>List containing the sequence of numbers.</returns>
+        public static IList<int> PowerOfTwo(int size)
+        {
+            if (size < 1)
+                return new List<int>();
+
+            var list = new List<int>(size);
+
+            for (var i = 1; i <= size; i++)
+                list.Add((int)Math.Pow(2, i));
+
+            return list;
+        }
+
+        /// <summary>
+        /// Creates the even number sequence.
+        /// </summary>
+        /// <param name="size">Size of the sequence.</param>
+        /// <param name="seed">Seed value to start the sequence with. By default seed is 0.</param>
+        /// <returns>List containing the sequence of numbers.</returns>
+        /// <exception cref="T:System.ArgumentException"><paramref name="seed" /> is not an even number.</exception>
+        public static IList<int> Even(int size, int seed = 0)
+        {
+            if (!seed.IsEven())
+                throw new ArgumentException("Seed was not an even number.");
+
+            if (size < 1)
+                return new List<int>();
+            
+            var list = new List<int>(size);
+            
+            for (var i = seed; i < (size * 2) + seed; i += 2)
+                list.Add(i);
+
+            return list;
+        }
+
+        /// <summary>
+        /// Creates the odd number sequence.
+        /// </summary>
+        /// <param name="size">Size of the sequence.</param>
+        /// <param name="seed">Seed value to start the sequence with. By default seed is 1.</param>
+        /// <returns>List containing the sequence of numbers.</returns>
+        /// <exception cref="T:System.ArgumentException"><paramref name="seed" /> is not an odd number.</exception>
+        public static IList<int> Odd(int size, int seed = 1)
+        {
+            if (!seed.IsOdd())
+                throw new ArgumentException("Seed was not an odd number.");
+
+            if (size < 1)
+                return new List<int>();
+            
+            var list = new List<int>(size);
+            
+            for (var i = seed; i < (size * 2) + seed; i += 2)
+                list.Add(i);
+
+            return list;
+        }
+
+        /// <summary>
+        /// Creates the Tetrahedral number sequence.
+        /// </summary>
+        /// <param name="size">Size of the sequence.</param>
+        /// <returns>List containing the sequence of numbers.</returns>
+        public static IList<int> Tetrahedral(int size)
+        {
+            if (size < 1)
+                return new List<int>();
+            
+            var list = new List<int>(size);
+
+            var triangularNumber = 0;
+            var value = 0;
+
+            for (var i = 1; i <= size; i++)
+            {
+                triangularNumber += i;
+                value += triangularNumber;
                 list.Add(value);
             }
 
