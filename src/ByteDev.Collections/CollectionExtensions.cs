@@ -14,11 +14,11 @@ namespace ByteDev.Collections
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The collection to perform the operation on.</param>
-        /// <param name="numberToFill">Number of elements to fill.</param>
+        /// <param name="size">Number of elements to fill.</param>
         /// <param name="value">The value to fill with.</param>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
         /// <exception cref="T:System.InvalidOperationException"><paramref name="source" /> is not empty.</exception>
-        public static void Fill<TSource>(this ICollection<TSource> source, int numberToFill, TSource value)
+        public static void Fill<TSource>(this ICollection<TSource> source, int size, TSource value)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
@@ -26,10 +26,8 @@ namespace ByteDev.Collections
             if (source.Count > 0)
                 throw new InvalidOperationException("Collection is not empty. Cannot fill non-empty list.");
 
-            for (var i = 0; i < numberToFill; i++)
-            {
+            for (var i = 0; i < size; i++)
                 source.Add(value);
-            }
         }
 
         /// <summary>

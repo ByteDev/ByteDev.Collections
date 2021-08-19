@@ -44,19 +44,19 @@ namespace ByteDev.Collections.Sequences
         /// </summary>
         /// <param name="size">Size of the sequence.</param>
         /// <param name="seed">Seed value to start the sequence with.</param>
-        /// <param name="commonDifference">The difference between each value in the sequence.</param>
+        /// <param name="difference">The difference between each value in the sequence.</param>
         /// <returns>List containing the sequence of numbers.</returns>
-        public static IList<int> Arithmetic(int size, int seed, int commonDifference)
+        public static IList<int> Arithmetic(int size, int seed, int difference)
         {
             if (size < 1)
                 return new List<int>();
 
             var list = new List<int>(size);
 
-            for (var i = 0; i < size; i++)
+            while (list.Count < size)
             {
                 list.Add(seed);
-                seed += commonDifference;
+                seed += difference;
             }
 
             return list;
@@ -79,7 +79,7 @@ namespace ByteDev.Collections.Sequences
 
             var list = new List<int>(size);
 
-            while(list.Count < size)
+            while (list.Count < size)
             {
                 list.Add(seed);
                 seed = seed * multiplier;
@@ -100,16 +100,12 @@ namespace ByteDev.Collections.Sequences
 
             var list = new List<int>(size);
 
-            var value = 0;
-
             for (var i = 0; i < size; i++)
             {
-                list.Add(value);
-
-                if (i > 0)
-                    value = value + list[i - 1];
+                if (i == 0 || i == 1)
+                    list.Add(i);
                 else
-                    value = 1;
+                    list.Add(list[i - 1] + list[i - 2]);
             }
 
             return list;
@@ -128,7 +124,7 @@ namespace ByteDev.Collections.Sequences
 
             var list = new List<int>(size);
 
-            for (int i = seed; i < int.MaxValue; i++)
+            for (var i = seed; i < int.MaxValue; i++)
             {
                 if (i.IsPrime())
                 {
@@ -143,7 +139,7 @@ namespace ByteDev.Collections.Sequences
         }
 
         /// <summary>
-        /// Creates a Collatz (AKA 3N+1) sequence starting with the initial seed value.
+        /// Creates a Collatz (AKA 3N+1) number sequence starting with the initial seed value.
         /// Sequence will halt when reaching the four known infinite cycles: 1, -1, -5 or -17.
         /// </summary>
         /// <param name="seed">Seed value to start the sequence with.</param>
@@ -158,7 +154,7 @@ namespace ByteDev.Collections.Sequences
             
             while (seed != 1 && seed != -1 && seed != -5 && seed != -17)
             {
-                if (seed % 2 == 0)          // Even
+                if (seed.IsEven())
                     seed = seed / 2;
                 else                        // Odd
                     seed = (3 * seed) + 1;
@@ -182,14 +178,13 @@ namespace ByteDev.Collections.Sequences
 
             var list = new List<int>(size);
 
-            for (var i = 0; i < size; i++)
-                list.Add(value);
+            list.Fill(size, value);
 
             return list;
         }
 
         /// <summary>
-        /// Creates the Triangular sequence of numbers (1, 3, 6, 10, 15 ...).
+        /// Creates the Triangular number sequence (1, 3, 6, 10, 15 ...).
         /// </summary>
         /// <param name="size">Size of the sequence.</param>
         /// <returns>List containing the sequence of numbers.</returns>
@@ -311,7 +306,7 @@ namespace ByteDev.Collections.Sequences
         }
 
         /// <summary>
-        /// Creates the Tetrahedral number sequence.
+        /// Creates the Tetrahedral number sequence (1, 4, 10, 20, 35 ...).
         /// </summary>
         /// <param name="size">Size of the sequence.</param>
         /// <returns>List containing the sequence of numbers.</returns>

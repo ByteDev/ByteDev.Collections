@@ -137,6 +137,22 @@ namespace ByteDev.Collections.UnitTests.Sequences
                 Assert.That(result, Is.Empty);
             }
 
+            [Test]
+            public void WhenSizeIs8_ThenReturnSequence()
+            {
+                var result = Sequencer.Fibonacci(8);
+
+                Assert.That(result.Count, Is.EqualTo(8));
+                Assert.That(result.First(), Is.EqualTo(0));
+                Assert.That(result.Second(), Is.EqualTo(1));
+                Assert.That(result.Third(), Is.EqualTo(1));
+                Assert.That(result.Fourth(), Is.EqualTo(2));
+                Assert.That(result.Fifth(), Is.EqualTo(3));
+                Assert.That(result.Sixth(), Is.EqualTo(5));
+                Assert.That(result.Seventh(), Is.EqualTo(8));
+                Assert.That(result.Eighth(), Is.EqualTo(13));
+            }
+
             [TestCase(1, 0)]
             [TestCase(2, 1)]
             [TestCase(3, 1)]
