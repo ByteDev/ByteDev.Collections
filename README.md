@@ -160,8 +160,11 @@ IList<int> c = Sequencer.Collatz(10);
 // 1, 3, 6, 10, 15, 21, 28, 36
 IList<int> t = Sequencer.Triangular(size);
 
-// 0, 1, 4, 9, 16, 25, 36, 49
+// 1, 4, 9, 16, 25, 36, 49, 64
 IList<int> s = Sequencer.Square(size);
+
+// 1, 8, 27, 64, 125, 216, 343, 512
+IList<int> s = Sequencer.Cube(size);
 
 // 2, 4, 8, 16, 32, 64, 128, 256
 IList<int> p2 = Sequencer.PowerOfTwo(size);

@@ -420,7 +420,7 @@ namespace ByteDev.Collections.UnitTests.Sequences
             {
                 var result = Sequencer.Square(1);
 
-                Assert.That(result.Single(), Is.EqualTo(0));
+                Assert.That(result.Single(), Is.EqualTo(1));
             }
 
             [Test]
@@ -429,14 +429,51 @@ namespace ByteDev.Collections.UnitTests.Sequences
                 var result = Sequencer.Square(8);
 
                 Assert.That(result.Count, Is.EqualTo(8));
-                Assert.That(result.First(), Is.EqualTo(0));
-                Assert.That(result.Second(), Is.EqualTo(1));
-                Assert.That(result.Third(), Is.EqualTo(4));
-                Assert.That(result.Fourth(), Is.EqualTo(9));
-                Assert.That(result.Fifth(), Is.EqualTo(16));
-                Assert.That(result.Sixth(), Is.EqualTo(25));
-                Assert.That(result.Seventh(), Is.EqualTo(36));
-                Assert.That(result.Eighth(), Is.EqualTo(49));
+                Assert.That(result.First(), Is.EqualTo(1));
+                Assert.That(result.Second(), Is.EqualTo(4));
+                Assert.That(result.Third(), Is.EqualTo(9));
+                Assert.That(result.Fourth(), Is.EqualTo(16));
+                Assert.That(result.Fifth(), Is.EqualTo(25));
+                Assert.That(result.Sixth(), Is.EqualTo(36));
+                Assert.That(result.Seventh(), Is.EqualTo(49));
+                Assert.That(result.Eighth(), Is.EqualTo(64));
+            }
+        }
+
+        [TestFixture]
+        public class Cube : SequencerTests
+        {
+            [TestCase(-1)]
+            [TestCase(0)]
+            public void WhenSizeIsZeroOrLess_ThenReturnEmpty(int size)
+            {
+                var result = Sequencer.Cube(size);
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [Test]
+            public void WhenSizeIs1_ThenReturnSequence()
+            {
+                var result = Sequencer.Cube(1);
+
+                Assert.That(result.Single(), Is.EqualTo(1));
+            }
+
+            [Test]
+            public void WhenSizeIs8_ThenReturnSequence()
+            {
+                var result = Sequencer.Cube(8);
+
+                Assert.That(result.Count, Is.EqualTo(8));
+                Assert.That(result.First(), Is.EqualTo(1));
+                Assert.That(result.Second(), Is.EqualTo(8));
+                Assert.That(result.Third(), Is.EqualTo(27));
+                Assert.That(result.Fourth(), Is.EqualTo(64));
+                Assert.That(result.Fifth(), Is.EqualTo(125));
+                Assert.That(result.Sixth(), Is.EqualTo(216));
+                Assert.That(result.Seventh(), Is.EqualTo(343));
+                Assert.That(result.Eighth(), Is.EqualTo(512));
             }
         }
 

@@ -211,7 +211,7 @@ namespace ByteDev.Collections.Sequences
         }
 
         /// <summary>
-        /// Creates a sequence of Whole numbers squared.
+        /// Creates a sequence of the Natural numbers squared (1, 4, 9, 16, 25 ...).
         /// </summary>
         /// <param name="size">Size of the sequence.</param>
         /// <returns>List containing the sequence of numbers.</returns>
@@ -222,13 +222,26 @@ namespace ByteDev.Collections.Sequences
 
             var list = new List<int>(size);
 
-            for (var i = 0; i < size; i++)
-            {
-                if (i == 0)
-                    list.Add(i);
-                else
-                    list.Add(i * i);
-            }
+            for (var i = 1; i <= size; i++)
+                list.Add(i * i);
+
+            return list;
+        }
+
+        /// <summary>
+        /// Creates a sequence of the Natural numbers cubed (1, 8, 27, 64, 125 ...).
+        /// </summary>
+        /// <param name="size">Size of the sequence.</param>
+        /// <returns>List containing the sequence of numbers.</returns>
+        public static IList<int> Cube(int size)
+        {
+            if (size < 1)
+                return new List<int>();
+
+            var list = new List<int>(size);
+
+            for (var i = 1; i <= size; i++)
+                list.Add(i * i * i);
 
             return list;
         }

@@ -12,6 +12,7 @@ New features:
 - Added `Sequencer.Repeating` method.
 - Added `Sequencer.Triangular` method.
 - Added `Sequencer.Square` method.
+- Added `Sequencer.Cube` method.
 - Added `Sequencer.PowerOfTwo` method.
 - Added `Sequencer.Even` method.
 - Added `Sequencer.Odd` method.
