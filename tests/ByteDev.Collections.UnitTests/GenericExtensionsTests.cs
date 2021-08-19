@@ -12,7 +12,7 @@ namespace ByteDev.Collections.UnitTests
             [TestCase(null)]
             [TestCase(1)]
             [TestCase("Test")]
-            public void WhenIsCalled_ThenReturnSingleNullElement(object sut)
+            public void WhenIsCalled_ThenReturnSingleElement(object sut)
             {
                 var result = sut.AsEnumerable();
 
