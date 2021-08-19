@@ -176,10 +176,10 @@ IList<int> e1 = Sequencer.Even(size);
 IList<int> e2 = Sequencer.Even(size, 4);
 
 // 1, 3, 5, 7, 9, 11, 13, 15
-IList<int> o1 = Sequencer.Even(size);
+IList<int> o1 = Sequencer.Odd(size);
 
 // 3, 5, 7, 9, 11, 13, 15, 17
-IList<int> o2 = Sequencer.Even(size, 3);
+IList<int> o2 = Sequencer.Odd(size, 3);
 
 // 1, 4, 10, 20, 35, 56, 84, 120
 IList<int> tet = Sequencer.Tetrahedral(size, 3);
