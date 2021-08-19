@@ -9,6 +9,7 @@ New features:
 - Added `GenericExtensions.AsEnumerable` method.
 - Added `EnumerableExtensions.Concat` overload that takes params array of `TSource`.
 - Added `EnumerableExtensions.Concat` overload that takes params array of `IEnumerable<TSource>`.
+- Added `Sequencer.Repeating` method.
 
 Bug fixes / internal changes:
 - (None)

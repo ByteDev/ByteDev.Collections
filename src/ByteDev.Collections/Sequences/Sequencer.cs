@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace ByteDev.Collections.Sequences
 {
     /// <summary>
-    /// Represents a type for creating sequences.
+    /// Represents a type for creating list sequences.
     /// </summary>
     public static class Sequencer
     {
@@ -12,7 +12,7 @@ namespace ByteDev.Collections.Sequences
         /// Creates the Natural number sequence (1, 2, 3, 4...).
         /// </summary>
         /// <param name="size">Size of the sequence.</param>
-        /// <returns>Collection containing the sequence of numbers.</returns>
+        /// <returns>List containing the sequence of numbers.</returns>
         public static IList<int> Natural(int size)
         {
             return Arithmetic(size, 1, 1);
@@ -22,7 +22,7 @@ namespace ByteDev.Collections.Sequences
         /// Creates the Whole number sequence (0, 1, 2, 3...).
         /// </summary>
         /// <param name="size">Size of the sequence.</param>
-        /// <returns>Collection containing the sequence of numbers.</returns>
+        /// <returns>List containing the sequence of numbers.</returns>
         public static IList<int> Whole(int size)
         {
             return Integers(size);
@@ -33,7 +33,7 @@ namespace ByteDev.Collections.Sequences
         /// </summary>
         /// <param name="size">Size of the sequence.</param>
         /// <param name="start">The first number in the sequence.</param>
-        /// <returns>Collection containing the sequence of numbers.</returns>
+        /// <returns>List containing the sequence of numbers.</returns>
         public static IList<int> Integers(int size, int start = 0)
         {
             return Arithmetic(size, start, 1);
@@ -45,7 +45,7 @@ namespace ByteDev.Collections.Sequences
         /// <param name="size">Size of the sequence.</param>
         /// <param name="seed">Seed value to start the sequence with.</param>
         /// <param name="commonDifference">The difference between each value in the sequence.</param>
-        /// <returns>Collection containing the sequence of numbers.</returns>
+        /// <returns>List containing the sequence of numbers.</returns>
         public static IList<int> Arithmetic(int size, int seed, int commonDifference)
         {
             if (size < 1)
@@ -68,7 +68,7 @@ namespace ByteDev.Collections.Sequences
         /// <param name="size">Size of the sequence.</param>
         /// <param name="seed">Seed value to start the sequence with.</param>
         /// <param name="multiplier">The multiplier to apply each term to create the next.</param>
-        /// <returns>Collection containing the sequence of numbers.</returns>
+        /// <returns>List containing the sequence of numbers.</returns>
         public static IList<int> Geometric(int size, int seed, int multiplier)
         {
             if (size < 1)
@@ -92,7 +92,7 @@ namespace ByteDev.Collections.Sequences
         /// Creates the Fibonacci number sequence (0, 1, 1, 2, 3, 5...).
         /// </summary>
         /// <param name="size">Size of the sequence.</param>
-        /// <returns>Collection containing the sequence of numbers.</returns>
+        /// <returns>List containing the sequence of numbers.</returns>
         public static IList<int> Fibonacci(int size)
         {
             if (size < 1)
@@ -120,7 +120,7 @@ namespace ByteDev.Collections.Sequences
         /// </summary>
         /// <param name="size">Size of the sequence.</param>
         /// <param name="seed">Seed value to start the sequence with.</param>
-        /// <returns>Collection containing the sequence of numbers.</returns>
+        /// <returns>List containing the sequence of numbers.</returns>
         public static IList<int> Primes(int size, int seed = 0)
         {
             if (size < 1)
@@ -164,6 +164,27 @@ namespace ByteDev.Collections.Sequences
                     seed = (3 * seed) + 1;
 
                 list.Add(seed);
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        /// Creates a sequence of repeating values.
+        /// </summary>
+        /// <param name="size">Size of the sequence.</param>
+        /// <param name="value">Value of each element.</param>
+        /// <returns>List containing the sequence of numbers.</returns>
+        public static IList<int> Repeating(int size, int value)
+        {
+            if (size < 1)
+                return new List<int>();
+
+            var list = new List<int>(size);
+
+            for (var i = 0; i < size; i++)
+            {
+                list.Add(value);
             }
 
             return list;

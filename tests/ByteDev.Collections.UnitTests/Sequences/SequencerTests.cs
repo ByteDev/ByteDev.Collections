@@ -335,6 +335,37 @@ namespace ByteDev.Collections.UnitTests.Sequences
             }
         }
 
+        [TestFixture]
+        public class Repeating : SequencerTests
+        {
+            [TestCase(-1)]
+            [TestCase(0)]
+            public void WhenSizeIsZeroOrLess_ThenReturnEmpty(int size)
+            {
+                var result = Sequencer.Repeating(size, 1);
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [Test]
+            public void WhenSizeIsOne_ThenReturnSequence()
+            {
+                var result = Sequencer.Repeating(1, 1);
+
+                Assert.That(result.Single(), Is.EqualTo(1));
+            }
+
+            [Test]
+            public void WhenSizeIsTwo_ThenReturnSequence()
+            {
+                var result = Sequencer.Repeating(2, 1);
+
+                Assert.That(result.Count, Is.EqualTo(2));
+                Assert.That(result.First(), Is.EqualTo(1));
+                Assert.That(result.Second(), Is.EqualTo(1));
+            }
+        }
+
         private static void PrintSequence(IEnumerable<int> result)
         {
             foreach (var i in result)
