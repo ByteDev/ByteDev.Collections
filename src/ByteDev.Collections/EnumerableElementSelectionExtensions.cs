@@ -15,7 +15,7 @@ namespace ByteDev.Collections
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The <see cref="T:System.Collections.Generic.IEnumerable`1" /> to return the elements from.</param>
         /// <param name="count">Number of elements to return from the sequence.</param>
-        /// <returns>The second element in the specified sequence.</returns>
+        /// <returns>The last elements in the sequence.</returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
         public static IEnumerable<TSource> Last<TSource>(this IEnumerable<TSource> source, int count)
         {
