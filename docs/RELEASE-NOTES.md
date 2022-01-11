@@ -7,6 +7,8 @@ Breaking changes:
 
 New features:
 - Added `GenericExtensions.AsList` method.
+- Added `ArrayExtensions.SafeLength` method.
+- Added `ArrayTwoDimensionExtensions.SafeLength` method.
 
 Bug fixes / internal changes:
 - (None)

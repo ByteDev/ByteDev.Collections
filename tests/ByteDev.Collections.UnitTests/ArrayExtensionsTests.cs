@@ -8,7 +8,7 @@ namespace ByteDev.Collections.UnitTests
     public class ArrayExtensionsTests
     {
         [TestFixture]
-        public class Populate : ArrayExtensionsTests
+        public class Populate
         {
             private const string SingleValue = "New Value";
 
@@ -76,6 +76,31 @@ namespace ByteDev.Collections.UnitTests
                 Assert.That(sut.First(), Is.EqualTo("A"));
                 Assert.That(sut.Second(), Is.EqualTo("B"));
                 Assert.That(sut.Third(), Is.EqualTo("C"));
+            }
+        }
+
+        [TestFixture]
+        public class SafeLength
+        {
+            [Test]
+            public void WhenIsNull_ThenReturnZero()
+            {
+                string[] sut = null;
+
+                var result = sut.SafeLength();
+
+                Assert.That(result, Is.EqualTo(0));
+            }
+
+            [TestCase(0)]
+            [TestCase(1)]
+            public void WhenIsNotNull_ThenReturnLength(int length)
+            {
+                string[] sut = new string[length];
+
+                var result = sut.SafeLength();
+
+                Assert.That(result, Is.EqualTo(length));
             }
         }
     }

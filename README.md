@@ -31,12 +31,14 @@ To use any extension methods simply reference the `ByteDev.Collections` namespac
 
 - Array []:
   - Populate
+  - SafeLength
 - Array [,]:
   - GetColumn
   - GetColumnCount
   - GetRow
   - GetRowCount
   - Populate
+  - SafeLength
   - ToSingleDimension
 - IDictionary<TKey, TValue>:
   - AddOrUpdate

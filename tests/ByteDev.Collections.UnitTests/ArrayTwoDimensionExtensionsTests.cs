@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 
 namespace ByteDev.Collections.UnitTests
 {
@@ -9,7 +8,7 @@ namespace ByteDev.Collections.UnitTests
     public class ArrayTwoDimensionExtensionsTests
     {
         [TestFixture]
-        public class Populate : ArrayTwoDimensionExtensionsTests
+        public class Populate
         {
             private const string Value = "New Value";
 
@@ -69,7 +68,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class GetRow : ArrayTwoDimensionExtensionsTests
+        public class GetRow
         {
             private string[,] _sut;
 
@@ -127,7 +126,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class GetColumn : ArrayTwoDimensionExtensionsTests
+        public class GetColumn
         {
             private string[,] _sut;
 
@@ -183,7 +182,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class GetRowCount : ArrayTwoDimensionExtensionsTests
+        public class GetRowCount
         {
             [Test]
             public void WhenIsNull_ThenThrowException()
@@ -213,7 +212,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class GetColumnCount : ArrayTwoDimensionExtensionsTests
+        public class GetColumnCount
         {
             [Test]
             public void WhenIsNull_ThenThrowException()
@@ -243,7 +242,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class ToSingleDimension : ArrayTwoDimensionExtensionsTests
+        public class ToSingleDimension
         {
             [Test]
             public void WhenIsNull_ThenThrowException()
@@ -285,6 +284,32 @@ namespace ByteDev.Collections.UnitTests
                 Assert.That(result.Fourth(), Is.EqualTo("R1-C0"));
                 Assert.That(result.Fifth(), Is.EqualTo("R1-C1"));
                 Assert.That(result.Sixth(), Is.EqualTo("R1-C2"));
+            }
+        }
+
+        [TestFixture]
+        public class SafeLength
+        {
+            [Test]
+            public void WhenIsNull_ThenReturnZero()
+            {
+                string[,] sut = null;
+
+                var result = sut.SafeLength();
+
+                Assert.That(result, Is.EqualTo(0));
+            }
+
+            [TestCase(0, 0)]
+            [TestCase(1, 1)]
+            [TestCase(2, 4)]
+            public void WhenIsNotNull_ThenReturnLength(int length, int expected)
+            {
+                string[,] sut = new string[length, length];
+
+                var result = sut.SafeLength();
+
+                Assert.That(result, Is.EqualTo(expected));
             }
         }
     }

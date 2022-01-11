@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace ByteDev.Collections
@@ -122,6 +121,17 @@ namespace ByteDev.Collections
             }
 
             return array;
+        }
+
+        /// <summary>
+        /// Gets the total number of elements in the array. If the array is null then zero is returned.
+        /// </summary>
+        /// <typeparam name="TSource">Array element type.</typeparam>
+        /// <param name="source">The array to perform the operation on.</param>
+        /// <returns>Zero if the array is null; otherwise the array length.</returns>
+        public static int SafeLength<TSource>(this TSource[,] source)
+        {
+            return source?.Length ?? 0;
         }
     }
 }
