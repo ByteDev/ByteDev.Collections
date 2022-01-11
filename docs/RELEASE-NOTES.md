@@ -1,5 +1,16 @@
 # Release Notes
 
+## 3.4.0 - ?
+
+Breaking changes:
+- (None)
+
+New features:
+- Added `GenericExtensions.AsList` method.
+
+Bug fixes / internal changes:
+- (None)
+
 ## 3.3.0 - 19 August 2021
 
 Breaking changes:

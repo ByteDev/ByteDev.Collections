@@ -13,10 +13,21 @@ namespace ByteDev.Collections
         /// </summary>
         /// <typeparam name="TSource">The type of the source to perform the operation on.</typeparam>
         /// <param name="source">The value to return in a single element sequence.</param>
-        /// <returns>Value as in single element sequence.</returns>
+        /// <returns>Sequence with the value as the only element.</returns>
         public static IEnumerable<TSource> AsEnumerable<TSource>(this TSource source)
         {
             return Enumerable.Repeat(source, 1);
+        }
+
+        /// <summary>
+        /// Returns a value as a single element list.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the source to perform the operation on.</typeparam>
+        /// <param name="source">The value to return in a single element list.</param>
+        /// <returns>List with the value as the only element.</returns>
+        public static IList<TSource> AsList<TSource>(this TSource source)
+        {
+            return new List<TSource> { source };
         }
     }
 }
