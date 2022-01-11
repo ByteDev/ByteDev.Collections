@@ -7,6 +7,7 @@ Breaking changes:
 
 New features:
 - Added `GenericExtensions.AsList` method.
+- Added `GenericExtensions.AsEnumerable` method overload for `params`.
 - Added `ArrayExtensions.SafeLength` method.
 - Added `ArrayTwoDimensionExtensions.SafeLength` method.
 - Added `CollectionExtensions.AddIfNotContains` method.
