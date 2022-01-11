@@ -69,6 +69,27 @@ namespace ByteDev.Collections
         }
 
         /// <summary>
+        /// Add an item to the collection if the collection does not already contain it.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+        /// <param name="source">The collection to perform the operation on.</param>
+        /// <param name="item">Item to add to the collection.</param>
+        /// <returns>True the item was added; otherwise false.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        public static bool AddIfNotContains<TSource>(this ICollection<TSource> source, TSource item)
+        {
+            if(source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            if (source.Contains(item))
+                return false;
+
+            source.Add(item);
+
+            return true;
+        }
+
+        /// <summary>
         /// Removes all elements where the predicate is true.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>

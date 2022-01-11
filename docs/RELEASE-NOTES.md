@@ -9,6 +9,7 @@ New features:
 - Added `GenericExtensions.AsList` method.
 - Added `ArrayExtensions.SafeLength` method.
 - Added `ArrayTwoDimensionExtensions.SafeLength` method.
+- Added `CollectionExtensions.AddIfNotContains` method.
 
 Bug fixes / internal changes:
 - (None)

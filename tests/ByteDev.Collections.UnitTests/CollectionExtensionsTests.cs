@@ -9,7 +9,7 @@ namespace ByteDev.Collections.UnitTests
     public class CollectionExtensionsTests
     {
         [TestFixture]
-        public class Fill : ListExtensionsTests
+        public class Fill
         {
             [Test]
             public void WhenIsNull_ThenThrowException()
@@ -39,7 +39,7 @@ namespace ByteDev.Collections.UnitTests
             public void WhenNumberToFillIsTwo_ThenFillTwoElements()
             {
                 ICollection<string> sut = new List<string>();
-
+                
                 sut.Fill(2, "Hello");
                 
                 Assert.That(sut.Count, Is.EqualTo(2));
@@ -49,7 +49,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class IsIndexValid : ListExtensionsTests
+        public class IsIndexValid
         {
             [Test]
             public void WhenSourceIsNull_ThenThrowException()
@@ -82,7 +82,7 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class AddRange : CollectionExtensionsTests
+        public class AddRange
         {
             private readonly IEnumerable<int> CollectionToAdd = new []{ 4, 5 };
 
@@ -125,6 +125,47 @@ namespace ByteDev.Collections.UnitTests
                 Assert.That(sut.Third(), Is.EqualTo(3));
                 Assert.That(sut.Fourth(), Is.EqualTo(4));
                 Assert.That(sut.Fifth(), Is.EqualTo(5));
+            }
+        }
+
+        [TestFixture]
+        public class AddIfNotContains
+        {
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => CollectionExtensions.AddIfNotContains(null, 1));
+            }
+
+            [TestCase(null)]
+            [TestCase("1")]
+            [TestCase("2")]
+            public void WhenContains_ThenDoNotAdd(string item)
+            {
+                ICollection<string> sut = new List<string> { null, "1", "2" };
+
+                var result = sut.AddIfNotContains(item);
+
+                Assert.That(result, Is.False);
+                Assert.That(sut.Count, Is.EqualTo(3));
+                Assert.That(sut.First(), Is.EqualTo(null));
+                Assert.That(sut.Second(), Is.EqualTo("1"));
+                Assert.That(sut.Third(), Is.EqualTo("2"));
+            }
+
+            [TestCase(null)]
+            [TestCase("3")]
+            public void WhenDoesNotContain_ThenAdd(string item)
+            {
+                ICollection<string> sut = new List<string> { "1", "2" };
+
+                var result = sut.AddIfNotContains(item);
+
+                Assert.That(result, Is.True);
+                Assert.That(sut.Count, Is.EqualTo(3));
+                Assert.That(sut.First(), Is.EqualTo("1"));
+                Assert.That(sut.Second(), Is.EqualTo("2"));
+                Assert.That(sut.Third(), Is.EqualTo(item));
             }
         }
 

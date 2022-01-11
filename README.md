@@ -91,6 +91,7 @@ To use any extension methods simply reference the `ByteDev.Collections` namespac
   - GetLongest
   - GetShortest 
 - ICollection<T>:
+  - AddIfNotContains
   - AddRange
   - Fill
   - IsIndexValid
