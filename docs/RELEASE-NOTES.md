@@ -1,6 +1,6 @@
 # Release Notes
 
-## 3.4.0 - ?
+## 3.4.0 - 12 January 2022
 
 Breaking changes:
 - (None)
