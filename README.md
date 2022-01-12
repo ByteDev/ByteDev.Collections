@@ -1,6 +1,5 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/github/bytedev/ByteDev.Collections?branch=master&svg=true)](https://ci.appveyor.com/project/bytedev/ByteDev-Collections/branch/master)
 [![NuGet Package](https://img.shields.io/nuget/v/ByteDev.Collections.svg)](https://www.nuget.org/packages/ByteDev.Collections)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/030a2d92bb2d4099962084f90dacfed0)](https://www.codacy.com/manual/ByteDev/ByteDev.Collections?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ByteDev/ByteDev.Collections&amp;utm_campaign=Badge_Grade)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/ByteDev/ByteDev.Collections/blob/master/LICENSE)
 
 # ByteDev.Collections
