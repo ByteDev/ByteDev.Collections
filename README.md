@@ -98,12 +98,12 @@ To use any extension methods simply reference the `ByteDev.Collections` namespac
   - RemoveWhere
   - TakeRandom
 - IList<T>:
-  - GetNext
   - NullToEmpty
   - MoveToFirst
   - MoveToLast
   - ReplaceAt
   - ReplaceAll
+  - SafeGet
   - Shuffle
   - Swap
 - NameValueCollection: 

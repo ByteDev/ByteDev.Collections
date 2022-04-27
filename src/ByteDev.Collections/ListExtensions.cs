@@ -96,28 +96,21 @@ namespace ByteDev.Collections
         }
 
         /// <summary>
-        /// Get the next item at the index position after <paramref name="currentIndex" />.
-        /// If there is no next item then default will be returned.
+        /// Gets the object at the provided index. If the index is invalid (out of range)
+        /// then <paramref name="defaultValue" /> will be returned.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The list to perform the operation on.</param>
-        /// <param name="currentIndex">The current index position in the list.</param>
-        /// <returns>Next item after the current index.</returns>
+        /// <param name="index">Index of the object to return.</param>
+        /// <param name="defaultValue">Default value to return if the index is out of range.</param>
+        /// <returns>Object at the provided index position.</returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
-        public static TSource GetNext<TSource>(this IList<TSource> source, int currentIndex)
+        public static TSource SafeGet<TSource>(this IList<TSource> source, int index, TSource defaultValue = default)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
 
-            if (currentIndex < 0)
-                return default;
-
-            var nextIndex = currentIndex + 1;
-
-            if (!source.IsIndexValid(nextIndex))
-                return default;
-
-            return source[nextIndex];
+            return source.IsIndexValid(index) ? source[index] : defaultValue;
         }
     }
 }

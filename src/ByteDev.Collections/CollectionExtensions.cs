@@ -10,7 +10,7 @@ namespace ByteDev.Collections
     public static class CollectionExtensions
     {
         /// <summary>
-        /// Fills an empty list's given number of elements with a value.
+        /// Fills an empty collection's given number of elements with a value.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The collection to perform the operation on.</param>
@@ -31,7 +31,7 @@ namespace ByteDev.Collections
         }
 
         /// <summary>
-        /// Determines if a index is valid (in range) for the list.
+        /// Determines if a index is valid (in range) for the collection.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The collection to perform the operation on.</param>

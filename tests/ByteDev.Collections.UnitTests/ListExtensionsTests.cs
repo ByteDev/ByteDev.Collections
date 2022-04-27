@@ -267,33 +267,44 @@ namespace ByteDev.Collections.UnitTests
         }
 
         [TestFixture]
-        public class GetNext : ListExtensionsTests
+        public class SafeGet
         {
+            private const int DefaultValue = 10;
+
             [Test]
-            public void WhenSourceIsNull_ThenThrowException()
+            public void WhenIsNull_ThenThrowException()
             {
-                Assert.Throws<ArgumentNullException>(() => ListExtensions.GetNext(null as IList<string>, 0));
+                Assert.Throws<ArgumentNullException>(() => ListExtensions.SafeGet<int>(null, 0));
+            }
+
+            [Test]
+            public void WhenListIsEmpty_ThenReturnDefault()
+            {
+                var sut = new List<int>();
+
+                var result = sut.SafeGet(0, DefaultValue);
+
+                Assert.That(result, Is.EqualTo(DefaultValue));
             }
 
             [TestCase(-1)]
-            [TestCase(0)]
-            [TestCase(1)]
-            public void WhenNoNextItem_ThenReturnDefault(int index)
+            [TestCase(3)]
+            public void WhenIndexOutOfRange_ThenReturnDefault(int index)
             {
-                var sut = new List<string> { "1" };
+                var sut = new List<int> { 1, 2 };
+                
+                var result = sut.SafeGet(index, DefaultValue);
 
-                var result = sut.GetNext(index);
-
-                Assert.That(result, Is.Null);
+                Assert.That(result, Is.EqualTo(DefaultValue));
             }
 
-            [TestCase(0, "2")]
-            [TestCase(1, "3")]
-            public void WhenHasNextItem_ThenReturnItem(int index, string expected)
+            [TestCase(0, 1)]
+            [TestCase(1, 2)]
+            public void WhenIndexInRange_ThenReturnObject(int index, int expected)
             {
-                var sut = new List<string> { "1", "2", "3" };
-
-                var result = sut.GetNext(index);
+                var sut = new List<int> { 1, 2 };
+                
+                var result = sut.SafeGet(index, DefaultValue);
 
                 Assert.That(result, Is.EqualTo(expected));
             }

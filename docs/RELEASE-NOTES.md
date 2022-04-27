@@ -1,5 +1,16 @@
 # Release Notes
 
+## 4.0.0 - ?
+
+Breaking changes:
+- Removed `ListExtensions.GetNext` method.
+
+New features:
+- Added `ListExtensions.SafeGet` method.
+
+Bug fixes / internal changes:
+- (None)
+
 ## 3.4.0 - 12 January 2022
 
 Breaking changes:
