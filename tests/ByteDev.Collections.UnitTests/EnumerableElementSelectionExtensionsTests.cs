@@ -127,7 +127,7 @@ namespace ByteDev.Collections.UnitTests
             {
                 _sut.Add("John");
 
-                var result =_sut.SecondOrDefault();
+                var result = _sut.SecondOrDefault();
 
                 Assert.That(result, Is.Null);
             }

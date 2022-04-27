@@ -39,7 +39,7 @@ namespace ByteDev.Collections.UnitTests
                 var counter = 0;
                 int[] sut = null;
 
-                Assert.Throws<ArgumentNullException>(() => sut.ForEach(i => counter += + i));
+                Assert.Throws<ArgumentNullException>(() => sut.ForEach(i => counter += i));
             }
 
             [Test]
@@ -56,7 +56,7 @@ namespace ByteDev.Collections.UnitTests
                 var counter = 0;
                 var sut = new int[0];
 
-                sut.ForEach(i => counter += + i);
+                sut.ForEach(i => counter += i);
 
                 Assert.That(counter, Is.EqualTo(0));
             }
@@ -152,7 +152,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenIsMultipleUniqueElements_ThenReturnTrue()
             {
-                IEnumerable<int> sut = new[] {1,2,3};
+                IEnumerable<int> sut = new[] { 1, 2, 3 };
 
                 var result = sut.AllUnique();
 
@@ -162,7 +162,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasDuplicates_ThenReturnFalse()
             {
-                IEnumerable<int> sut = new[] {1,2,3,2};
+                IEnumerable<int> sut = new[] { 1, 2, 3, 2 };
 
                 var result = sut.AllUnique();
 
@@ -249,7 +249,7 @@ namespace ByteDev.Collections.UnitTests
             {
                 var sut = 1.AsEnumerable();
 
-                var result = sut.Concat(2.AsEnumerable(), new []{ 3, 4 });
+                var result = sut.Concat(2.AsEnumerable(), new[] { 3, 4 });
 
                 Assert.That(result.Count(), Is.EqualTo(4));
                 Assert.That(result.First(), Is.EqualTo(1));

@@ -84,7 +84,7 @@ namespace ByteDev.Collections.UnitTests
         [TestFixture]
         public class AddRange
         {
-            private readonly IEnumerable<int> CollectionToAdd = new []{ 4, 5 };
+            private readonly IEnumerable<int> CollectionToAdd = new[] { 4, 5 };
 
             [Test]
             public void WhenSourceIsNull_ThenThrowException()

@@ -39,7 +39,7 @@ namespace ByteDev.Collections
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
         public static TSource[] GetColumn<TSource>(this TSource[,] source, int columnNumber)
         {
-            if(source == null)
+            if (source == null)
                 throw new ArgumentNullException(nameof(source));
 
             return Enumerable.Range(0, source.GetRowCount())
@@ -57,7 +57,7 @@ namespace ByteDev.Collections
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
         public static TSource[] GetRow<TSource>(this TSource[,] source, int rowNumber)
         {
-            if(source == null)
+            if (source == null)
                 throw new ArgumentNullException(nameof(source));
 
             return Enumerable.Range(0, source.GetColumnCount())
@@ -74,7 +74,7 @@ namespace ByteDev.Collections
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
         public static int GetColumnCount<TSource>(this TSource[,] source)
         {
-            if(source == null)
+            if (source == null)
                 throw new ArgumentNullException(nameof(source));
 
             return source.GetLength(0);

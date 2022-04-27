@@ -156,7 +156,7 @@ namespace ByteDev.Collections.Sequences
             {
                 if (seed.IsEven())
                     seed = seed / 2;
-                else                        // Odd
+                else // Odd
                     seed = (3 * seed) + 1;
 
                 list.Add(seed);

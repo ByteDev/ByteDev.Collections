@@ -42,7 +42,7 @@ namespace ByteDev.Collections
         /// <exception cref="T:System.ArgumentNullException"><paramref name="key">key</paramref> is null.</exception>
         public static void AddOrUpdate<TKey, TValue>(this IDictionary<TKey, TValue> source, TKey key, TValue value)
         {
-            if(source == null)
+            if (source == null)
                 throw new ArgumentNullException(nameof(source));
             
             if (source.ContainsKey(key))
@@ -169,7 +169,7 @@ namespace ByteDev.Collections
         /// <exception cref="T:System.ArgumentException"><paramref name="key" /> is null or empty.</exception>
         public static IList<TValue> GetValuesIgnoreKeyCase<TValue>(this IDictionary<string, TValue> source, string key)
         {
-            if(source == null)
+            if (source == null)
                 throw new ArgumentNullException(nameof(source));
 
             if (string.IsNullOrEmpty(key))

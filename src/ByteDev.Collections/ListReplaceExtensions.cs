@@ -19,7 +19,7 @@ namespace ByteDev.Collections
         /// <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index" /> is greater than number of elements in the sequence.</exception>
         public static void ReplaceAt<TSource>(this IList<TSource> source, int index, TSource newValue)
         {
-            if(source == null)
+            if (source == null)
                 throw new ArgumentNullException(nameof(source));
 
             if (index > source.Count)
@@ -42,7 +42,7 @@ namespace ByteDev.Collections
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
         public static void ReplaceAll<TSource>(this IList<TSource> source, TSource originalValue, TSource newValue)
         {
-            if(source == null)
+            if (source == null)
                 throw new ArgumentNullException(nameof(source));
 
             for (var i = 0; i < source.Count; i++)
@@ -65,10 +65,10 @@ namespace ByteDev.Collections
         /// <exception cref="T:System.ArgumentNullException"><paramref name="predicate" /> is null.</exception>
         public static void ReplaceAll<TSource>(this IList<TSource> source, Predicate<TSource> predicate, TSource newValue)
         {
-            if(source == null)
+            if (source == null)
                 throw new ArgumentNullException(nameof(source));
 
-            if(predicate == null)
+            if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
 
             for (var i = 0; i < source.Count; i++)

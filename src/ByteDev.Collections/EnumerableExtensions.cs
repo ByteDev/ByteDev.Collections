@@ -30,7 +30,7 @@ namespace ByteDev.Collections
         /// <exception cref="T:System.ArgumentNullException"><paramref name="action" /> is null.</exception>
         public static void ForEach<TSource>(this IEnumerable<TSource> source, Action<TSource> action)
         {
-            if(source == null)
+            if (source == null)
                 throw new ArgumentNullException(nameof(source));
 
             if (action == null)

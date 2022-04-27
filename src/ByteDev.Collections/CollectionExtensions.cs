@@ -78,7 +78,7 @@ namespace ByteDev.Collections
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
         public static bool AddIfNotContains<TSource>(this ICollection<TSource> source, TSource item)
         {
-            if(source == null)
+            if (source == null)
                 throw new ArgumentNullException(nameof(source));
 
             if (source.Contains(item))
@@ -99,10 +99,10 @@ namespace ByteDev.Collections
         /// <exception cref="T:System.ArgumentNullException"><paramref name="predicate" /> is null.</exception>
         public static void RemoveWhere<TSource>(this ICollection<TSource> source, Func<TSource, bool> predicate)
         {
-            if(source == null)
+            if (source == null)
                 throw new ArgumentNullException(nameof(source));
 
-            if(predicate == null)
+            if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
 
             source.Where(predicate)

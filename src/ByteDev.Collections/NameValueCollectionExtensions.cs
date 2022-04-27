@@ -19,7 +19,7 @@ namespace ByteDev.Collections
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
         public static void AddOrUpdate(this NameValueCollection source, string key, string value)
         {
-            if(source == null)
+            if (source == null)
                 throw new ArgumentNullException(nameof(source));
 
             if (source.ContainsKey(key))

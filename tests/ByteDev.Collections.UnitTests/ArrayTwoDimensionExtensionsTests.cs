@@ -75,7 +75,7 @@ namespace ByteDev.Collections.UnitTests
             [SetUp]
             public void SetUp()
             {
-                _sut = new string[4,2];
+                _sut = new string[4, 2];
             }
 
             [Test]

@@ -279,7 +279,7 @@ namespace ByteDev.Collections
                 return default;
             }
 
-            if(throwException)
+            if (throwException)
                 throw new InvalidOperationException(GetErrorMessageNoElementFor(index));
 
             return default;
