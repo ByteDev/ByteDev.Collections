@@ -1,12 +1,13 @@
 # Release Notes
 
-## 4.0.0 - ?
+## 4.0.0 - 14 June 2022
 
 Breaking changes:
 - Removed `ListExtensions.GetNext` method.
 
 New features:
 - Added `ListExtensions.SafeGet` method.
+- Added `EnumerableToExtensions.ToWrappedString` method.
 
 Bug fixes / internal changes:
 - (None)

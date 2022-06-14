@@ -84,8 +84,9 @@ To use any extension methods simply reference the `ByteDev.Collections` namespac
   - IsNullOrEmpty
   - IsSingle
   - IsEquivalentTo
+  - ToCsv  
   - ToDelimitedString
-  - ToCsv
+  - ToWrappedString
 - IEnumerable<string>:
   - GetLongest
   - GetShortest 

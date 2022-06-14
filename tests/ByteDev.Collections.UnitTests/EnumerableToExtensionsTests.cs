@@ -11,6 +11,9 @@ namespace ByteDev.Collections.UnitTests
         {
             private const string Delimiter = " ";
 
+            private const string Term1 = "John";
+            private const string Term2 = "Peter";
+
             private List<string> _sut;
 
             [SetUp]
@@ -35,48 +38,104 @@ namespace ByteDev.Collections.UnitTests
                 Assert.That(result, Is.EqualTo(string.Empty));
             }
 
+            [TestCase(null)]
+            [TestCase("")]
+            public void WhenDelimiterIsNullOrEmpty_ThenReturnWithoutDelimiter(string delimiter)
+            {
+                _sut.Add(Term1);
+                _sut.Add(Term2);
+
+                var result = _sut.ToDelimitedString(delimiter);
+
+                Assert.That(result, Is.EqualTo(Term1 + Term2));
+            }
+
             [Test]
             public void WhenOneElement_ThenReturnTheElement()
             {
-                const string expected = "John";
-
-                _sut.Add(expected);
+                _sut.Add(Term1);
 
                 var result = _sut.ToDelimitedString(Delimiter);
 
-                Assert.That(result, Is.EqualTo(expected));
+                Assert.That(result, Is.EqualTo(Term1));
             }
 
             [Test]
-            public void WhenTwoElements_ThenReturnElementsSeparatedWithSpace()
+            public void WhenTwoElements_ThenReturnElementsDelimited()
             {
-                const string term1 = "John";
-                const string term2 = "Peter";
-
-                var expected = $"{term1}{Delimiter}{term2}";
-
-                _sut.Add(term1);
-                _sut.Add(term2);
+                _sut.Add(Term1);
+                _sut.Add(Term2);
 
                 var result = _sut.ToDelimitedString(Delimiter);
 
-                Assert.That(result, Is.EqualTo(expected));
+                Assert.That(result, Is.EqualTo($"{Term1}{Delimiter}{Term2}"));
+            }
+        }
+
+        [TestFixture]
+        public class ToWrappedString
+        {
+            private const string Left = "{{";
+            private const string Right = "}}";
+
+            private const string Term1 = "John";
+            private const string Term2 = "Peter";
+
+            private List<string> _sut;
+
+            [SetUp]
+            public void SetUp()
+            {
+                _sut = new List<string>();
             }
 
             [Test]
-            public void WhenTwoElements_AndNullDelimiter_ThenReturnElementsNotSeparated()
+            public void WhenIsNull_ThenReturnEmpty()
             {
-                const string term1 = "John";
-                const string term2 = "Peter";
+                var result = (null as List<string>).ToWrappedString(Left, Right);
 
-                const string expected = term1 + term2;
+                Assert.That(result, Is.Empty);
+            }
 
-                _sut.Add(term1);
-                _sut.Add(term2);
+            [Test]
+            public void WhenIsEmpty_ThenReturnEmpty()
+            {
+                var result = _sut.ToWrappedString(Left, Right);
 
-                var result = _sut.ToDelimitedString(null);
+                Assert.That(result, Is.EqualTo(string.Empty));
+            }
 
-                Assert.That(result, Is.EqualTo(expected));
+            [TestCase(null)]
+            [TestCase("")]
+            public void WhenLeftRightIsNullOrEmpty_ThenReturnWithoutWrap(string leftRight)
+            {
+                _sut.Add(Term1);
+                _sut.Add(Term2);
+
+                var result = _sut.ToWrappedString(leftRight, leftRight);
+
+                Assert.That(result, Is.EqualTo(Term1 + Term2));
+            }
+
+            [Test]
+            public void WhenOneElement_ThenReturnElementWrapped()
+            {
+                _sut.Add(Term1);
+
+                var result = _sut.ToWrappedString(Left, Right);
+
+                Assert.That(result, Is.EqualTo($"{Left}{Term1}{Right}"));
+            }
+
+            [Test]
+            public void WhenTwoElements_ThenReturnElementsWrapped()
+            {
+                _sut.Add(Term1);
+                _sut.Add(Term2);
+
+                var result = _sut.ToWrappedString(Left, Right);
+
+                Assert.That(result, Is.EqualTo($"{Left}{Term1}{Right}{Left}{Term2}{Right}"));
             }
         }
 
