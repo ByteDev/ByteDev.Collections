@@ -278,7 +278,7 @@ namespace ByteDev.Collections.UnitTests
             }
 
             [Test]
-            public void WhenListIsEmpty_ThenReturnDefault()
+            public void WhenIsEmpty_ThenReturnDefault()
             {
                 var sut = new List<int>();
 
@@ -288,7 +288,7 @@ namespace ByteDev.Collections.UnitTests
             }
 
             [TestCase(-1)]
-            [TestCase(3)]
+            [TestCase(2)]
             public void WhenIndexOutOfRange_ThenReturnDefault(int index)
             {
                 var sut = new List<int> { 1, 2 };
@@ -304,7 +304,7 @@ namespace ByteDev.Collections.UnitTests
             {
                 var sut = new List<int> { 1, 2 };
                 
-                var result = sut.SafeGet(index, DefaultValue);
+                var result = sut.SafeGet(index);
 
                 Assert.That(result, Is.EqualTo(expected));
             }
