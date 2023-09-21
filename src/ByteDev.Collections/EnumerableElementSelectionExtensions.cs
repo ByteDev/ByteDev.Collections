@@ -260,29 +260,27 @@ namespace ByteDev.Collections
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
-            byte count = 0;
 
-            foreach (var element in source)
+            using (var enumerator = source.GetEnumerator())
             {
-                if (count == index)
-                    return element;
+                if (enumerator.MoveNext() == false)
+                {
+                    if (throwException)
+                        throw new InvalidOperationException("Sequence contains no elements.");
+
+                    return default;
+                }
+
+                if (enumerator.MoveNext(index) == false)
+                {
+                    if (throwException)
+                        throw new InvalidOperationException(GetErrorMessageNoElementFor(index));
+
+                    return default;
+                }
                 
-                count++;
+                return enumerator.Current;
             }
-
-            if (count == 0)
-            {
-                if (throwException)
-                    throw new InvalidOperationException("Sequence contains no elements.");
-
-                return default;
-            }
-
-            if (throwException)
-                throw new InvalidOperationException(GetErrorMessageNoElementFor(index));
-
-            return default;
         }
 
         private static string GetErrorMessageNoElementFor(int index)
