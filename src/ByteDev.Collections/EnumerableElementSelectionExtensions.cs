@@ -24,9 +24,6 @@ namespace ByteDev.Collections
             
             if (count < 1)
                 return Enumerable.Empty<TSource>();
-            
-            if (count == 1)
-                return new[] { source.Last() };
 
             return source.Skip(source.Count() - count);
         }

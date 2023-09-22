@@ -115,6 +115,8 @@ To use any extension methods simply reference the `ByteDev.Collections` namespac
 - GenericExtensions
   - AsEnumerable
   - AsList
+  EnumeratorExtensions
+  - MoveNext(count)
 
 ---
 

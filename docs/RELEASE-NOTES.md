@@ -1,5 +1,16 @@
 # Release Notes
 
+## 4.1.0 - ?
+
+Breaking changes:
+- (None)
+
+New features:
+- Added `EnumeratorExtensions.MoveNext(count)` method.
+
+Bug fixes / internal changes:
+- (None)
+
 ## 4.0.0 - 14 June 2022
 
 Breaking changes:

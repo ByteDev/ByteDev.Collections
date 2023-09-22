@@ -25,6 +25,14 @@ namespace ByteDev.Collections.UnitTests
                 Assert.Throws<ArgumentNullException>(() => (null as IEnumerable<object>).Last(1));
             }
 
+            [Test]
+            public void WhenIsEmpty_ThenReturnEmpty()
+            {
+                var result = Enumerable.Empty<object>().Last(1);
+
+                Assert.That(result, Is.Empty);
+            }
+
             [TestCase(-1)]
             [TestCase(0)]
             public void WhenCountIsLessThanOne_ThenReturnEmpty(int count)
@@ -35,7 +43,17 @@ namespace ByteDev.Collections.UnitTests
             }
 
             [Test]
-            public void WhenCountIsOne_ThenReturnLastElement()
+            public void WhenCountIsOne_AndSizeIsOne_ThenReturnElement()
+            {
+                _sut.Add("item1");
+
+                var result = _sut.Last(1);
+
+                Assert.That(result.Single(), Is.EqualTo("item1"));
+            }
+
+            [Test]
+            public void WhenCountIsOne_AndSizeIsTwo_ThenReturnLastElement()
             {
                 _sut.Add("item1");
                 _sut.Add("item2");
@@ -58,17 +76,18 @@ namespace ByteDev.Collections.UnitTests
                 Assert.That(result.Second(), Is.EqualTo("item2"));
             }
 
-            [TestCase(1)]
             [TestCase(2)]
             [TestCase(3)]
-            [TestCase(4)]
             public void WhenCountIsGreaterThanOrEqualSize_ThenReturnAllElements(int count)
             {
                 _sut.Add("item1");
+                _sut.Add("item2");
 
                 var result = _sut.Last(count);
 
-                Assert.That(result.Single(), Is.EqualTo("item1"));
+                Assert.That(result.Count(), Is.EqualTo(2));
+                Assert.That(result.First(), Is.EqualTo("item1"));
+                Assert.That(result.Second(), Is.EqualTo("item2"));
             }
         }
 
@@ -104,6 +123,20 @@ namespace ByteDev.Collections.UnitTests
 
                 _sut.Add("John");
                 _sut.Add(expected);
+
+                var result = _sut.Second();
+
+                Assert.That(result, Is.EqualTo(expected));
+            }
+
+            [Test]
+            public void WhenHasThreeElements_ThenReturnSecondElement()
+            {
+                const string expected = "Peter";
+
+                _sut.Add("John");
+                _sut.Add(expected);
+                _sut.Add("Mark");
 
                 var result = _sut.Second();
 
