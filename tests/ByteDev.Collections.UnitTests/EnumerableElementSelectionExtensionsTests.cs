@@ -78,7 +78,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenIsNull_ThenThrowException()
             {
-                Assert.Throws<ArgumentNullException>(() => EnumerableElementSelectionExtensions.Second(null as IEnumerable<object>));
+                Assert.Throws<ArgumentNullException>(() => (null as IEnumerable<object>).Second());
             }
 
             [Test]
