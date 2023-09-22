@@ -19,7 +19,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenIsNull_ThenReturnEmpty()
             {
-                var result = ListExtensions.NullToEmpty(null as IList<string>);
+                var result = (null as IList<string>).NullToEmpty();
 
                 Assert.That(result, Is.Empty);
             }

@@ -8,14 +8,6 @@ namespace ByteDev.Collections.UnitTests
     [TestFixture]
     public class EnumerableElementSelectionExtensionsTests
     {
-        private IList<string> _sut;
-
-        [SetUp]
-        public void SetUp()
-        {
-            _sut = new List<string>();
-        }
-
         [TestFixture]
         public class Last_Count : EnumerableElementSelectionExtensionsTests
         {
@@ -37,7 +29,7 @@ namespace ByteDev.Collections.UnitTests
             [TestCase(0)]
             public void WhenCountIsLessThanOne_ThenReturnEmpty(int count)
             {
-                var result = _sut.Last(count);
+                var result = Enumerable.Empty<object>().Last(count);
 
                 Assert.That(result, Is.Empty);
             }
@@ -45,49 +37,46 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenCountIsOne_AndSizeIsOne_ThenReturnElement()
             {
-                _sut.Add("item1");
+                var sut = EnumerableFactory.CreateFrom("1");
 
-                var result = _sut.Last(1);
+                var result = sut.Last(1);
 
-                Assert.That(result.Single(), Is.EqualTo("item1"));
+                Assert.That(result.Single(), Is.EqualTo("1"));
             }
 
             [Test]
             public void WhenCountIsOne_AndSizeIsTwo_ThenReturnLastElement()
             {
-                _sut.Add("item1");
-                _sut.Add("item2");
+                var sut = EnumerableFactory.CreateFrom("1", "2");
+                
+                var result = sut.Last(1);
 
-                var result = _sut.Last(1);
-
-                Assert.That(result.Single(), Is.EqualTo("item2"));
+                Assert.That(result.Single(), Is.EqualTo("2"));
             }
 
             [Test]
             public void WhenCountIsTwo_AndSizeIsTwo_ThenReturnAllElements()
             {
-                _sut.Add("item1");
-                _sut.Add("item2");
+                var sut = EnumerableFactory.CreateFrom("1", "2");
 
-                var result = _sut.Last(2);
+                var result = sut.Last(2);
 
                 Assert.That(result.Count(), Is.EqualTo(2));
-                Assert.That(result.First(), Is.EqualTo("item1"));
-                Assert.That(result.Second(), Is.EqualTo("item2"));
+                Assert.That(result.First(), Is.EqualTo("1"));
+                Assert.That(result.Second(), Is.EqualTo("2"));
             }
 
             [TestCase(2)]
             [TestCase(3)]
             public void WhenCountIsGreaterThanOrEqualSize_ThenReturnAllElements(int count)
             {
-                _sut.Add("item1");
-                _sut.Add("item2");
+                var sut = EnumerableFactory.CreateFrom("1", "2");
 
-                var result = _sut.Last(count);
+                var result = sut.Last(count);
 
                 Assert.That(result.Count(), Is.EqualTo(2));
-                Assert.That(result.First(), Is.EqualTo("item1"));
-                Assert.That(result.Second(), Is.EqualTo("item2"));
+                Assert.That(result.First(), Is.EqualTo("1"));
+                Assert.That(result.Second(), Is.EqualTo("2"));
             }
         }
 
@@ -103,44 +92,39 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenIsEmpty_ThenThrowException()
             {
-                var ex = Assert.Throws<InvalidOperationException>(() => _sut.Second());
+                var sut = Enumerable.Empty<object>();
+
+                var ex = Assert.Throws<InvalidOperationException>(() => sut.Second());
                 Assert.That(ex.Message, Is.EqualTo("Sequence contains no elements."));
             }
 
             [Test]
             public void WhenHasOneElement_ThenThrowException()
             {
-                _sut.Add("John");
+                var sut = EnumerableFactory.CreateFrom("1");
 
-                var ex = Assert.Throws<InvalidOperationException>(() => _sut.Second());
+                var ex = Assert.Throws<InvalidOperationException>(() => sut.Second());
                 Assert.That(ex.Message, Is.EqualTo("Sequence contains no second element."));
             }
 
             [Test]
             public void WhenHasTwoElements_ThenReturnSecondElement()
             {
-                const string expected = "Peter";
+                var sut = EnumerableFactory.CreateFrom("1", "2");
 
-                _sut.Add("John");
-                _sut.Add(expected);
+                var result = sut.Second();
 
-                var result = _sut.Second();
-
-                Assert.That(result, Is.EqualTo(expected));
+                Assert.That(result, Is.EqualTo("2"));
             }
 
             [Test]
             public void WhenHasThreeElements_ThenReturnSecondElement()
             {
-                const string expected = "Peter";
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3");
 
-                _sut.Add("John");
-                _sut.Add(expected);
-                _sut.Add("Mark");
+                var result = sut.Second();
 
-                var result = _sut.Second();
-
-                Assert.That(result, Is.EqualTo(expected));
+                Assert.That(result, Is.EqualTo("2"));
             }
         }
 
@@ -150,7 +134,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenIsEmpty_ThenReturnDefault()
             {
-                var result = _sut.SecondOrDefault();
+                var result = Enumerable.Empty<object>().SecondOrDefault();
 
                 Assert.That(result, Is.Null);
             }
@@ -158,9 +142,9 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasOneElement_ThenReturnDefault()
             {
-                _sut.Add("John");
+                var sut = EnumerableFactory.CreateFrom("1");
 
-                var result = _sut.SecondOrDefault();
+                var result = sut.SecondOrDefault();
 
                 Assert.That(result, Is.Null);
             }
@@ -168,14 +152,11 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasTwoElements_ThenReturnSecondElement()
             {
-                const string expected = "Peter";
+                var sut = EnumerableFactory.CreateFrom("1", "2");
 
-                _sut.Add("John");
-                _sut.Add(expected);
+                var result = sut.SecondOrDefault();
 
-                var result = _sut.SecondOrDefault();
-
-                Assert.That(result, Is.EqualTo(expected));
+                Assert.That(result, Is.EqualTo("2"));
             }
         }
 
@@ -185,23 +166,20 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasTwoElements_ThenThrowException()
             {
-                _sut.Fill(2, "John");
+                var sut = EnumerableFactory.CreateFrom("1", "2");
 
-                var ex = Assert.Throws<InvalidOperationException>(() => _sut.Third());
+                var ex = Assert.Throws<InvalidOperationException>(() => sut.Third());
                 Assert.That(ex.Message, Is.EqualTo("Sequence contains no third element."));
             }
 
             [Test]
             public void WhenHasThreeElements_ThenReturnThirdElement()
             {
-                const string expected = "Peter";
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3");
 
-                _sut.Fill(2, "John");
-                _sut.Add(expected);
+                var result = sut.Third();
 
-                var result = _sut.Third();
-
-                Assert.That(result, Is.EqualTo(expected));
+                Assert.That(result, Is.EqualTo("3"));
             }
         }
 
@@ -211,9 +189,9 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasTwoElements_ThenReturnDefault()
             {
-                _sut.Fill(2, "John");
+                var sut = EnumerableFactory.CreateFrom("1", "2");
 
-                var result = _sut.ThirdOrDefault();
+                var result = sut.ThirdOrDefault();
 
                 Assert.That(result, Is.Null);
             }
@@ -221,14 +199,11 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasThreeElements_ThenReturnThirdElement()
             {
-                const string expected = "Peter";
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3");
 
-                _sut.Fill(2, "John");
-                _sut.Add(expected);
+                var result = sut.ThirdOrDefault();
 
-                var result = _sut.ThirdOrDefault();
-
-                Assert.That(result, Is.EqualTo(expected));
+                Assert.That(result, Is.EqualTo("3"));
             }
         }
         
@@ -238,23 +213,20 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasThreeElements_ThenThrowException()
             {
-                _sut.Fill(3, "John");
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3");
 
-                var ex = Assert.Throws<InvalidOperationException>(() => _sut.Fourth());
+                var ex = Assert.Throws<InvalidOperationException>(() => sut.Fourth());
                 Assert.That(ex.Message, Is.EqualTo("Sequence contains no fourth element."));
             }
 
             [Test]
             public void WhenHasFourElements_ThenReturnFourthElement()
             {
-                const string expected = "Peter";
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4");
 
-                _sut.Fill(3, "John");
-                _sut.Add(expected);
+                var result = sut.Fourth();
 
-                var result = _sut.Fourth();
-
-                Assert.That(result, Is.EqualTo(expected));
+                Assert.That(result, Is.EqualTo("4"));
             }
         }
 
@@ -264,9 +236,9 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasThreeElements_ThenReturnDefault()
             {
-                _sut.Fill(3, "John");
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3");
 
-                var result = _sut.FourthOrDefault();
+                var result = sut.FourthOrDefault();
 
                 Assert.That(result, Is.Null);
             }
@@ -274,14 +246,11 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasFourElements_ThenReturnFourthElement()
             {
-                const string expected = "Peter";
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4");
 
-                _sut.Fill(3, "John");
-                _sut.Add(expected);
+                var result = sut.FourthOrDefault();
 
-                var result = _sut.FourthOrDefault();
-
-                Assert.That(result, Is.EqualTo(expected));
+                Assert.That(result, Is.EqualTo("4"));
             }
         }
 
@@ -291,23 +260,20 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasFourElements_ThenThrowException()
             {
-                _sut.Fill(4, "John");
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4");
 
-                var ex = Assert.Throws<InvalidOperationException>(() => _sut.Fifth());
+                var ex = Assert.Throws<InvalidOperationException>(() => sut.Fifth());
                 Assert.That(ex.Message, Is.EqualTo("Sequence contains no fifth element."));
             }
 
             [Test]
             public void WhenHasFiveElements_ThenReturnFifthElement()
             {
-                const string expected = "Peter";
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4", "5");
 
-                _sut.Fill(4, "John");
-                _sut.Add(expected);
+                var result = sut.Fifth();
 
-                var result = _sut.Fifth();
-
-                Assert.That(result, Is.EqualTo(expected));
+                Assert.That(result, Is.EqualTo("5"));
             }
         }
 
@@ -317,9 +283,9 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasFourElements_ThenReturnDefault()
             {
-                _sut.Fill(4, "John");
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4");
 
-                var result = _sut.FifthOrDefault();
+                var result = sut.FifthOrDefault();
 
                 Assert.That(result, Is.Null);
             }
@@ -327,14 +293,11 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasFiveElements_ThenReturnFifthElement()
             {
-                const string expected = "Peter";
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4", "5");
 
-                _sut.Fill(4, "John");
-                _sut.Add(expected);
+                var result = sut.FifthOrDefault();
 
-                var result = _sut.FifthOrDefault();
-
-                Assert.That(result, Is.EqualTo(expected));
+                Assert.That(result, Is.EqualTo("5"));
             }
         }
 
@@ -344,23 +307,20 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasFiveElements_ThenThrowException()
             {
-                _sut.Fill(5, "John");
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4", "5");
 
-                var ex = Assert.Throws<InvalidOperationException>(() => _sut.Sixth());
+                var ex = Assert.Throws<InvalidOperationException>(() => sut.Sixth());
                 Assert.That(ex.Message, Is.EqualTo("Sequence contains no sixth element."));
             }
 
             [Test]
             public void WhenHasSixElements_ThenReturnSixthElement()
             {
-                const string expected = "Peter";
-
-                _sut.Fill(5, "John");
-                _sut.Add(expected);
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4", "5", "6");
                 
-                var result = _sut.Sixth();
+                var result = sut.Sixth();
 
-                Assert.That(result, Is.EqualTo(expected));
+                Assert.That(result, Is.EqualTo("6"));
             }
         }
 
@@ -370,9 +330,9 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasFiveElements_ThenReturnDefault()
             {
-                _sut.Fill(5, "John");
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4", "5");
 
-                var result = _sut.SixthOrDefault();
+                var result = sut.SixthOrDefault();
 
                 Assert.That(result, Is.Null);
             }
@@ -380,14 +340,11 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasSixElements_ThenReturnSixthElement()
             {
-                const string expected = "Peter";
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4", "5", "6");
 
-                _sut.Fill(5, "John");
-                _sut.Add(expected);
+                var result = sut.SixthOrDefault();
 
-                var result = _sut.SixthOrDefault();
-
-                Assert.That(result, Is.EqualTo(expected));
+                Assert.That(result, Is.EqualTo("6"));
             }
         }
 
@@ -397,23 +354,20 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasSixElements_ThenThrowException()
             {
-                _sut.Fill(6, "John");
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4", "5", "6");
 
-                var ex = Assert.Throws<InvalidOperationException>(() => _sut.Seventh());
+                var ex = Assert.Throws<InvalidOperationException>(() => sut.Seventh());
                 Assert.That(ex.Message, Is.EqualTo("Sequence contains no seventh element."));
             }
 
             [Test]
             public void WhenHasSevenElements_ThenReturnSeventhElement()
             {
-                const string expected = "Peter";
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4", "5", "6", "7");
 
-                _sut.Fill(6, "John");
-                _sut.Add(expected);
+                var result = sut.Seventh();
 
-                var result = _sut.Seventh();
-
-                Assert.That(result, Is.EqualTo(expected));
+                Assert.That(result, Is.EqualTo("7"));
             }
         }
 
@@ -423,9 +377,9 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasSixElements_ThenReturnDefault()
             {
-                _sut.Fill(6, "John");
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4", "5", "6");
 
-                var result = _sut.SeventhOrDefault();
+                var result = sut.SeventhOrDefault();
 
                 Assert.That(result, Is.Null);
             }
@@ -433,14 +387,11 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasSevenElements_ThenReturnSeventhElement()
             {
-                const string expected = "Peter";
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4", "5", "6", "7");
 
-                _sut.Fill(6, "John");
-                _sut.Add(expected);
+                var result = sut.SeventhOrDefault();
 
-                var result = _sut.SeventhOrDefault();
-
-                Assert.That(result, Is.EqualTo(expected));
+                Assert.That(result, Is.EqualTo("7"));
             }
         }
 
@@ -450,23 +401,20 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasSevenElements_ThenThrowException()
             {
-                _sut.Fill(7, "John");
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4", "5", "6", "7");
 
-                var ex = Assert.Throws<InvalidOperationException>(() => _sut.Eighth());
+                var ex = Assert.Throws<InvalidOperationException>(() => sut.Eighth());
                 Assert.That(ex.Message, Is.EqualTo("Sequence contains no eighth element."));
             }
 
             [Test]
             public void WhenHasEightElements_ThenReturnEighthElement()
             {
-                const string expected = "Peter";
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4", "5", "6", "7", "8");
 
-                _sut.Fill(7, "John");
-                _sut.Add(expected);
+                var result = sut.Eighth();
 
-                var result = _sut.Eighth();
-
-                Assert.That(result, Is.EqualTo(expected));
+                Assert.That(result, Is.EqualTo("8"));
             }
         }
 
@@ -476,9 +424,9 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasSevenElements_ThenReturnDefault()
             {
-                _sut.Fill(7, "John");
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4", "5", "6", "7");
 
-                var result = _sut.EighthOrDefault();
+                var result = sut.EighthOrDefault();
 
                 Assert.That(result, Is.Null);
             }
@@ -486,14 +434,11 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasEightElements_ThenReturnEighthElement()
             {
-                const string expected = "Peter";
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4", "5", "6", "7", "8");
 
-                _sut.Fill(7, "John");
-                _sut.Add(expected);
+                var result = sut.EighthOrDefault();
 
-                var result = _sut.EighthOrDefault();
-
-                Assert.That(result, Is.EqualTo(expected));
+                Assert.That(result, Is.EqualTo("8"));
             }
         }
 
@@ -503,23 +448,20 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasEightElements_ThenThrowException()
             {
-                _sut.Fill(8, "John");
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4", "5", "6", "7", "8");
 
-                var ex = Assert.Throws<InvalidOperationException>(() => _sut.Ninth());
+                var ex = Assert.Throws<InvalidOperationException>(() => sut.Ninth());
                 Assert.That(ex.Message, Is.EqualTo("Sequence contains no ninth element."));
             }
 
             [Test]
             public void WhenHasNineElements_ThenReturnNinthElement()
             {
-                const string expected = "Peter";
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4", "5", "6", "7", "8", "9");
 
-                _sut.Fill(8, "John");
-                _sut.Add(expected);
+                var result = sut.Ninth();
 
-                var result = _sut.Ninth();
-
-                Assert.That(result, Is.EqualTo(expected));
+                Assert.That(result, Is.EqualTo("9"));
             }
         }
 
@@ -529,9 +471,9 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasEightElements_ThenReturnDefault()
             {
-                _sut.Fill(8, "John");
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4", "5", "6", "7", "8");
 
-                var result = _sut.NinthOrDefault();
+                var result = sut.NinthOrDefault();
 
                 Assert.That(result, Is.Null);
             }
@@ -539,14 +481,11 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasNineElements_ThenReturnNinthElement()
             {
-                const string expected = "Peter";
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4", "5", "6", "7", "8", "9");
 
-                _sut.Fill(8, "John");
-                _sut.Add(expected);
+                var result = sut.NinthOrDefault();
 
-                var result = _sut.NinthOrDefault();
-
-                Assert.That(result, Is.EqualTo(expected));
+                Assert.That(result, Is.EqualTo("9"));
             }
         }
 
@@ -556,23 +495,20 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasNineElements_ThenThrowException()
             {
-                _sut.Fill(9, "John");
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4", "5", "6", "7", "8", "9");
 
-                var ex = Assert.Throws<InvalidOperationException>(() => _sut.Tenth());
+                var ex = Assert.Throws<InvalidOperationException>(() => sut.Tenth());
                 Assert.That(ex.Message, Is.EqualTo("Sequence contains no tenth element."));
             }
 
             [Test]
             public void WhenHasTenElements_ThenReturnTenthElement()
             {
-                const string expected = "Peter";
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
 
-                _sut.Fill(9, "John");
-                _sut.Add(expected);
+                var result = sut.Tenth();
 
-                var result = _sut.Tenth();
-
-                Assert.That(result, Is.EqualTo(expected));
+                Assert.That(result, Is.EqualTo("10"));
             }
         }
 
@@ -582,9 +518,9 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasNineElements_ThenReturnDefault()
             {
-                _sut.Fill(9, "John");
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4", "5", "6", "7", "8", "9");
 
-                var result = _sut.TenthOrDefault();
+                var result = sut.TenthOrDefault();
 
                 Assert.That(result, Is.Null);
             }
@@ -592,14 +528,11 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenHasTenElements_ThenReturnTenthElement()
             {
-                const string expected = "Peter";
+                var sut = EnumerableFactory.CreateFrom("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
 
-                _sut.Fill(9, "John");
-                _sut.Add(expected);
+                var result = sut.TenthOrDefault();
 
-                var result = _sut.TenthOrDefault();
-
-                Assert.That(result, Is.EqualTo(expected));
+                Assert.That(result, Is.EqualTo("10"));
             }
         }
     }

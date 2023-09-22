@@ -1,12 +1,13 @@
 # Release Notes
 
-## 4.1.0 - ?
+## 5.0.0 - ?
 
 Breaking changes:
-- (None)
+- Removed `GenericExtensions.AsEnumerable` method overload that takes other items.
 
 New features:
 - Added `EnumeratorExtensions.MoveNext(count)` method.
+- Added `EnumerableFactory` class.
 
 Bug fixes / internal changes:
 - (None)
