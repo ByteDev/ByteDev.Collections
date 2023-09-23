@@ -8,12 +8,12 @@ namespace ByteDev.Collections.UnitTests
     public class EnumerableStringExtensionsTests
     {
         [TestFixture]
-        public class GetLongest : EnumerableStringExtensionsTests
+        public class FirstLongest : EnumerableStringExtensionsTests
         {
             [Test]
             public void WhenIsNull_ThenThrowException()
             {
-                Assert.Throws<ArgumentNullException>(() => EnumerableStringExtensions.GetLongest(null));
+                Assert.Throws<ArgumentNullException>(() => EnumerableStringExtensions.FirstLongest(null));
             }
 
             [Test]
@@ -21,7 +21,7 @@ namespace ByteDev.Collections.UnitTests
             {
                 var sut = Enumerable.Empty<string>();
 
-                var result = sut.GetLongest();
+                var result = sut.FirstLongest();
 
                 Assert.That(result, Is.Null);
             }
@@ -31,9 +31,9 @@ namespace ByteDev.Collections.UnitTests
             {
                 var sut = new[] {"A"};
 
-                var result = sut.GetLongest();
+                var result = sut.FirstLongest();
 
-                Assert.That(result, Is.SameAs(sut.First()));
+                Assert.That(result, Is.EqualTo("A"));
             }
 
             [Test]
@@ -41,9 +41,9 @@ namespace ByteDev.Collections.UnitTests
             {
                 var sut = new[] {"A", "BBB", "CC"};
 
-                var result = sut.GetLongest();
+                var result = sut.FirstLongest();
 
-                Assert.That(result, Is.SameAs(sut.Second()));
+                Assert.That(result, Is.EqualTo("BBB"));
             }
 
             [Test]
@@ -51,9 +51,9 @@ namespace ByteDev.Collections.UnitTests
             {
                 var sut = new[] { "A", "BB", "CC" };
 
-                var result = sut.GetLongest();
+                var result = sut.FirstLongest();
 
-                Assert.That(result, Is.SameAs(sut.Second()));
+                Assert.That(result, Is.EqualTo("BB"));
             }
 
             [Test]
@@ -61,9 +61,9 @@ namespace ByteDev.Collections.UnitTests
             {
                 var sut = new[] { "A", null, "CC" };
 
-                var result = sut.GetLongest();
+                var result = sut.FirstLongest();
 
-                Assert.That(result, Is.SameAs(sut.Third()));
+                Assert.That(result, Is.EqualTo("CC"));
             }
 
             [Test]
@@ -71,19 +71,19 @@ namespace ByteDev.Collections.UnitTests
             {
                 string[] sut = { null, null };
                 
-                var result = sut.GetLongest();
+                var result = sut.FirstLongest();
 
                 Assert.That(result, Is.Null);
             }
         }
 
         [TestFixture]
-        public class GetShortest : EnumerableStringExtensionsTests
+        public class FirstShortest : EnumerableStringExtensionsTests
         {
             [Test]
             public void WhenIsNull_ThenThrowException()
             {
-                Assert.Throws<ArgumentNullException>(() => EnumerableStringExtensions.GetShortest(null));
+                Assert.Throws<ArgumentNullException>(() => EnumerableStringExtensions.FirstShortest(null));
             }
 
             [Test]
@@ -91,7 +91,7 @@ namespace ByteDev.Collections.UnitTests
             {
                 var sut = Enumerable.Empty<string>();
 
-                var result = sut.GetShortest();
+                var result = sut.FirstShortest();
 
                 Assert.That(result, Is.Null);
             }
@@ -101,19 +101,19 @@ namespace ByteDev.Collections.UnitTests
             {
                 var sut = new[] { "A" };
 
-                var result = sut.GetShortest();
+                var result = sut.FirstShortest();
 
-                Assert.That(result, Is.SameAs(sut.First()));
+                Assert.That(result, Is.EqualTo("A"));
             }
 
             [Test]
             public void WhenHasDifferentLengthElements_ThenReturnShortest()
             {
-                var sut = new[] { "A", "BBB", "CC" };
+                var sut = new[] { "AAA", "B", "CC" };
 
-                var result = sut.GetShortest();
+                var result = sut.FirstShortest();
 
-                Assert.That(result, Is.SameAs(sut.First()));
+                Assert.That(result, Is.EqualTo("B"));
             }
 
             [Test]
@@ -121,9 +121,9 @@ namespace ByteDev.Collections.UnitTests
             {
                 var sut = new[] { "AA", "B", "C" };
 
-                var result = sut.GetShortest();
+                var result = sut.FirstShortest();
 
-                Assert.That(result, Is.SameAs(sut.Second()));
+                Assert.That(result, Is.EqualTo("B"));
             }
 
             [Test]
@@ -131,9 +131,9 @@ namespace ByteDev.Collections.UnitTests
             {
                 var sut = new[] { "A", null, "CC" };
 
-                var result = sut.GetShortest();
+                var result = sut.FirstShortest();
 
-                Assert.That(result, Is.SameAs(sut.First()));
+                Assert.That(result, Is.SameAs("A"));
             }
 
             [Test]
@@ -141,7 +141,7 @@ namespace ByteDev.Collections.UnitTests
             {
                 string[] sut = { null, null };
 
-                var result = sut.GetShortest();
+                var result = sut.FirstShortest();
 
                 Assert.That(result, Is.Null);
             }

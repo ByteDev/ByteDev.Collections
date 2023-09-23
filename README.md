@@ -88,8 +88,8 @@ To use any extension methods simply reference the `ByteDev.Collections` namespac
   - ToDelimitedString
   - ToWrappedString
 - IEnumerable<string>:
-  - GetLongest
-  - GetShortest 
+  - FirstLongest
+  - FirstShortest 
 - ICollection<T>:
   - AddIfNotContains
   - AddRange

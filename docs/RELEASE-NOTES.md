@@ -8,6 +8,8 @@ Breaking changes:
 New features:
 - Added `EnumeratorExtensions.MoveNext(count)` method.
 - Added `EnumerableFactory` class.
+- Renamed `EnumerableStringExtensions.GetLongest` method to `FirstLongest`.
+- Renamed `EnumerableStringExtensions.GetShortest` method to `FirstShortest`.
 
 Bug fixes / internal changes:
 - (None)
