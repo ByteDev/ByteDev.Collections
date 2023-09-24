@@ -25,8 +25,7 @@ namespace ByteDev.Collections
             if (!source.IsIndexValid(index))
                 throw new ArgumentOutOfRangeException(nameof(index), "Index is less than zero or greater than the number of elements in the sequence.");
 
-            source.RemoveAt(index);
-            source.Insert(index, newValue);
+            ReplaceAtUnsafe(source, index, newValue);
         }
 
         /// <summary>
@@ -45,10 +44,7 @@ namespace ByteDev.Collections
             for (var i = 0; i < source.Count; i++)
             {
                 if (source[i].Equals(originalValue))
-                {
-                    source.RemoveAt(i);
-                    source.Insert(i, newValue);
-                }
+                    source.ReplaceAtUnsafe(i, newValue);
             }
         }
 
@@ -72,11 +68,14 @@ namespace ByteDev.Collections
             for (var i = 0; i < source.Count; i++)
             {
                 if (predicate(source[i]))
-                {
-                    source.RemoveAt(i);
-                    source.Insert(i, newValue);
-                }
+                    source.ReplaceAtUnsafe(i, newValue);
             }
+        }
+
+        private static void ReplaceAtUnsafe<TSource>(this IList<TSource> source, int index, TSource newValue)
+        {
+            source.RemoveAt(index);
+            source.Insert(index, newValue);
         }
     }
 }

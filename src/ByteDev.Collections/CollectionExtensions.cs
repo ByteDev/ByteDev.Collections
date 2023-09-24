@@ -47,7 +47,7 @@ namespace ByteDev.Collections
         }
 
         /// <summary>
-        /// Adds the elements of the specified collection to the end.
+        /// Adds the elements of the provided sequence to the end of the collection.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The collection to perform the operation on.</param>
