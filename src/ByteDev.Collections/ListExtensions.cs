@@ -96,7 +96,7 @@ namespace ByteDev.Collections
         }
 
         /// <summary>
-        /// Gets the object at the provided index. If the index is invalid (out of range)
+        /// Returns the element at the provided index using the indexer. If the index is invalid (out of range)
         /// then <paramref name="defaultValue" /> will be returned.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>

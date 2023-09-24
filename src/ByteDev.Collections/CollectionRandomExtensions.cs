@@ -14,7 +14,8 @@ namespace ByteDev.Collections
         private static readonly object _lock = new object();
 
         /// <summary>
-        /// Returns a random element from the collection.
+        /// Returns a specified number of elements selected randomly from the collection.
+        /// Similar to Take method except elements are selected randomly not sequentially.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The collection to return a random element from.</param>

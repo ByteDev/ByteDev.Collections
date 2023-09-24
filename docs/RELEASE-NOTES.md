@@ -12,7 +12,7 @@ New features:
 - Renamed `EnumerableStringExtensions.GetShortest` method to `FirstShortest`.
 
 Bug fixes / internal changes:
-- (None)
+- `ListReplaceExtensions.ReplaceAt` now throws exception on index less than zero.
 
 ## 4.0.0 - 14 June 2022
 

@@ -13,21 +13,18 @@ namespace ByteDev.Collections
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The list to perform the operation on.</param>
-        /// <param name="index">The element position to replace.</param>
+        /// <param name="index">The element index position to replace.</param>
         /// <param name="newValue">The new value to replace with.</param>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
-        /// <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index" /> is greater than number of elements in the sequence.</exception>
+        /// <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index" /> is less than zero or greater than number of elements in the sequence.</exception>
         public static void ReplaceAt<TSource>(this IList<TSource> source, int index, TSource newValue)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
 
-            if (index > source.Count)
-                throw new ArgumentOutOfRangeException(nameof(index), "Index is greater than the number of elements in the sequence.");
+            if (!source.IsIndexValid(index))
+                throw new ArgumentOutOfRangeException(nameof(index), "Index is less than zero or greater than the number of elements in the sequence.");
 
-            if (index < 0)
-                index = 0;
-            
             source.RemoveAt(index);
             source.Insert(index, newValue);
         }
@@ -49,7 +46,8 @@ namespace ByteDev.Collections
             {
                 if (source[i].Equals(originalValue))
                 {
-                    source.ReplaceAt(i, newValue);
+                    source.RemoveAt(i);
+                    source.Insert(i, newValue);
                 }
             }
         }
@@ -75,7 +73,8 @@ namespace ByteDev.Collections
             {
                 if (predicate(source[i]))
                 {
-                    source.ReplaceAt(i, newValue);
+                    source.RemoveAt(i);
+                    source.Insert(i, newValue);
                 }
             }
         }

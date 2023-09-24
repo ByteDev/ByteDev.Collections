@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using NUnit.Framework;
 
 namespace ByteDev.Collections.UnitTests
@@ -297,7 +298,7 @@ namespace ByteDev.Collections.UnitTests
 
                 Assert.That(result, Is.EqualTo(DefaultValue));
             }
-
+            
             [TestCase(0, 1)]
             [TestCase(1, 2)]
             public void WhenIndexInRange_ThenReturnObject(int index, int expected)

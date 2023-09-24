@@ -54,7 +54,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenSourceIsNull_ThenThrowException()
             {
-                Assert.Throws<ArgumentNullException>(() => CollectionExtensions.IsIndexValid(null as ICollection<int>, 0));
+                Assert.Throws<ArgumentNullException>(() => (null as ICollection<int>).IsIndexValid(0));
             }
 
             [TestCase(-1)]

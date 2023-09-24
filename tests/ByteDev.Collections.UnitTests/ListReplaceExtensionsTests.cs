@@ -18,14 +18,6 @@ namespace ByteDev.Collections.UnitTests
             }
 
             [Test]
-            public void WhenIndexIsGreaterThanCount_ThenThrowException()
-            {
-                var sut = new List<int> {10, 20};
-
-                Assert.Throws<ArgumentOutOfRangeException>(() => sut.ReplaceAt(2, 50));
-            }
-
-            [Test]
             public void WhenSourceIsEmpty_ThenThrowException()
             {
                 var sut = new List<int>();
@@ -34,11 +26,27 @@ namespace ByteDev.Collections.UnitTests
             }
 
             [Test]
-            public void WhenIndexIsLessThanZero_ThenReplaceElementZero()
+            public void WhenIndexIsGreaterThanCount_ThenThrowException()
             {
                 var sut = new List<int> {10, 20};
 
-                sut.ReplaceAt(-1, 50);
+                Assert.Throws<ArgumentOutOfRangeException>(() => sut.ReplaceAt(2, 50));
+            }
+
+            [Test]
+            public void WhenIndexIsLessThanZero_ThenThrowException()
+            {
+                var sut = new List<int> {10, 20};
+
+                Assert.Throws<ArgumentOutOfRangeException>(() => sut.ReplaceAt(-1, 50));
+            }
+
+            [Test]
+            public void WhenIndexValid_ThenReplaceElementAtIndex()
+            {
+                var sut = new List<int> {10, 20};
+
+                sut.ReplaceAt(0, 50);
 
                 Assert.That(sut.First(), Is.EqualTo(50));
                 Assert.That(sut.Second(), Is.EqualTo(20));
