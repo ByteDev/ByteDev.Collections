@@ -3,57 +3,56 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 
-namespace ByteDev.Collections.UnitTests
+namespace ByteDev.Collections.UnitTests;
+
+[TestFixture]
+public class ListRandomExtensionsTests
 {
-    [TestFixture]
-    public class ListRandomExtensionsTests
+    [Test]
+    public void WhenIsNull_ThenThrowException()
     {
-        [Test]
-        public void WhenIsNull_ThenThrowException()
-        {
-            Assert.Throws<ArgumentNullException>(() => ListRandomExtensions.Shuffle(null as IList<int>));
-        }
+        Assert.Throws<ArgumentNullException>(() => (null as IList<int>).Shuffle());
+    }
 
-        [Test]
-        public void WhenIsEmpty_ThenDoNothing()
-        {
-            IList<int> sut = new List<int>();
+    [Test]
+    public void WhenIsEmpty_ThenDoNothing()
+    {
+        IList<int> sut = new List<int>();
 
-            sut.Shuffle();
+        sut.Shuffle();
 
-            Assert.That(sut, Is.Empty);
-        }
+        Assert.That(sut, Is.Empty);
+    }
 
-        [Test]
-        public void WhenIsSingle_ThenDoNothing()
-        {
-            IList<int> sut = new List<int> {1};
+    [Test]
+    public void WhenIsSingle_ThenDoNothing()
+    {
+        IList<int> sut = new List<int> {1};
 
-            sut.Shuffle();
+        sut.Shuffle();
 
-            Assert.That(sut.Single(), Is.EqualTo(1));
-        }
+        Assert.That(sut.Single(), Is.EqualTo(1));
+    }
 
-        [Test]
-        public void WhenIsTwoElements_ThenShuffle()
-        {
-            IList<int> sut = new List<int> {1, 2};
+    [Test]
+    public void WhenIsTwoElements_ThenShuffle()
+    {
+        IList<int> sut = new List<int> {1, 2};
 
-            sut.Shuffle();
+        sut.Shuffle();
             
-            Assert.That(sut.Count, Is.EqualTo(2));
-            Assert.That(sut.ContainsAll(1, 2), Is.True);
-        }
+        Assert.That(sut.Count, Is.EqualTo(2));
+        Assert.That(sut.ContainsAll(1, 2), Is.True);
+    }
 
-        [Test]
-        public void WhenIsManyElements_ThenShuffle()
-        {
-            IList<int> sut = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    [Test]
+    public void WhenIsManyElements_ThenShuffle()
+    {
+        IList<int> sut = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
-            sut.Shuffle();
+        sut.Shuffle();
             
-            Assert.That(sut.Count, Is.EqualTo(10));
-            Assert.That(sut.ContainsAll(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), Is.True);
-        }
+        Assert.That(sut.Count, Is.EqualTo(10));
+        Assert.That(sut.ContainsAll(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), Is.True);
     }
 }

@@ -1,6 +1,6 @@
-#addin "nuget:?package=Cake.Incubator&version=6.0.0"
-#tool "nuget:?package=NUnit.ConsoleRunner&version=3.12.0"
-#tool "nuget:?package=GitVersion.CommandLine&version=5.6.10"
+#addin "nuget:?package=Cake.Incubator&version=8.0.0"
+#tool "nuget:?package=NUnit.ConsoleRunner&version=3.16.3"
+#tool "nuget:?package=GitVersion.CommandLine&version=5.12.0"
 #load "ByteDev.Utilities.cake"
 
 var solutionName = "ByteDev.Collections";
@@ -41,28 +41,28 @@ Task("Restore")
     });
 
 Task("Build")
-	.IsDependentOn("Restore")
+	.IsDependentOn("Clean")
     .Does(() =>
 	{	
-		var settings = new DotNetCoreBuildSettings()
+		var settings = new DotNetBuildSettings
         {
             Configuration = configuration
         };
 
-        DotNetCoreBuild(solutionFilePath, settings);
+        DotNetBuild(solutionFilePath, settings);
 	});
 
 Task("UnitTests")
     .IsDependentOn("Build")
     .Does(() =>
 	{
-		var settings = new DotNetCoreTestSettings()
+		var settings = new DotNetTestSettings
 		{
 			Configuration = configuration,
 			NoBuild = true
 		};
 
-		DotNetCoreUnitTests(settings);
+		DotNetUnitTests(settings);
 	});
 	
 Task("CreateNuGetPackages")

@@ -1,1 +1,0 @@
-& .\build.ps1 -script build-package-tests.cake
