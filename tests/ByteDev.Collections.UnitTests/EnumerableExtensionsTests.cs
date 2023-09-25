@@ -14,7 +14,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenIsNull_ThenReturnEmpty()
             {
-                var result = EnumerableExtensions.NullToEmpty(null as IEnumerable<string>);
+                var result = (null as IEnumerable<string>).NullToEmpty();
 
                 Assert.That(result, Is.Empty);
             }
@@ -37,9 +37,8 @@ namespace ByteDev.Collections.UnitTests
             public void WhenSourceIsNull_ThenThrowNullException()
             {
                 var counter = 0;
-                int[] sut = null;
 
-                Assert.Throws<ArgumentNullException>(() => sut.ForEach(i => counter += i));
+                Assert.Throws<ArgumentNullException>(() => ((int[])null).ForEach(i => counter += i));
             }
 
             [Test]
@@ -51,23 +50,22 @@ namespace ByteDev.Collections.UnitTests
             }
 
             [Test]
-            public void WhenNoItemsExist_ThenNotCall()
+            public void WhenNoItemsExist_ThenNotCallAction()
             {
                 var counter = 0;
-                var sut = new int[0];
 
-                sut.ForEach(i => counter += i);
+                Enumerable.Empty<int>().ForEach(i => counter += i);
 
                 Assert.That(counter, Is.EqualTo(0));
             }
 
             [Test]
-            public void WhenItemExist_ThenCallForEachItem()
+            public void WhenItemExist_ThenCallActionForEachItem()
             {
                 var counter = 0;
-                var sut = new[] { 1, 2, 3 };
+                var sut = EnumerableFactory.CreateFrom(1, 2, 3);
 
-                sut.ForEach(x => counter = counter + x);
+                sut.ForEach(x => counter += x);
 
                 Assert.That(counter, Is.EqualTo(6));
             }
@@ -76,47 +74,38 @@ namespace ByteDev.Collections.UnitTests
         [TestFixture]
         public class Find
         {
-            private IEnumerable<string> _sut;
-
-            [SetUp]
-            public void SetUp()
-            {
-                _sut = new[] { "Hello", "John", "Smith" };
-            }
-
             [Test]
             public void WhenSourceIsNull_ThenThrowException()
             {
-                IEnumerable<string> sut = null;
-
-                Assert.Throws<ArgumentNullException>(() => sut.Find(x => x == "Hello"));
+                Assert.Throws<ArgumentNullException>(() => ((IEnumerable<string>)null).Find(x => x == "Hello"));
             }
 
             [Test]
             public void WhenPredicateIsNull_ThenThrowException()
             {
-                Assert.Throws<ArgumentNullException>(() => Act(null));
+                var sut = EnumerableFactory.CreateFrom("Hello", "John", "Smith");
+
+                Assert.Throws<ArgumentNullException>(() => sut.Find(null));
             }
 
             [Test]
             public void WhenItemFound_ThenReturnItem()
             {
-                var result = Act(x => x == "John");
+                var sut = EnumerableFactory.CreateFrom("Hello", "John", "Smith");
 
-                Assert.That(result, Is.SameAs(_sut.Second()));
+                var result = sut.Find(x => x == "John");
+
+                Assert.That(result, Is.SameAs("John"));
             }
 
             [Test]
             public void WhenItemNotFound_ThenReturnItemDefault()
             {
-                var result = Act(x => x == "Peter");
+                var sut = EnumerableFactory.CreateFrom("Hello", "John", "Smith");
+
+                var result = sut.Find(x => x == "Peter");
 
                 Assert.That(result, Is.EqualTo(default(string)));
-            }
-
-            private string Act(Predicate<string> predicate)
-            {
-                return _sut.Find(predicate);
             }
         }
 
@@ -126,15 +115,13 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenIsNull_ThenThrowException()
             {
-                Assert.Throws<ArgumentNullException>(() => EnumerableExtensions.AllUnique(null as IEnumerable<int>));
+                Assert.Throws<ArgumentNullException>(() => (null as IEnumerable<int>).AllUnique());
             }
 
             [Test]
             public void WhenIsEmpty_ThenReturnTrue()
             {
-                IEnumerable<int> sut = Enumerable.Empty<int>();
-
-                var result = sut.AllUnique();
+                var result = Enumerable.Empty<int>().AllUnique();
 
                 Assert.That(result, Is.True);
             }
@@ -182,7 +169,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenParamsIsNull_ThenThrowException()
             {
-                IEnumerable<int> sut = 1.AsEnumerable();
+                var sut = EnumerableFactory.CreateFrom(1);
 
                 Assert.Throws<ArgumentNullException>(() => sut.Concat(null as int[]));
             }
@@ -190,7 +177,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenParamsContainsSingle_ThenConcat()
             {
-                var sut = 1.AsEnumerable();
+                var sut = EnumerableFactory.CreateFrom(1);
 
                 var result = sut.Concat(2);
 
@@ -202,7 +189,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenParamsContainsTwoElements_ThenConcat()
             {
-                var sut = 1.AsEnumerable();
+                var sut = EnumerableFactory.CreateFrom(1);
 
                 var result = sut.Concat(2, 3);
 
@@ -221,7 +208,7 @@ namespace ByteDev.Collections.UnitTests
             {
                 var sequence = Enumerable.Repeat(1, 3);
 
-                Assert.Throws<ArgumentNullException>(() => _ = EnumerableExtensions.Concat(null as IEnumerable<int>, sequence));
+                Assert.Throws<ArgumentNullException>(() => _ = (null as IEnumerable<int>).Concat(sequence));
             }
 
             [Test]
@@ -229,7 +216,7 @@ namespace ByteDev.Collections.UnitTests
             {
                 var sut = 1.AsEnumerable();
 
-                Assert.Throws<ArgumentNullException>(() => _ = EnumerableExtensions.Concat(sut, null as IEnumerable<int>[]));
+                Assert.Throws<ArgumentNullException>(() => _ = sut.Concat(null as IEnumerable<int>[]));
             }
 
             [Test]
@@ -249,7 +236,7 @@ namespace ByteDev.Collections.UnitTests
             {
                 var sut = 1.AsEnumerable();
 
-                var result = sut.Concat(2.AsEnumerable(), new[] { 3, 4 });
+                var result = sut.Concat(2.AsEnumerable(), EnumerableFactory.CreateFrom(3, 4));
 
                 Assert.That(result.Count(), Is.EqualTo(4));
                 Assert.That(result.First(), Is.EqualTo(1));

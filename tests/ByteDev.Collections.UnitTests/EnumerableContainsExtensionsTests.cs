@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using NUnit.Framework;
 
 namespace ByteDev.Collections.UnitTests
@@ -16,7 +15,7 @@ namespace ByteDev.Collections.UnitTests
             [SetUp]
             public void SetUp()
             {
-                _sut = new[] { "Hello", "John", "Smith" };
+                _sut = EnumerableFactory.CreateFrom("Hello", "John", "Smith");
             }
 
             [Test]
@@ -72,7 +71,7 @@ namespace ByteDev.Collections.UnitTests
             [SetUp]
             public void SetUp()
             {
-                _sut = new[] { "Hello", "John", "Smith" };
+                _sut = EnumerableFactory.CreateFrom("Hello", "John", "Smith");
             }
 
             [Test]

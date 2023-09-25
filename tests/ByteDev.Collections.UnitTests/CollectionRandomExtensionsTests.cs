@@ -14,7 +14,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenSourceIsNull_ThenThrowException()
             {
-                Assert.Throws<ArgumentNullException>(() => CollectionRandomExtensions.TakeRandom(null as ICollection<int>));
+                Assert.Throws<ArgumentNullException>(() => (null as ICollection<int>).TakeRandom());
             }
 
             [Test]
@@ -78,7 +78,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenSourceIsNull_ThenThrowException()
             {
-                Assert.Throws<ArgumentNullException>(() => CollectionRandomExtensions.TakeRandom(null as ICollection<int>, 1));
+                Assert.Throws<ArgumentNullException>(() => (null as ICollection<int>).TakeRandom(1));
             }
 
             [TestCase(-1)]
@@ -131,7 +131,7 @@ namespace ByteDev.Collections.UnitTests
             [Test]
             public void WhenSourceIsNull_ThenThrowException()
             {
-                Assert.Throws<ArgumentNullException>(() => CollectionRandomExtensions.RemoveRandom(null as ICollection<int>));
+                Assert.Throws<ArgumentNullException>(() => (null as ICollection<int>).RemoveRandom());
             }
 
             [Test]
