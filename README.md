@@ -74,7 +74,7 @@ To use any extension methods simply reference the `ByteDev.Collections` namespac
   - Concat (params overloads)
   - ContainsAll
   - ContainsAny
-  - Last(count)
+  - Last(int)
   - MaxBy
   - MinBy
   - NullToEmpty
@@ -112,11 +112,11 @@ To use any extension methods simply reference the `ByteDev.Collections` namespac
   - AddIfNotContainsKey
   - ContainsKey
   - ToDictionary
-- GenericExtensions
+- GenericExtensions:
   - AsEnumerable
   - AsList
-- EnumeratorExtensions
-  - MoveNext(count) 
+- IEnumerator<T>:
+  - MoveNext(int) 
 
 ---
 
