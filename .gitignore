@@ -1,6 +1,3 @@
-git-reinit.bat
-git-reinit-github.bat
-
 #OS junk files
 [Tt]humbs.db
 *.DS_Store
@@ -37,45 +34,46 @@ ipch/
 [Rr]elease*/
 Ankh.NoLoad
 
-#MonoDevelop
+# Visual Studio DB projects
+*.dbmdl
+
+# Visual Studio cache files
+.vs/
+
+# MonoDevelop
 *.pidb
 *.userprefs
 
-#Tooling
+# Tooling
 _ReSharper*/
 *.resharper
 [Tt]est[Rr]esult*
 *.sass-cache
 
-#Project files
+# Project files
 [Bb]uild/
 
-#Subversion files
+# Subversion files
 .svn
 
 # Office Temp Files
 ~$*
 
-# vim Temp Files
+# Vim Temp Files
 *~
 
-#NuGet
+# NuGet
 packages/
 *.nupkg
 
-#ncrunch
+# Ncrunch
 *ncrunch*
 *crunch*.local.xml
 
-# visual studio database projects
-*.dbmdl
-
-#Test files
+# Test files
 *.testsettings
 
-#Visual studio
-.vs/
-
+# Included libraries
 !lib/**
 
 # Cake build
