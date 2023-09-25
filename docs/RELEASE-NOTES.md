@@ -1,6 +1,6 @@
 # Release Notes
 
-## 5.0.0 - ?
+## 5.0.0 - 25 September 2023
 
 Breaking changes:
 - Removed `GenericExtensions.AsEnumerable` method overload that takes other items.
