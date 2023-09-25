@@ -4,12 +4,12 @@
 
 Breaking changes:
 - Removed `GenericExtensions.AsEnumerable` method overload that takes other items.
+- Renamed `EnumerableStringExtensions.GetLongest` method to `FirstLongest`.
+- Renamed `EnumerableStringExtensions.GetShortest` method to `FirstShortest`.
 
 New features:
 - Added `EnumeratorExtensions.MoveNext(count)` method.
 - Added `EnumerableFactory` class.
-- Renamed `EnumerableStringExtensions.GetLongest` method to `FirstLongest`.
-- Renamed `EnumerableStringExtensions.GetShortest` method to `FirstShortest`.
 
 Bug fixes / internal changes:
 - `ListReplaceExtensions.ReplaceAt` now throws exception on index less than zero.
