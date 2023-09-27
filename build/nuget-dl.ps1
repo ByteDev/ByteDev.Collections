@@ -21,3 +21,5 @@ Write-Output "Downloaded latest nuget.exe"
 
 # Print the version details of nuget.exe
 & $targetNugetExe help | select -First 1
+
+Write-Output ""

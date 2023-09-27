@@ -1,4 +1,9 @@
-Write-Output "Create manifest (.config)"
-dotnet new tool-manifest
-dotnet tool install Cake.Tool --version 3.0.0
+# Sets up build environment
+
+Write-Output "***** Create dotnet manifest (.config) *****"
+& .\dotnet-manifest-setup.ps1
+Write-Output ""
+
+Write-Output "***** Get latest nuget.exe *****"
 & .\nuget-dl.ps1
+Write-Output ""
