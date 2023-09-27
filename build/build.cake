@@ -7,6 +7,7 @@ var solutionName = "ByteDev.Collections";
 var projName = "ByteDev.Collections";
 
 var solutionFilePath = "../" + solutionName + ".sln";
+var projFilePath = "../src/" + projName + "/" + projName + ".csproj";
 var nuspecFilePath = projName + ".nuspec";
 
 var target = Argument("target", "Default");
@@ -18,9 +19,8 @@ var configuration = GetBuildConfiguration();
 
 Information("Configurtion: " + configuration);
 
-
 Task("Clean")
-    .Does(() =>
+	.Does(() =>
 	{
 		CleanDirectory(artifactsDirectory);
 	
