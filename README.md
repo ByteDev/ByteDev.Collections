@@ -92,6 +92,7 @@ To use any extension methods simply reference the `ByteDev.Collections` namespac
   - FirstShortest 
 - ICollection<T>:
   - AddIfNotContains
+  - AddIfNotNull
   - AddRange
   - Fill
   - IsIndexValid
