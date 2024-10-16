@@ -25,9 +25,7 @@ namespace ByteDev.Collections
                 throw new ArgumentNullException(nameof(source));
             
             if (!source.ContainsKey(key))
-            {
                 source.Add(key, value);
-            }
         }
 
         /// <summary>
@@ -44,15 +42,8 @@ namespace ByteDev.Collections
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
-            if (source.ContainsKey(key))
-            {
-                source[key] = value;
-            }
-            else
-            {
-                source.Add(key, value);
-            }
+
+            source[key] = value;
         }
 
         /// <summary>
@@ -103,9 +94,7 @@ namespace ByteDev.Collections
                 throw new ArgumentNullException(nameof(items));
 
             foreach (var kvp in items)
-            {
                 source.Add(kvp);
-            }
         }
 
         /// <summary>
@@ -128,13 +117,9 @@ namespace ByteDev.Collections
             foreach (var kvp in items)
             {
                 if (source.ContainsKey(kvp.Key))
-                {
                     source[kvp.Key] = kvp.Value;
-                }
                 else
-                {
                     source.Add(kvp);
-                }
             }
         }
 
@@ -153,9 +138,7 @@ namespace ByteDev.Collections
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
             
-            return source.ContainsKey(key)
-                ? source[key]
-                : defaultValue;
+            return source.TryGetValue(key, out var value) ? value : defaultValue;
         }
 
         /// <summary>
