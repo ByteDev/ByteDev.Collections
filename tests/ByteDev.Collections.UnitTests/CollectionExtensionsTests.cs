@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using NUnit.Framework;
 
@@ -84,20 +85,36 @@ public class CollectionExtensionsTests
     [TestFixture]
     public class AddRange
     {
-        private readonly IEnumerable<int> CollectionToAdd = new[] { 4, 5 };
+        private readonly IEnumerable<int> _itemsToAdd = new[] { 4, 5 };
 
         [Test]
         public void WhenSourceIsNull_ThenThrowException()
         {
-            Assert.Throws<ArgumentNullException>(() => CollectionExtensions.AddRange(null, CollectionToAdd));
+            Assert.Throws<ArgumentNullException>(() => CollectionExtensions.AddRange(null, _itemsToAdd));
         }
 
         [Test]
-        public void WhenSourceIsEmpty_ThenAddItems()
+        public void WhenItemsIsNull_ThenThrowException()
+        {
+            ICollection<int> sut = new List<int> { 1, 2, 3 };
+                
+            Assert.Throws<ArgumentNullException>(() => sut.AddRange(null));
+        }
+
+        [Test]
+        public void WhenSourceIsReadonly_ThenThrowException()
+        {
+            var sut = new ReadOnlyCollection<int>(new List<int> { 1, 2, 3 });
+
+            Assert.Throws<NotSupportedException>(() => sut.AddRange(_itemsToAdd));
+        }
+
+        [Test]
+        public void WhenSourceIsList_ThenAddItems()
         {
             ICollection<int> sut = new List<int>();
 
-            sut.AddRange(CollectionToAdd);
+            sut.AddRange(_itemsToAdd);
 
             Assert.That(sut.Count, Is.EqualTo(2));
             Assert.That(sut.First(), Is.EqualTo(4));
@@ -105,11 +122,15 @@ public class CollectionExtensionsTests
         }
 
         [Test]
-        public void WhenCollectionIsNull_ThenThrowException()
+        public void WhenSourceIsNotList_ThenAddItems()
         {
-            ICollection<int> sut = new List<int> {1, 2, 3};
-                
-            Assert.Throws<ArgumentNullException>(() => sut.AddRange(null));
+            ICollection<int> sut = new HashSet<int>();
+
+            sut.AddRange(_itemsToAdd);
+
+            Assert.That(sut.Count, Is.EqualTo(2));
+            Assert.That(sut.First(), Is.EqualTo(4));
+            Assert.That(sut.Second(), Is.EqualTo(5));
         }
 
         [Test]
@@ -117,7 +138,7 @@ public class CollectionExtensionsTests
         {
             ICollection<int> sut = new List<int> {1, 2, 3};
 
-            sut.AddRange(CollectionToAdd);
+            sut.AddRange(_itemsToAdd);
 
             Assert.That(sut.Count, Is.EqualTo(5));
             Assert.That(sut.First(), Is.EqualTo(1));
@@ -181,7 +202,7 @@ public class CollectionExtensionsTests
         [Test]
         public void WhenPredicateIsNull_ThenThrowException()
         {
-            ICollection<int> sut = new List<int> {1, 2, 3};
+            ICollection<int> sut = new List<int> { 1, 2, 3 };
 
             Assert.Throws<ArgumentNullException>(() => sut.RemoveWhere(null));
         }
@@ -199,11 +220,43 @@ public class CollectionExtensionsTests
         [Test]
         public void WhereMatchesCondition_ThenRemoveElements()
         {
-            ICollection<int> sut = new List<int> {1, 2, 3, 1, 2};
+            ICollection<int> sut = new List<int> { 1, 2, 3, 1, 2 };
 
             sut.RemoveWhere(x => x == 1 || x == 2);
 
             Assert.That(sut.Single(), Is.EqualTo(3));
+        }
+    }
+
+    [TestFixture]
+    public class AddIfNotNull
+    {
+        [Test]
+        public void WhenSourceIsNull_ThenThrowException()
+        {
+            Assert.Throws<ArgumentNullException>(() => CollectionExtensions.AddIfNotNull(null, new object()));
+        }
+
+        [Test]
+        public void WhenItemIsNull_ThenDoNotAdd()
+        {
+            ICollection<string> sut = new List<string> { "Hello", "World" };
+
+            var result = sut.AddIfNotNull(null);
+
+            Assert.That(result, Is.False);
+            Assert.That(sut.Count, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void WhenItemIsNotNull_ThenAdd()
+        {
+            ICollection<string> sut = new List<string> { "Hello", "World" };
+
+            var result = sut.AddIfNotNull("John");
+
+            Assert.That(result, Is.True);
+            Assert.That(sut.Count, Is.EqualTo(3));
         }
     }
 }

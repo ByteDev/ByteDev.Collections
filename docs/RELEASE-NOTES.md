@@ -1,5 +1,16 @@
 # Release Notes
 
+## 5.1.0 - ?
+
+Breaking changes:
+- (None)
+
+New features:
+- Add `CollectionExtensions.AddIfNotNull` method.
+
+Bug fixes / internal changes:
+- (None)
+
 ## 5.0.0 - 25 September 2023
 
 Breaking changes:

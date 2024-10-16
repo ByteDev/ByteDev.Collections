@@ -10,24 +10,24 @@ namespace ByteDev.Collections
     public static class CollectionExtensions
     {
         /// <summary>
-        /// Fills an empty collection's given number of elements with a value.
+        /// Fills an empty collection's given number of elements with a item.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">The collection to perform the operation on.</param>
         /// <param name="size">Number of elements to fill.</param>
-        /// <param name="value">The value to fill with.</param>
+        /// <param name="item">The item to fill with.</param>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
         /// <exception cref="T:System.InvalidOperationException"><paramref name="source" /> is not empty.</exception>
-        public static void Fill<TSource>(this ICollection<TSource> source, int size, TSource value)
+        public static void Fill<TSource>(this ICollection<TSource> source, int size, TSource item)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
 
             if (source.Count > 0)
-                throw new InvalidOperationException("Collection is not empty. Cannot fill non-empty list.");
+                throw new InvalidOperationException("Collection is not empty. Cannot fill non-empty collections.");
 
             for (var i = 0; i < size; i++)
-                source.Add(value);
+                source.Add(item);
         }
 
         /// <summary>
@@ -47,24 +47,30 @@ namespace ByteDev.Collections
         }
 
         /// <summary>
-        /// Adds the elements of the provided sequence to the end of the collection.
+        /// Adds the elements of the provided sequence to the end of the items.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
-        /// <param name="source">The collection to perform the operation on.</param>
-        /// <param name="collection">The collection whose elements will be added to the end.</param>
+        /// <param name="source">The items to perform the operation on.</param>
+        /// <param name="items">The items whose elements will be added to the end.</param>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
-        /// <exception cref="T:System.ArgumentNullException"><paramref name="collection" /> is null.</exception>
-        public static void AddRange<TSource>(this ICollection<TSource> source, IEnumerable<TSource> collection)
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="items" /> is null.</exception>
+        /// <exception cref="T:System.NotSupportedException"><paramref name="source" /> is not writable.</exception>
+        public static void AddRange<TSource>(this ICollection<TSource> source, IEnumerable<TSource> items)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
 
-            if (collection == null)
-                throw new ArgumentNullException(nameof(collection));
+            if (items == null)
+                throw new ArgumentNullException(nameof(items));
 
-            foreach (var item in collection)
+            if (source is List<TSource> list)
             {
-                source.Add(item);
+                list.AddRange(items);
+            }
+            else
+            {
+                foreach (var item in items)
+                    source.Add(item);
             }
         }
 
@@ -108,6 +114,27 @@ namespace ByteDev.Collections
             source.Where(predicate)
                 .ToArray()
                 .ForEach(element => source.Remove(element));
+        }
+
+        /// <summary>
+        /// Adds the given item if it is not null.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+        /// <param name="source">The collection to perform the operation on.</param>
+        /// <param name="item">Item to add.</param>
+        /// <returns>True if the item was added to the collection; otherwise false.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        public static bool AddIfNotNull<TSource>(this ICollection<TSource> source, TSource item)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            if (item == null)
+                return false;
+
+            source.Add(item);
+
+            return true;
         }
     }
 }
