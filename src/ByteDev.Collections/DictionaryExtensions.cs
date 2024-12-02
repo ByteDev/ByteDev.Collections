@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace ByteDev.Collections
@@ -305,6 +306,22 @@ namespace ByteDev.Collections
             }
 
             return nameValues;
+        }
+
+        /// <summary>
+        /// Returns the dictionary in a ReadOnlyDictionary wrapper.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the keys of <paramref name="source" />.</typeparam>
+        /// <typeparam name="TValue">The type of the values of <paramref name="source" />.</typeparam>
+        /// <param name="source">The dictionary to perform the operation on.</param>
+        /// <returns>ReadOnlyDictionary representation of the dictionary.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        public static IReadOnlyDictionary<TKey, TValue> ToReadOnlyDictionary<TKey, TValue>(this IDictionary<TKey, TValue> source)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            return new ReadOnlyDictionary<TKey, TValue>(source);
         }
     }
 }

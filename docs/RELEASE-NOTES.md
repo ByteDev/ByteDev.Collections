@@ -6,7 +6,8 @@ Breaking changes:
 - (None)
 
 New features:
-- Add `CollectionExtensions.AddIfNotNull` method.
+- Added `CollectionExtensions.AddIfNotNull` method.
+- Added `DictionaryExtensions.ToReadOnlyDictionary` method.
 
 Bug fixes / internal changes:
 - (None)

@@ -51,6 +51,7 @@ To use any extension methods simply reference the `ByteDev.Collections` namespac
   - GetValuesIgnoreKeyCase
   - RenameKey
   - ToNameValueCollection
+  - ToReadOnlyDictionary
 - IEnumerable<T>:
   - Second
   - SecondOrDefault

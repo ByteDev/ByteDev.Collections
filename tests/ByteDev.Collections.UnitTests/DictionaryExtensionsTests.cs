@@ -22,9 +22,7 @@ public class DictionaryExtensionsTests
         [Test]
         public void WhenSourceIsNull_ThenThrowException()
         {
-            Dictionary<string, string> sut = null;
-
-            Assert.Throws<ArgumentNullException>(() => sut.AddIfNotContainsKey("key1", "value1"));
+            Assert.Throws<ArgumentNullException>(() => ((Dictionary<string, string>)null).AddIfNotContainsKey("key1", "value1"));
         }
 
         [Test]
@@ -58,9 +56,7 @@ public class DictionaryExtensionsTests
         [Test]
         public void WhenSourceIsNull_ThenThrowException()
         {
-            Dictionary<string, string> sut = null;
-
-            Assert.Throws<ArgumentNullException>(() => sut.AddOrUpdate("key1", "value1"));
+            Assert.Throws<ArgumentNullException>(() => ((Dictionary<string, string>)null).AddOrUpdate("key1", "value1"));
         }
 
         [Test]
@@ -101,9 +97,7 @@ public class DictionaryExtensionsTests
         [Test]
         public void WhenSourceIsNull_ThenThrowException()
         {
-            Dictionary<string, string> sut = null;
-
-            Assert.Throws<ArgumentNullException>(() => sut.AddOrUpdate("key1", "value1", v => v == "value1"));
+            Assert.Throws<ArgumentNullException>(() => ((Dictionary<string, string>)null).AddOrUpdate("key1", "value1", v => v == "value1"));
         }
 
         [Test]
@@ -159,7 +153,7 @@ public class DictionaryExtensionsTests
         [Test]
         public void WhenSourceIsNull_ThenThrowException()
         {
-            Assert.Throws<ArgumentNullException>(() => DictionaryExtensions.AddRange(null, new KeyValuePair<string, string>[0]));
+            Assert.Throws<ArgumentNullException>(() => DictionaryExtensions.AddRange(null, Array.Empty<KeyValuePair<string, string>>()));
         }
 
         [Test]
@@ -171,7 +165,7 @@ public class DictionaryExtensionsTests
         [Test]
         public void WhenItemsToAddIsEmpty_ThenAddNothing()
         {
-            _sut.AddRange(new KeyValuePair<string, string>[0]);
+            _sut.AddRange(Array.Empty<KeyValuePair<string, string>>());
 
             Assert.That(_sut.Count, Is.EqualTo(0));
         }
@@ -580,7 +574,7 @@ public class DictionaryExtensionsTests
         [Test]
         public void WhenSourceIsNull_ThenThrowException()
         {
-            Assert.Throws<ArgumentNullException>(() => DictionaryExtensions.ToNameValueCollection(null as Dictionary<string, string>));
+            Assert.Throws<ArgumentNullException>(() => (null as Dictionary<string, string>).ToNameValueCollection());
         }
 
         [Test]
@@ -602,6 +596,27 @@ public class DictionaryExtensionsTests
             Assert.That(result.Count, Is.EqualTo(2));
             Assert.That(result["key1"], Is.EqualTo("value1"));
             Assert.That(result["key2"], Is.EqualTo("value2"));
+        }
+    }
+
+    [TestFixture]
+    public class ToReadOnlyDictionary : DictionaryExtensionsTests
+    {
+        [Test]
+        public void WhenSourceIsNull_ThenThrowException()
+        {
+            Assert.Throws<ArgumentNullException>(() => DictionaryExtensions.ToReadOnlyDictionary<string, string>(null));
+        }
+
+        [Test]
+        public void WhenIsNotNull_ThenReturnReadOnlyDictionary()
+        {
+            _sut.Add("key1", "val1");
+
+            var result = _sut.ToReadOnlyDictionary();
+
+            Assert.That(result.Single().Key, Is.EqualTo("key1"));
+            Assert.That(result.Single().Value, Is.EqualTo("val1"));
         }
     }
 }
