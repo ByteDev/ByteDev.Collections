@@ -570,7 +570,7 @@ namespace ByteDev.Collections.UnitTests.Sequences
             [TestCase(1)]
             public void WhenSeedIsNotEven_ThenThrowException(int seed)
             {
-                Assert.Throws<ArgumentException>(() => Sequencer.Even(1, seed));
+                Assert.Throws<ArgumentException>(() => Sequencer.Even(1, seed).ToList());
             }
 
             [Test]
@@ -647,7 +647,7 @@ namespace ByteDev.Collections.UnitTests.Sequences
             [TestCase(2)]
             public void WhenSeedIsNotOdd_ThenThrowException(int seed)
             {
-                Assert.Throws<ArgumentException>(() => Sequencer.Odd(1, seed));
+                Assert.Throws<ArgumentException>(() => Sequencer.Odd(1, seed).ToList());
             }
 
             [Test]

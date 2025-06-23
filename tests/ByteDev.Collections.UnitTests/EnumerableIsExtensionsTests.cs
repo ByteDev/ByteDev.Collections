@@ -82,7 +82,7 @@ public class EnumerableIsExtensionsTests
 
             var result = sut.IsSingle();
 
-            Assert.IsFalse(result);
+            Assert.That(result, Is.False);
         }
 
         [Test]
@@ -92,7 +92,7 @@ public class EnumerableIsExtensionsTests
 
             var result = sut.IsSingle();
 
-            Assert.IsTrue(result);
+            Assert.That(result,  Is.True);
         }
 
         [Test]
@@ -102,7 +102,7 @@ public class EnumerableIsExtensionsTests
 
             var result = sut.IsSingle();
 
-            Assert.IsFalse(result);
+            Assert.That(result, Is.False);
         }
     }
 

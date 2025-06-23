@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ByteDev.Collections.Sequences
 {
@@ -264,22 +265,21 @@ namespace ByteDev.Collections.Sequences
         /// </summary>
         /// <param name="size">Size of the sequence.</param>
         /// <param name="seed">Seed value to start the sequence with. By default seed is 0.</param>
-        /// <returns>List containing the sequence of numbers.</returns>
+        /// <returns>Sequence of event numbers.</returns>
         /// <exception cref="T:System.ArgumentException"><paramref name="seed" /> is not an even number.</exception>
-        public static IList<int> Even(int size, int seed = 0)
+        public static IEnumerable<int> Even(int size, int seed = 0)
         {
             if (!seed.IsEven())
                 throw new ArgumentException("Seed was not an even number.");
 
-            if (size < 1)
-                return new List<int>();
-            
-            var list = new List<int>(size);
-            
-            for (var i = seed; i < (size * 2) + seed; i += 2)
-                list.Add(i);
+            if (size <= 0)
+                yield break;
 
-            return list;
+            for (int i = seed; i < (size * 2) + seed; i++)
+            {
+                if (i.IsEven())
+                    yield return i;
+            }
         }
 
         /// <summary>
@@ -289,20 +289,19 @@ namespace ByteDev.Collections.Sequences
         /// <param name="seed">Seed value to start the sequence with. By default seed is 1.</param>
         /// <returns>List containing the sequence of numbers.</returns>
         /// <exception cref="T:System.ArgumentException"><paramref name="seed" /> is not an odd number.</exception>
-        public static IList<int> Odd(int size, int seed = 1)
+        public static IEnumerable<int> Odd(int size, int seed = 1)
         {
             if (!seed.IsOdd())
                 throw new ArgumentException("Seed was not an odd number.");
 
-            if (size < 1)
-                return new List<int>();
-            
-            var list = new List<int>(size);
-            
-            for (var i = seed; i < (size * 2) + seed; i += 2)
-                list.Add(i);
+            if (size <= 0)
+                yield break;
 
-            return list;
+            for (int i = seed; i < (size * 2) + seed; i++)
+            {
+                if (i.IsOdd())
+                    yield return i;
+            }
         }
 
         /// <summary>
