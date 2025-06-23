@@ -1,9 +1,10 @@
 # Release Notes
 
-## 5.1.0 - ?
+## 6.0.0 - ?
 
 Breaking changes:
-- (None)
+- `Sequencer` public methods now use `yield` and return `IEnumerable<int>`.
+- Removed `Sequencer.Integers()` overload that takes optional `start` param (now mandatory).
 
 New features:
 - Added `CollectionExtensions.AddIfNotNull` method.

@@ -136,59 +136,56 @@ using ByteDev.Collections.Sequences;
 const int size = 8;
 
 // 1, 1, 1, 1, 1, 1, 1, 1
-IList<int> r = Sequencer.Repeating(size, 1);
+IEnumberable<int> r = Sequencer.Repeating(size, 1);
 
 // 1, 2, 3, 4, 5, 6, 7, 8
-IList<int> n = Sequencer.Natural(size);
+IEnumberable<int> n = Sequencer.Natural(size);
 
 // 0, 1, 2, 3, 4, 5, 6, 7
-IList<int> w = Sequencer.Whole(size);
-
-// 0, 1, 2, 3, 4, 5, 6, 7
-IList<int> i1 = Sequencer.Integers(size);
+IEnumberable<int> w = Sequencer.Whole(size);
 
 // -2, -1, 0, 1, 2, 3, 4, 5
-IList<int> i2 = Sequencer.Integers(size, -2);
+IEnumberable<int> i2 = Sequencer.Integers(size, -2);
 
 // 1, 3, 5, 7, 9, 11, 13, 15
-IList<int> a = Sequencer.Arithmetic(size, 1, 2);
+IEnumberable<int> a = Sequencer.Arithmetic(size, 1, 2);
 
 // 1, 2, 4, 8, 16, 32, 64, 128
-IList<int> g = Sequencer.Geometric(size, 1, 2);
+IEnumberable<int> g = Sequencer.Geometric(size, 1, 2);
 
 // 0, 1, 1, 2, 3, 5, 8, 13
-IList<int> f = Sequencer.Fibonacci(size);
+IEnumberable<int> f = Sequencer.Fibonacci(size);
 
 // 2, 3, 5, 7, 11, 13, 17, 19
-IList<int> p = Sequencer.Primes(size);
+IEnumberable<int> p = Sequencer.Primes(size);
 
 // 10, 5, 16, 8, 4, 2, 1
-IList<int> c = Sequencer.Collatz(10);
+IEnumberable<int> c = Sequencer.Collatz(10);
 
 // 1, 3, 6, 10, 15, 21, 28, 36
-IList<int> t = Sequencer.Triangular(size);
+IEnumberable<int> t = Sequencer.Triangular(size);
 
 // 1, 4, 9, 16, 25, 36, 49, 64
-IList<int> s = Sequencer.Square(size);
+IEnumberable<int> s = Sequencer.Square(size);
 
 // 1, 8, 27, 64, 125, 216, 343, 512
-IList<int> s = Sequencer.Cube(size);
+IEnumberable<int> s = Sequencer.Cube(size);
 
 // 2, 4, 8, 16, 32, 64, 128, 256
-IList<int> p2 = Sequencer.PowerOfTwo(size);
+IEnumberable<int> p2 = Sequencer.PowerOfTwo(size);
 
 // 0, 2, 4, 6, 8, 10, 12, 14
-IList<int> e1 = Sequencer.Even(size);
+IEnumberable<int> e1 = Sequencer.Even(size);
 
 // 4, 6, 8, 10, 12, 14, 16, 18
-IList<int> e2 = Sequencer.Even(size, 4);
+IEnumberable<int> e2 = Sequencer.Even(size, 4);
 
 // 1, 3, 5, 7, 9, 11, 13, 15
-IList<int> o1 = Sequencer.Odd(size);
+IEnumberable<int> o1 = Sequencer.Odd(size);
 
 // 3, 5, 7, 9, 11, 13, 15, 17
-IList<int> o2 = Sequencer.Odd(size, 3);
+IEnumberable<int> o2 = Sequencer.Odd(size, 3);
 
 // 1, 4, 10, 20, 35, 56, 84, 120
-IList<int> tet = Sequencer.Tetrahedral(size, 3);
+IEnumberable<int> tet = Sequencer.Tetrahedral(size, 3);
 ```
