@@ -80,7 +80,7 @@ namespace ByteDev.Collections.UnitTests.Sequences
             [TestCase(0)]
             public void WhenSizeIsZeroOrLess_ThenReturnEmpty(int size)
             {
-                var result = Sequencer.Integers(size);
+                var result = Sequencer.Integers(size, 0);
 
                 Assert.That(result, Is.Empty);
             }
@@ -92,7 +92,7 @@ namespace ByteDev.Collections.UnitTests.Sequences
             [TestCase(5)]
             public void WhenSizeGreaterThanZero_AndStartIsZero_ThenReturnSequence(int size)
             {
-                var result = Sequencer.Integers(size);
+                var result = Sequencer.Integers(size, 0);
 
                 Assert.That(result.Count, Is.EqualTo(size));
                 Assert.That(result.Last(), Is.EqualTo(size - 1));
@@ -122,6 +122,68 @@ namespace ByteDev.Collections.UnitTests.Sequences
 
                 Assert.That(result.Count, Is.EqualTo(size));
                 Assert.That(result.Last(), Is.EqualTo(size - 3));
+            }
+        }
+
+        [TestFixture]
+        public class Arithmetic
+        {
+            [TestCase(-1)]
+            [TestCase(0)]
+            public void WhenSizeIsZeroOrLess_ThenReturnEmpty(int size)
+            {
+                var result = Sequencer.Arithmetic(size, 1, 2);
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [TestCase(1, 1)]
+            [TestCase(2, 3)]
+            [TestCase(3, 5)]
+            [TestCase(4, 7)]
+            [TestCase(5, 9)]
+            public void WhenStartIsOne_AndDiffTwo_ThenReturnSequence(int size, int lastValue)
+            {
+                var result = Sequencer.Arithmetic(size, 1, 2);
+
+                Assert.That(result.Count, Is.EqualTo(size));
+                Assert.That(result.Last(), Is.EqualTo(lastValue));
+            }
+        }
+
+        [TestFixture]
+        public class Geometric
+        {
+            [Test]
+            public void WhenStartIsZero_ThenThrowException()
+            {
+                Assert.Throws<ArgumentException>(() => Sequencer.Geometric(10, 0, 2).ToList());
+            }
+
+            [TestCase(-1)]
+            [TestCase(0)]
+            public void WhenSizeIsZeroOrLess_ThenReturnEmpty(int size)
+            {
+                var result = Sequencer.Geometric(size, 1, 2);
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [TestCase(1, 1)]
+            [TestCase(2, 2)]
+            [TestCase(3, 4)]
+            [TestCase(4, 8)]
+            [TestCase(5, 16)]
+            [TestCase(6, 32)]
+            [TestCase(7, 64)]
+            [TestCase(8, 128)]
+            [TestCase(9, 256)]
+            public void WhenStartOne_AndMultiplierTwo_ThenReturnSequence(int size, int lastValue)
+            {
+                var result = Sequencer.Geometric(size, 1, 2);
+
+                Assert.That(result.Count, Is.EqualTo(size));
+                Assert.That(result.Last(), Is.EqualTo(lastValue));
             }
         }
 
@@ -219,74 +281,12 @@ namespace ByteDev.Collections.UnitTests.Sequences
         }
 
         [TestFixture]
-        public class Geometric
-        {
-            [Test]
-            public void WhenStartIsZero_ThenThrowException()
-            {
-                Assert.Throws<ArgumentException>(() => Sequencer.Geometric(10, 0, 2));
-            }
-
-            [TestCase(-1)]
-            [TestCase(0)]
-            public void WhenSizeIsZeroOrLess_ThenReturnEmpty(int size)
-            {
-                var result = Sequencer.Geometric(size, 1, 2);
-
-                Assert.That(result, Is.Empty);
-            }
-
-            [TestCase(1, 1)]
-            [TestCase(2, 2)]
-            [TestCase(3, 4)]
-            [TestCase(4, 8)]
-            [TestCase(5, 16)]
-            [TestCase(6, 32)]
-            [TestCase(7, 64)]
-            [TestCase(8, 128)]
-            [TestCase(9, 256)]
-            public void WhenStartOne_AndMultiplierTwo_ThenReturnSequence(int size, int lastValue)
-            {
-                var result = Sequencer.Geometric(size, 1, 2);
-
-                Assert.That(result.Count, Is.EqualTo(size));
-                Assert.That(result.Last(), Is.EqualTo(lastValue));
-            }
-        }
-
-        [TestFixture]
-        public class Arithmetic
-        {
-            [TestCase(-1)]
-            [TestCase(0)]
-            public void WhenSizeIsZeroOrLess_ThenReturnEmpty(int size)
-            {
-                var result = Sequencer.Arithmetic(size, 1, 2);
-
-                Assert.That(result, Is.Empty);
-            }
-
-            [TestCase(1, 1)]
-            [TestCase(2, 3)]
-            [TestCase(3, 5)]
-            [TestCase(4, 7)]
-            [TestCase(5, 9)]
-            public void WhenStartIsOne_AndDiffTwo_ThenReturnSequence(int size, int lastValue)
-            {
-                var result = Sequencer.Arithmetic(size, 1, 2);
-
-                Assert.That(result.Count, Is.EqualTo(size));
-                Assert.That(result.Last(), Is.EqualTo(lastValue));
-            }
-        }
-
-        [TestFixture]
         public class Collatz : SequencerTests
         {
             [Test]
-            public void WhenSeed0_ThenThrowException()
+            public void WhenSeedLessThanOne_ThenThrowException()
             {
-                Assert.Throws<ArgumentException>(() => _ = Sequencer.Collatz(0));
+                Assert.Throws<ArgumentException>(() => _ = Sequencer.Collatz(0).ToList());
             }
             
             [Test]
@@ -366,19 +366,19 @@ namespace ByteDev.Collections.UnitTests.Sequences
             [Test]
             public void WhenSizeIsOne_ThenReturnSequence()
             {
-                var result = Sequencer.Repeating(1, 1);
+                var result = Sequencer.Repeating(1, 9);
 
-                Assert.That(result.Single(), Is.EqualTo(1));
+                Assert.That(result.Single(), Is.EqualTo(9));
             }
 
             [Test]
             public void WhenSizeIsTwo_ThenReturnSequence()
             {
-                var result = Sequencer.Repeating(2, 1);
+                var result = Sequencer.Repeating(2, 9);
 
                 Assert.That(result.Count, Is.EqualTo(2));
-                Assert.That(result.First(), Is.EqualTo(1));
-                Assert.That(result.Second(), Is.EqualTo(1));
+                Assert.That(result.First(), Is.EqualTo(9));
+                Assert.That(result.Second(), Is.EqualTo(9));
             }
         }
 
@@ -496,11 +496,10 @@ namespace ByteDev.Collections.UnitTests.Sequences
         [TestFixture]
         public class PowerOfTwo : SequencerTests
         {
-            [TestCase(-1)]
-            [TestCase(0)]
-            public void WhenSizeIsZeroOrLess_ThenReturnEmpty(int size)
+            [Test]
+            public void WhenSizeIsLessThanOne_ThenReturnEmpty()
             {
-                var result = Sequencer.PowerOfTwo(size);
+                var result = Sequencer.PowerOfTwo(0);
 
                 Assert.That(result, Is.Empty);
             }
