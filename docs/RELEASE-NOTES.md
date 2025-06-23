@@ -1,5 +1,17 @@
 # Release Notes
 
+## 5.1.0 - ?
+
+Breaking changes:
+- (None)
+
+New features:
+- Added `CollectionExtensions.AddIfNotNull` method.
+- Added `DictionaryExtensions.ToReadOnlyDictionary` method.
+
+Bug fixes / internal changes:
+- (None)
+
 ## 5.0.0 - 25 September 2023
 
 Breaking changes:

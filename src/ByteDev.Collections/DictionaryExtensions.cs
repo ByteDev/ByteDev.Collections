@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace ByteDev.Collections
@@ -25,9 +26,7 @@ namespace ByteDev.Collections
                 throw new ArgumentNullException(nameof(source));
             
             if (!source.ContainsKey(key))
-            {
                 source.Add(key, value);
-            }
         }
 
         /// <summary>
@@ -44,15 +43,8 @@ namespace ByteDev.Collections
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
-            if (source.ContainsKey(key))
-            {
-                source[key] = value;
-            }
-            else
-            {
-                source.Add(key, value);
-            }
+
+            source[key] = value;
         }
 
         /// <summary>
@@ -103,9 +95,7 @@ namespace ByteDev.Collections
                 throw new ArgumentNullException(nameof(items));
 
             foreach (var kvp in items)
-            {
                 source.Add(kvp);
-            }
         }
 
         /// <summary>
@@ -128,13 +118,9 @@ namespace ByteDev.Collections
             foreach (var kvp in items)
             {
                 if (source.ContainsKey(kvp.Key))
-                {
                     source[kvp.Key] = kvp.Value;
-                }
                 else
-                {
                     source.Add(kvp);
-                }
             }
         }
 
@@ -153,9 +139,7 @@ namespace ByteDev.Collections
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
             
-            return source.ContainsKey(key)
-                ? source[key]
-                : defaultValue;
+            return source.TryGetValue(key, out var value) ? value : defaultValue;
         }
 
         /// <summary>
@@ -322,6 +306,22 @@ namespace ByteDev.Collections
             }
 
             return nameValues;
+        }
+
+        /// <summary>
+        /// Returns the dictionary in a ReadOnlyDictionary wrapper.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the keys of <paramref name="source" />.</typeparam>
+        /// <typeparam name="TValue">The type of the values of <paramref name="source" />.</typeparam>
+        /// <param name="source">The dictionary to perform the operation on.</param>
+        /// <returns>ReadOnlyDictionary representation of the dictionary.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        public static IReadOnlyDictionary<TKey, TValue> ToReadOnlyDictionary<TKey, TValue>(this IDictionary<TKey, TValue> source)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            return new ReadOnlyDictionary<TKey, TValue>(source);
         }
     }
 }
